@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/portfolio-v2/static/css/main.6eb88e4e.css",
+    "main.js": "/portfolio-v2/static/js/main.b9b2ef02.js",
+    "static/js/111.37e92c26.chunk.js": "/portfolio-v2/static/js/111.37e92c26.chunk.js",
+    "static/media/gradient.png": "/portfolio-v2/static/media/gradient.a124b2a42d86a90eac34.png",
+    "static/media/Pretendard-Black.woff": "/portfolio-v2/static/media/Pretendard-Black.c51355ddc1caec596031.woff",
+    "static/media/Pretendard-Bold.woff": "/portfolio-v2/static/media/Pretendard-Bold.1f1dbbbf311ffffcc770.woff",
+    "static/media/Pretendard-Light.woff": "/portfolio-v2/static/media/Pretendard-Light.7d1a33b829142e833fb9.woff",
+    "static/media/Pretendard-Regular.woff": "/portfolio-v2/static/media/Pretendard-Regular.303253288b0ba99db532.woff",
+    "static/media/roket_portfolio.glb": "/portfolio-v2/static/media/roket_portfolio.2f6f49fcfe3098f0e51c.glb",
+    "static/media/Pretendard-Bold.woff2": "/portfolio-v2/static/media/Pretendard-Bold.0c6f5e225ff28f456183.woff2",
+    "static/media/Pretendard-Regular.woff2": "/portfolio-v2/static/media/Pretendard-Regular.38bed7de46e7b9049ced.woff2",
+    "static/media/Pretendard-Light.woff2": "/portfolio-v2/static/media/Pretendard-Light.1fc5521353ec20635e8e.woff2",
+    "static/media/mine.glb": "/portfolio-v2/static/media/mine.b3ccb900aed47d5d0934.glb",
+    "static/media/kplus.png": "/portfolio-v2/static/media/kplus.73ec4090cb7c8decc923.png",
+    "static/media/hyundai.png": "/portfolio-v2/static/media/hyundai.1516288042d8bf87d520.png",
+    "static/media/lsgpis.png": "/portfolio-v2/static/media/lsgpis.d629d9215202b85839c0.png",
+    "index.html": "/portfolio-v2/index.html",
+    "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
+    "main.6eb88e4e.css.map": "/portfolio-v2/static/css/main.6eb88e4e.css.map",
+    "main.b9b2ef02.js.map": "/portfolio-v2/static/js/main.b9b2ef02.js.map",
+    "111.37e92c26.chunk.js.map": "/portfolio-v2/static/js/111.37e92c26.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6eb88e4e.css",
+    "static/js/main.b9b2ef02.js"
+  ]
+}
