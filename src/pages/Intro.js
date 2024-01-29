@@ -1,11 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Layout from '../components/Layout';
-import '../assets/scss/intro.scss'
+import '../assets/scss/intro.scss';
 
 
 const Intro = (props) => {
-	// $('#three-canvas').show();
 	$('#three-canvas2').remove();
 	
 	$(document).on('click', '.btn-guide', function(){
