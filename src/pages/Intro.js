@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import Layout from '../components/Layout';
 import '../assets/scss/intro.scss';
+import { Link } from 'react-router-dom';
 
 
 const Intro = (props) => {
@@ -21,7 +22,7 @@ const Intro = (props) => {
 					</div>
 				</div>
 				<div className='btn-view'>
-					<a href='/portfolio-v2/project'>보러가기</a>
+					<Link to='/project'>보러가기</Link>
 				</div>
 
 				<div className='floating-wrap'>
