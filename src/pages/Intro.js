@@ -2,11 +2,12 @@ import React from 'react';
 import $ from 'jquery';
 import Layout from '../components/Layout';
 import '../assets/scss/intro.scss';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 const Intro = (props) => {
-	$('#three-canvas2').remove();
+	$('#three-canvas2').hide();
+	$('#three-canvas').show();
 	
 	$(document).on('click', '.btn-guide', function(){
 		$('#guide').hide();
@@ -22,7 +23,7 @@ const Intro = (props) => {
 					</div>
 				</div>
 				<div className='btn-view'>
-					<Link to='/project'>보러가기</Link>
+					<a href='/portfolio-v2/project'>보러가기</a>
 				</div>
 
 				<div className='floating-wrap'>

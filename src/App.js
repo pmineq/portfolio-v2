@@ -7,6 +7,8 @@ import './App.scss';
 import Intro from './pages/Intro';
 import Project from './pages/Project';
 
+
+
 class App extends Component {
   render() {
     return (

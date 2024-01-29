@@ -8,7 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 const Portfolio = (props) => {
-	$('#three-canvas').remove();
+	$('#three-canvas').hide();
+	$('#three-canvas2').show();
+	
 
 	let count = 0;
 
