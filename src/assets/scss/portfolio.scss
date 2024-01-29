@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+.header-logo img {
+	filter: invert(40%) sepia(0%) saturate(916%) hue-rotate(37deg) brightness(113%) contrast(100%); 
+}
+
+#three-canvas2:hover {
+  cursor : url('../images/mouse_link.png') 20 20, auto;
+}
+
+
+.portfolio {
+  position: relative;
+  width: 100%; height: 100vh; height: calc(var(--vh, 1vh) * 100);
+
+	.intro {
+		position: relative;
+		width: 100%; height: 100vh;
+		overflow: hidden;
+		background: radial-gradient(ellipse at bottom, #2c496e 0%, #090a0f 100%);
+
+
+		&::after {
+			content: "";
+			position: absolute; bottom: 0; left: 50%;
+			width: 100%; max-width: 300px; height: 300px;
+			border-radius: 9999px; border: 1px solid rgb(255 255 255 / 10%);
+			box-shadow: 0 0 15px 3px #fbed96;
+			background: linear-gradient(to bottom, #fff2e9 0%, #ffcc63 100%);
+			transform: translate(-50%, 50%);
+		}
+	}
+	
+}
+
+
+
+.message-wrap {
+  display: none; 
+  position: absolute; left: 50%; bottom: 350px;
+
+  transform: translateX(-50%);
+  z-index: 1;
+
+
+
+}
+
+
+.message {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto; padding: 25px 40px; box-sizing: border-box;
+  background-color: rgb(255 255 255 / 20%); 
+	border-radius: 20px;
+	font-size: 16px; color: #fff;
+  transition: all 0.3s;
+
+  &:after {
+    content: '';
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 16px solid transparent;
+    border-top-color: rgb(255 255 255 / 20%);
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -8px;
+    margin-bottom: -16px;
+  }
+
+  &:nth-last-child(1):after {
+    display: block;
+  }
+
+  &.on:hover {
+    cursor : url('../images/mouse_link.png') 20 20, auto;
+  }
+
+  &.on span:after {
+    content: "▼";
+    margin-left: 10px; 
+    font-size: 10px; color: #fff;
+    animation: blink-effect 1s step-end infinite;
+  }
+
+  & + & {
+    margin-top: 15px;
+  }
+  
+}
+
+.star {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  
+  &:after {
+  content:"⭐";
+  font-size: 40px;
+  animation: blink-effect 2s ease-in-out infinite;
+  transition-duration: 2s;
+}
+
+}
+
+
+
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.scroll-text {
+  p {
+    position: absolute; left: 50%; bottom: 0;
+    font-size: 100px; font-family: "Bebas Neue", sans-serif; font-weight: 400;
+    color: #fff; white-space: nowrap;
+    transform: translateX(-50%); transition: all 3s;
+    z-index: 0;
+    opacity: 0; visibility: hidden;
+  }
+
+  &.on p {
+    bottom: 20%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .message {
+    padding: 20px 30px;
+    font-size: 15px;
+
+    & + & {
+      margin-top: 10px;
+    }
+  }
+
+  .scroll-text {
+    p {
+      font-size: 88px;
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  .message-wrap {
+    bottom: 45%;
+  }
+
+  .message {
+    padding: 12px 20px;
+    font-size: 13px;
+    white-space: nowrap;
+
+    & + & {
+      margin-top: 5px;
+    }
+  }
+
+  .scroll-text {
+    p {
+      font-size: 75px;
+    }
+
+    &.on p {
+      bottom: 28%;
+    }
+  }
+
+}
+
+
+
+
+/* =======================================================
+  star
+========================================================*/
+
+@function multiple-box-shadow ($n) {
+  $value: '#{random(2000)}px #{random(2000)}px #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+	}
+
+  @return unquote($value)
+}
+
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);
+
+
+
+
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: $shadows-small;
+  animation: animStar 50s linear infinite;
+    
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: $shadows-small;
+	}
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $shadows-medium;
+  animation: animStar 100s linear infinite;
+    
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: $shadows-medium;
+	}
+}
+
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: $shadows-big;
+  animation: animStar 150s linear infinite;
+    
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 3px;
+    height: 3px;
+    background: transparent;
+    box-shadow: $shadows-big;
+	}
+}
+
+
+@keyframes animStar {
+	from {	
+		transform: translateY(0px);
+	} to {
+		transform: translateY(-2000px);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+.project {
+  background-color: #111;
+}
+.project-group {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto; padding: 30vw 0;
+  // background: linear-gradient(#090a0f 0%, #9ba0a7 100%);
+}
+
+
+.project-item {
+  width: 1000px;
+  max-width: 70vw;
+  margin: 0 auto 30vw;
+  /* background-color: rgba(255,255,255,0.3); */
+  text-align: left;
+  margin-right: 0;
+  position: relative;
+  padding-top: 15vw;
+  color: #fff;
+}
+.project-item:nth-child(even) {
+  margin-left: 0;
+  text-align: right;
+}
+.project-number {
+  font-size: 35vw;
+  position: absolute;
+  left: -5vw;
+  top: -13vw;
+  opacity: 0.07;
+  font-family: "Lato";
+  font-weight: 300;
+}
+.project-item:nth-child(even) .project-number {
+  left: auto;
+  right: -5vw;
+}
+.project-date {
+  padding-bottom: 5px;
+  font-weight: 400;
+}
+.project-imgwrap {
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+.project-img {
+  position: absolute;
+  left: -5%; 
+  top: -5%;
+  width: 110%;
+  height: 110%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  filter: saturate(0%);
+  transition: all 1s;
+}
+.project-img:hover {
+  filter: saturate(100%);
+  transform: scale(1.025);
+}
+#section1 .project-img {
+  background-image: url('../images/project/hyundai.png');
+}
+#section2 .project-img {
+  background-image: url('../images/project/kplus.png');
+}
+#section3 .project-img {
+  background-image: url('../images/project/lsgpis.png');
+}
+
+.project-title {
+  font-size: 4vw;
+  line-height: 1.4;
+  margin-top: -5vw;
+  margin-left: -4vw;
+  z-index: 100;
+  position: relative;
+  word-break: keep-all;
+  color: #fff;
+}
+.project-item:nth-child(even) .project-title {
+  margin-left: auto;
+  margin-right: -4vw;
+}

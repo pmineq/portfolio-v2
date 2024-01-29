@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gugi&display=swap');
+
+.guide-text {
+  display: block;
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; max-width: 300px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #222;
+}
+
+
+#guide {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(158, 194, 210, 0.7);
+  z-index: 10;
+}
+#guide p {
+  font-family: 'Black Han Sans', Apple SD Gothic Neo, 돋움, dotum, sans-serif; font-size: 48px;
+}
+#guide p b {
+  color: #044e5b;
+  // text-shadow: 2px 2px 1px #fff;
+  font-family: 'Gugi', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
+}
+#guide p em {
+  font-family: 'Black Han Sans', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
+  font-style: normal;
+  // text-decoration: underline;
+}
+
+#guide button {
+  display: block;
+  width: 80%; 
+  margin: 30px auto 0;
+  padding: 12px 24px; box-sizing: border-box;
+  border-radius: 999px;
+  background-color: #fff;
+  font-size: 30px; font-weight: 700;
+  color: #0095ac;
+}
+
+
+.btn-view{
+	display: none;
+  position: absolute;
+	left: 50%; bottom: 22%;
+	width: 80%; max-width: 180px;
+	transform: translateX(-50%);
+  z-index: 100;
+  touch-action: none;
+}
+
+.btn-view a{
+  display:block;
+  position: relative;
+  padding: 15px 25px;
+  box-sizing: border-box;
+
+  background-color:#FFA12B;
+  font-family: 'Gugi', Apple SD Gothic Neo, 돋움, dotum, sans-serif; font-weight: 400; font-size: 28px;
+  text-align: center; text-decoration:none;
+  color:white;  
+  
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 1px 0px #000;
+  filter: dropshadow(color=#000, offx=0px, offy=1px);
+  
+  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.btn-view a:active {
+  top:10px;
+  background-color:#F78900;
+  
+  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+  -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
+  box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+}
+
+.btn-view:after{
+  content:"";
+  height:100%;
+  width:100%;
+  padding:4px;
+  position: absolute;
+  bottom:-15px;
+  left:-4px;
+  z-index:-1;
+  background-color:#7c4500;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 500px) {
+	.btn-view a {
+		font-size: 22px;
+	}
+}
+
+
+/* floating-wrap */
+
+.floating-wrap{
+  position: absolute;
+	right: 5%; bottom: 5%;
+  z-index: 1;
+  touch-action: none;
+}
+
+.floating-wrap button{
+  display:block;
+  position: relative;
+  width: 50px; height: 50px;
+  box-sizing: border-box;
+  background-color:#fff;
+  text-align: center; text-decoration:none; text-indent: -9999px;
+  color:#fff;  
+
+  background-image: url("../images/arrow.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: center center;
+  
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 1px 0px #000;
+  filter: dropshadow(color=#000, offx=0px, offy=1px);
+  
+  -webkit-box-shadow:inset 0 1px 0 #b9fff5, 0 7px 0 #77dccd;
+  -moz-box-shadow:inset 0 1px 0 #b9fff5, 0 7px 0 #77dccd;
+  box-shadow:inset 0 1px 0 #b9fff5, 0 7px 0 #77dccd;
+  
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  touch-action: none;
+}
+
+.floating-wrap button:active {
+  top:7px;
+  background-color:#c4e3dd;
+  
+  -webkit-box-shadow:inset 0 1px 0 #ffffff, inset 0 -2px 0 #74dbc7;
+  -moz-box-shadow:inset inset 0 1px 0 #ffffff, inset 0 -2px 0 #74dbc7;
+  box-shadow:inset 0 1px 0 #ffffff, inset 0 -2px 0 #74dbc7;
+}
+
+.floating-wrap:after{
+  content:"";
+  height:100%;
+  width:100%;
+  padding:4px;
+  position: absolute;
+  bottom:-12px;
+  left:-4px;
+  z-index:-1;
+  background-color:#51baa5;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+}

@@ -1,0 +1,7 @@
+#three-canvas,
+#three-canvas2 {
+	touch-action: none;
+}
+
+#three-canvas {position: fixed; left: 0; top: 0; }
+#three-canvas2 {position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); }
