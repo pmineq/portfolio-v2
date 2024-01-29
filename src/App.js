@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Routes>
         <Route path="/" index element={<Intro/>}></Route>
-        <Route path="/project" element={<Project/>}></Route>
+        <Route path="project" element={<Project/>}></Route>
 
         {/* <Route path="*" element={<NotFound/>}></Route> */}
       </Routes>
