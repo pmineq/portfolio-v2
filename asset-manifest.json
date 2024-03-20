@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/portfolio-v2/static/css/main.5df70394.css",
-    "main.js": "/portfolio-v2/static/js/main.0ddc2139.js",
+    "main.css": "/portfolio-v2/static/css/main.ed0e81c2.css",
+    "main.js": "/portfolio-v2/static/js/main.3f02640d.js",
     "static/js/111.37e92c26.chunk.js": "/portfolio-v2/static/js/111.37e92c26.chunk.js",
-    "static/media/gradient.png": "/portfolio-v2/static/media/gradient.6d6ea2f0e656721f91c8.png",
+    "static/media/gradient.png": "/portfolio-v2/static/media/gradient.fa7130d657502acbe43c.png",
     "static/media/Pretendard-Black.woff": "/portfolio-v2/static/media/Pretendard-Black.c51355ddc1caec596031.woff",
     "static/media/Pretendard-Bold.woff": "/portfolio-v2/static/media/Pretendard-Bold.1f1dbbbf311ffffcc770.woff",
     "static/media/Pretendard-Light.woff": "/portfolio-v2/static/media/Pretendard-Light.7d1a33b829142e833fb9.woff",
@@ -18,12 +18,12 @@
     "static/media/lsgpis.png": "/portfolio-v2/static/media/lsgpis.d629d9215202b85839c0.png",
     "index.html": "/portfolio-v2/index.html",
     "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
-    "main.5df70394.css.map": "/portfolio-v2/static/css/main.5df70394.css.map",
-    "main.0ddc2139.js.map": "/portfolio-v2/static/js/main.0ddc2139.js.map",
+    "main.ed0e81c2.css.map": "/portfolio-v2/static/css/main.ed0e81c2.css.map",
+    "main.3f02640d.js.map": "/portfolio-v2/static/js/main.3f02640d.js.map",
     "111.37e92c26.chunk.js.map": "/portfolio-v2/static/js/111.37e92c26.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5df70394.css",
-    "static/js/main.0ddc2139.js"
+    "static/css/main.ed0e81c2.css",
+    "static/js/main.3f02640d.js"
   ]
 }
