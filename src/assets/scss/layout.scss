@@ -28,7 +28,8 @@ button {padding: 0; border: 0; background-color: transparent; cursor: pointer; }
 a {color: inherit; text-decoration: none; }
 
 a:hover,
-button:hover {cursor : url('../images/mouse_link.png') 20 20, auto; }
+button:hover,
+label:hover {cursor : url('../images/mouse_link.png') 20 20, auto; }
 
 
 #wrapper {min-height: 100vh; background-color: #fff; }
@@ -40,8 +41,16 @@ button:hover {cursor : url('../images/mouse_link.png') 20 20, auto; }
   background-color: #fff;
 }
 
-#header {position: fixed; width: 100%; z-index: 1; }
-.header-logo img {display: block; width: 100%; height: 80px; }
+#header {
+  position: fixed; width: 100%; z-index: 1; 
+
+  .header-logo {
+    mix-blend-mode: soft-light;
+    img {display: block; width: 100%; height: 80px; }
+  }
+}
+
+
 
 
 

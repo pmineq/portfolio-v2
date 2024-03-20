@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // import logo from './logo.svg';
 import './App.scss';
+import './assets/scss/common.scss';
 
 import Intro from './pages/Intro';
 import Project from './pages/Project';

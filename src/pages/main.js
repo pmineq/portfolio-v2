@@ -106,7 +106,7 @@ pointerMesh.receiveShadow = true;
 scene.add(pointerMesh);
 
 const spotMesh = new THREE.Mesh(
-	new THREE.PlaneGeometry(4, 4),
+	new THREE.PlaneGeometry(4.5, 4.5),
 	new THREE.MeshStandardMaterial({
 		color: 'yellow',
 		transparent: true,
@@ -213,8 +213,8 @@ export default function draw() {
 			camera.position.x = cameraPosition.x + player.modelMesh.position.x;
 			camera.position.z = cameraPosition.z + player.modelMesh.position.z;
 			
-			player.actions[0].stop();
 			player.actions[1].play();
+			player.actions[0].stop();
 			
 			if (
 				Math.abs(destinationPoint.x - player.modelMesh.position.x) < 0.03 &&
@@ -235,9 +235,9 @@ export default function draw() {
 					gsap.to(
 						house.modelMesh.position,
 						{
-							duration: 1,
+							duration: 1.5,
 							y: 4.5,
-							ease: 'Bounce.easeOut'
+							ease: "expo.in",
 						}
 					);
 					gsap.to(
@@ -257,7 +257,7 @@ export default function draw() {
 				gsap.to(
 					house.modelMesh.position,
 					{
-						duration: 0.5,
+						duration: 1.5,
 						y: -0.15
 					}
 				);
@@ -273,8 +273,8 @@ export default function draw() {
 			}
 		} else {
 			// 서 있는 상태
-			player.actions[1].stop();
 			player.actions[0].play();
+			player.actions[1].stop();
 		}
 	}
 
@@ -366,29 +366,29 @@ canvas.addEventListener('touchmove', e => {
 
 
 
-$(document).on('click', '.btn-reset', function(){
-	// window.location.reload();
+// $(document).on('click', '.btn-reset', function(){
+// 	window.location.reload();
 	
-	player.modelMesh.position.set(0, 0.3, 0);
-	player.modelMesh.rotation.y = 0;
-	destinationPoint.set(0, 0.3, 0);
-	camera.position.set(1, 2.5, 5);
-	pointerMesh.position.set(0, 0.1, 0.3);
+	// player.modelMesh.position.set(0, 0.3, 0);
+	// player.modelMesh.rotation.y = 0;
+	// destinationPoint.set(0, 0.3, 0);
+	// camera.position.set(1, 2.5, 5);
+	// pointerMesh.position.set(0, 0.1, 0.3);
 
-	house.visible = false;
-	spotMesh.material.color.set('yellow');
-	gsap.to(
-		house.modelMesh.position,
-		{
-			duration: 0.5,
-			y: -0.15
-		}
-	);
+	// house.visible = false;
+	// spotMesh.material.color.set('yellow');
+	// gsap.to(
+	// 	house.modelMesh.position,
+	// 	{
+	// 		duration: 0.5,
+	// 		y: -0.15
+	// 	}
+	// );
 
-	$('.btn-view').hide();
+// 	$('.btn-view').hide();
 	
 
-})
+// })
 
 
 
