@@ -161,7 +161,18 @@ export default function Example() {
 			clickObj();
 		});
 
+		$('#header').addClass('white');
 
+		const musicsate = document.getElementById('myAudio').paused;
+		if (musicsate === true) {
+			document.getElementById('myAudio').pause();
+			$('.btn-music').text('노래 재생').removeClass('play').addClass('pause');
+		} else {
+			setTimeout(function () {
+				document.getElementById('myAudio').play();
+			}, 150);
+			$('.btn-music').text('노래 멈춤').removeClass('pause').addClass('play');
+		}
 
 		draw();
 	// }, []);

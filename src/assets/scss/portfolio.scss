@@ -359,6 +359,9 @@ $shadows-big: multiple-box-shadow(100);
 #section3 .project-img {
   background-image: url('../images/project/lsgpis.png');
 }
+#section4 .project-img {
+  background-image: url('../images/project/lslpl.png');
+}
 
 .project-title {
   font-size: 4vw;
@@ -373,6 +376,10 @@ $shadows-big: multiple-box-shadow(100);
 .project-item:nth-child(even) .project-title {
   margin-left: auto;
   margin-right: -4vw;
+}
+
+#section4 .project-title {
+  color: #111;
 }
 
 

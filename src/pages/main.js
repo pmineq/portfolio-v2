@@ -391,6 +391,20 @@ canvas.addEventListener('touchmove', e => {
 // })
 
 
+$(document).on('click', '#btn-menu', function(){
+	gsap.to(
+		camera.position,
+		{
+			duration: 1,
+			// x: 1,
+			y: 1.5,
+			// z: 3,
+		}
+	);
+	
+})
+
+
 
 draw();
 

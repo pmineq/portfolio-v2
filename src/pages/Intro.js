@@ -13,8 +13,9 @@ $(document).on('click', '.btn-guide', function(){
 	//bgm
 	if ($('#music_chk').is(':checked')){
 		document.getElementById('myAudio').play();
+		$('.btn-music').text('노래 멈춤').addClass('play');
 	} else {
-		return false;
+		$('.btn-music').text('노래 재생').addClass('pause');
 	}
 });
 
