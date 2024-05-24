@@ -6,9 +6,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 import PlayerObj from '../models/mine.glb';
 
-// ----- 주제: glb 애니메이션
 
-export default function Example() {
+
+export function PortThree() {
 	// useEffect(() => {
 		// Renderer
 		const canvas = document.querySelector('#three-canvas2');
@@ -115,13 +115,13 @@ export default function Example() {
 		// 그리기
 		const clock = new THREE.Clock();
 
-		function draw() {
+		function draw2() {
 			const delta = clock.getDelta();
 			if (mixer) mixer.update(delta);
 			renderer.render(scene, camera);
 		}
 
-		renderer.setAnimationLoop(draw);
+		renderer.setAnimationLoop(draw2);
 
 
 
@@ -150,31 +150,22 @@ export default function Example() {
 		window.addEventListener('resize', setSize);
 
 		// 마우스 좌표를 three.js에 맞게 변환
-		// function calculateMousePosition(e) {
-		// 	mouse.x = e.clientX / canvas.clientWidth * 2 - 1;
-		// 	mouse.y = -(e.clientY / canvas.clientHeight * 2 - 1);
-		// }
+		function calculateMousePosition(e) {
+			mouse.x = e.clientX / canvas.clientWidth * 2 - 1;
+			mouse.y = -(e.clientY / canvas.clientHeight * 2 - 1);
+		}
 		
 		//클릭
 		canvas.addEventListener('click', e => {
-			// calculateMousePosition(e);
+			calculateMousePosition(e);
 			clickObj();
 		});
 
 		$('#header').addClass('white');
 
-		const musicsate = document.getElementById('myAudio').paused;
-		if (musicsate === true) {
-			document.getElementById('myAudio').pause();
-			$('.btn-music').text('노래 재생').removeClass('play').addClass('pause');
-		} else {
-			setTimeout(function () {
-				document.getElementById('myAudio').play();
-			}, 150);
-			$('.btn-music').text('노래 멈춤').removeClass('pause').addClass('play');
-		}
-
-		draw();
+		draw2();
 	// }, []);
 }
+
+export default PortThree;
 

@@ -11,34 +11,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 const Portfolio = (props) => {
-
-	$('#three-canvas').hide();
-	$('#three-canvas2').show();
-	
-
-	let count = 0;
-
-	$(document).off().on('click', '.message:last-child()', function(){
-		
-		let messageHtml;
-
-		$(this).removeClass('on');
-		count++;
-		if(count === 1) {
-			messageHtml = '<div class="message on"><span>웹 UI개발자 박민혜 입니다.</span></div>';
-			$('.message-wrap').append(messageHtml);
-		} else if(count === 2){
-			messageHtml = '<div class="message"><span>포트폴리오를 보러 와주셔서 감사합니다!</span></div>';
-			$('.message-wrap').append(messageHtml);
-		} else if(count === 3) {
-			messageHtml = '<div class="message"><span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span></div>';
-			messageHtml = '<div class="message"><span>현재 개발 중이므로, 조금만 기다려 주세요!</span></div>';
-			$('.message-wrap').append(messageHtml);
-			$('.message-wrap').prepend('<span class="star"></span>');
-			$('.scroll-text').addClass('on');
-		}
-	});
-
 	
 
 	gsap.registerPlugin(ScrollTrigger);
@@ -46,7 +18,6 @@ const Portfolio = (props) => {
 	const projectRef = useRef();
 
 	useEffect(() => {
-
 
 		PortJS();
 			
@@ -87,12 +58,10 @@ const Portfolio = (props) => {
 						trigger: item,
 						start: "top bottom",
 						end: "bottom top",
-						markers: false,
+						// markers: false,
 						onEnter: () => {animate(item)}
 				});
 		});
-
-
 
 
 		gsap.utils.toArray(".project-item").forEach((item) => {
@@ -114,15 +83,16 @@ const Portfolio = (props) => {
 					}),
 			});
 		});
+		
 
 		//섹션 고정
-		// const panel = document.querySelector(".intro");
+		const panel = document.querySelector(".intro");
 
-		// ScrollTrigger.create({
-				// trigger: panel,
-				// start: "top top",
-				// pin: true,
-				// pinSpacing: false,
+		ScrollTrigger.create({
+				trigger: panel,
+				start: "top top",
+				pin: true,
+				pinSpacing: false,
 				// markers: true,
 				// onEnter: () => gsap.to(".intro", {
 				// 	borderRadius: '100%',
@@ -132,17 +102,45 @@ const Portfolio = (props) => {
 				// 	top: '50% - 25vw',
 				// 	duration: 2,
 				// })
-		// });
+		});
+
+
+		//메세지
+		let count = 0;
+
+		$(document).off().on('click', '.message:last-child()', function(){
+			
+			let messageHtml;
+	
+			$(this).removeClass('on');
+			count++;
+			if(count === 1) {
+				messageHtml = '<div class="message on"><span>웹 UI개발자 박민혜 입니다.</span></div>';
+				$('.message-wrap').append(messageHtml);
+			} else if(count === 2){
+				messageHtml = '<div class="message on"><span>포트폴리오를 보러 와주셔서 감사합니다!</span></div>';
+				$('.message-wrap').append(messageHtml);
+			} else if(count === 3) {
+				// messageHtml = '<div class="message"><span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span></div>';
+				messageHtml = '<div class="message"><span>현재 개발 중이므로, 조금만 기다려 주세요!</span></div>';
+				$('.message-wrap').append(messageHtml);
+				$('.message-wrap').prepend('<span class="star"></span>');
+				$('.scroll-text').addClass('on');
+			}
+		});
+
 
 		$(window).on('scroll', function(){
 			const winS = $(window).scrollTop();
-			console.log(winS)
-			if (winS > 20) {
+			// console.log(winS)
+			if (winS > 200) {
 				$('.message-wrap').fadeOut(1000);
+				$('#three-canvas2').fadeOut(500);
 			} else {
 				$('.message-wrap').fadeIn(500);
+				$('#three-canvas2').fadeIn(250);
 			}
-		})
+		});
 		
 
 
@@ -152,6 +150,7 @@ const Portfolio = (props) => {
 
   return (
 		<Layout header>
+			<canvas id="three-canvas2"></canvas>
 			<div className='portfolio'>
 				<div className='intro'>
 					<div id='stars'></div>
@@ -173,7 +172,8 @@ const Portfolio = (props) => {
 					<div className='project-group'>
 						{/* S: project-item */}
 						<section id='section1' className='project-item' data-bgcolor='#593b22'>
-							<a href='https://shop.hyundai.com/' target="_blank" rel="noreferrer">
+							{/* <Link to='/Project/HyundaiShop'> */}
+							<a href="https://shop.hyundai.com/" target="_blank" rel="noreferrer">
 								<span className='project-number'>01</span>
 								<h2 className='project-date reveal'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ttb'>
@@ -181,6 +181,7 @@ const Portfolio = (props) => {
 								</div>
 								<p className='project-title reveal reveal-btt'>현대Shop 포인트몰</p>
 							</a>
+							{/* </Link> */}
 						</section>
 						{/* E: project-item */}
 
@@ -202,7 +203,7 @@ const Portfolio = (props) => {
 							<a href='https://pmineq.github.io/admin/LSGPIS/main.html' target="_blank" rel="noreferrer">
 								<span className='project-number'>03</span>
 								<h2 className='project-date reveal '>PC</h2>
-								<div className='project-imgwrap reveal reveal-ttb'>
+								<div className='project-imgwrap reveal reveal-btt'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-btt'>LS GPIS ADMIN PAGE</p>
@@ -215,7 +216,7 @@ const Portfolio = (props) => {
 							<a href='https://pmineq.github.io/admin/LSLPL/page.html' target="_blank" rel="noreferrer">
 								<span className='project-number'>04</span>
 								<h2 className='project-date'>PC</h2>
-								<div className='project-imgwrap reveal reveal-ltr'>
+								<div className='project-imgwrap reveal reveal-ttb'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-ltr'>LS Nikko Admin 디자인 시스템</p>

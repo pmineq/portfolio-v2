@@ -130,7 +130,7 @@
 
   &.on p {
     bottom: 23%;
-    opacity: 1;
+    opacity: 0.5;
     visibility: visible;
   }
 }
@@ -333,6 +333,7 @@ $shadows-big: multiple-box-shadow(100);
   background: #000;
   position: relative;
   overflow: hidden;
+  
 }
 .project-img {
   position: absolute;
@@ -345,10 +346,12 @@ $shadows-big: multiple-box-shadow(100);
   background-size: cover;
   filter: saturate(0%);
   transition: all 1s;
-}
-.project-img:hover {
-  filter: saturate(100%);
-  transform: scale(1.025);
+  
+  &:hover {
+    filter: saturate(100%);
+    transform: scale(1.1);
+  }
+
 }
 #section1 .project-img {
   background-image: url('../images/project/hyundai.png');

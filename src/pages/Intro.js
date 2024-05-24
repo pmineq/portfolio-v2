@@ -1,5 +1,5 @@
-import React from 'react';
-import $ from 'jquery';
+import React, { useEffect } from 'react';
+// import $ from 'jquery';
 import Layout from '../components/Layout';
 import '../assets/scss/intro.scss';
 // import Music from '../assets/audio/BamYangGang.mp3';
@@ -7,38 +7,21 @@ import { Link } from 'react-router-dom';
 import MainJS from './main';
 
 
-$(document).on('click', '.btn-guide', function(){
-	$('#guide').hide();
-
-	//bgm
-	if ($('#music_chk').is(':checked')){
-		document.getElementById('myAudio').play();
-		$('.btn-music').text('노래 멈춤').addClass('play');
-	} else {
-		$('.btn-music').text('노래 재생').addClass('pause');
-	}
-});
-
-//reload - 새로고침 할지 position 초기화 할지 고민 ...
-$(document).on('click', '.btn-reset', function(){
-	window.location.reload();
-});
-
-
 
 const Intro = (props) => {
 
-	$('#three-canvas2').hide();
-	$('#three-canvas').show();
+	useEffect(() => {
 
-	MainJS();
-	
+		MainJS();
+
+	}, []);
 
 
 	
 
   return (
 		<Layout header>
+			<canvas id="three-canvas"></canvas>
 			<div className='intro'>
 				<div id='guide'>
 					<div className='guide-text'>

@@ -7,6 +7,7 @@
 #three-canvas,
 #three-canvas2 {
 	touch-action: none;
+	z-index: 1;
 }
 
 #three-canvas {position: fixed; left: 0; top: 0; }

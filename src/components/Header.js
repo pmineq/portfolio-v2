@@ -1,7 +1,7 @@
-// import React, { useEffect } from "react";
+import React from "react";
 import logo from '../assets/images/logo.svg';
 import { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 
@@ -26,18 +26,21 @@ class Header extends Component {
         $('.btn-music').text('노래 재생').removeClass('play').addClass('pause');
       }
     }
+    
+
 
     return (
       <header id="header">
-        <a href="/portfolio-v2" className="header-logo" title="메인으로 이동">
-          <img src={logo} alt="로고 이미지" />
-        </a>
+        <button type='button' id='btn-menu'><span className="visuallyhidden">메뉴</span></button>
 
-        <h1>{this.props.title}</h1>
+
+        <Link to="/" className="header-logo" title="메인으로 이동">
+          <img src={logo} alt="로고 이미지" />
+        </Link>
+
+        <h1 className='visuallyhidden'>MinHye, portfolio</h1>
 
         <button type='button' className='btn-music'></button>
-
-        {/* <button type='button' id='btn-menu'>메뉴</button> */}
         
         
       </header>
