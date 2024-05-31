@@ -11,11 +11,12 @@
 }
 
 #three-canvas {position: fixed; left: 0; top: 0; }
-#three-canvas2 {position: fixed; left: 50%; bottom: 0; width: 200px; height: 300px; transform: translateX(-50%); }
+#three-canvas2 {position: absolute; left: 50%; bottom: 0; width: 200px; height: 300px; transform: translateX(-50%); }
 
 
 #myAudio {
 	position: absolute !important;
+	top: 0; left: 0;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip-path: polygon(0 0, 0 0, 0 0);
 	padding:0 !important;

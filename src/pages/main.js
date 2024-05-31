@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import $ from 'jquery';
+
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Player } from './Player';
 import { Roket } from './Roket';
-// import { Ball } from './Ball';
+
 import gsap from 'gsap';
 import gridImg from '../assets/images/gradient.jpg';
 import ballImg from '../assets/images/ball.png';
@@ -12,7 +12,6 @@ import * as CANNON from 'cannon-es';
 
 
 export function MainThree() {
-	// useEffect(() => {
 
 	// Texture
 	const textureLoader = new THREE.TextureLoader();
@@ -61,15 +60,6 @@ export function MainThree() {
 	directionalLight.position.z = directionalLightOriginPosition.z;
 	directionalLight.castShadow = true;
 
-	// 방향성 조명
-	// const light1 = new THREE.DirectionalLight(0xffffff, 1);
-	// light1.position.set(0, 0, 1);
-	// scene.add(light1);
-
-
-	// Controls
-	// const controls = new OrbitControls(camera, renderer.domElement);
-
 
 	// mapSize 세팅으로 그림자 퀄리티 설정
 	directionalLight.shadow.mapSize.width = 2048;
@@ -115,7 +105,7 @@ export function MainThree() {
 		defaultMaterial,
 		{
 			friction: 0.02, //마찰
-			restitution: 0.02, //반발력
+			restitution: 0.2, //반발력
 		}
 	);
 	cannonWorld.addContactMaterial(rubberDefaultContactMaterial);
@@ -217,6 +207,7 @@ export function MainThree() {
 	});
 	const BallMesh = new THREE.Mesh(BallGeometry, BallMaterial);
 	// BallMesh.position.y = 0.5;
+	BallMesh.rotation.x = -Math.PI/2;
 	BallMesh.castShadow = true;
 	scene.add(BallMesh);
 
@@ -340,10 +331,10 @@ export function MainThree() {
 
 			//공 굴러가요
 			if(
-				Math.abs(BallBody.position.x) > 0
+				Math.abs(BallBody.position.x) > 0 && Math.abs(BallBody.position.y) < 0.3
 			) {
 
-				if (
+				if (//player position에서 x축 또는 y축 사이 거리가 2.5 이상일 때.
 					Math.abs(BallBody.position.x - player.cannonBody.position.x) > 2.5 ||
 					Math.abs(BallBody.position.z - player.cannonBody.position.z) > 2.5
 				) {
@@ -356,7 +347,6 @@ export function MainThree() {
 							z: 0,
 						}
 					);
-					// BallBody.angularVelocity.set(0, 0, 0);
 		
 					gsap.to(
 						BallBody.velocity,
@@ -367,9 +357,9 @@ export function MainThree() {
 							z: 0,
 						}
 					);
-					// BallBody.velocity.set(0, 0, 0);
-					// console.log('공 멈춰요');
+					
 				}
+
 
 			}
 
@@ -387,7 +377,6 @@ export function MainThree() {
 	}
 
 	function checkIntersects() {
-		// raycaster.setFromCamera(mouse, camera);
 
 		const intersects = raycaster.intersectObjects(meshes);
 		for (const item of intersects) {
@@ -396,8 +385,6 @@ export function MainThree() {
 				destinationPoint.y = 0.3;
 				destinationPoint.z = item.point.z;
 				player.modelMesh.lookAt(destinationPoint);
-
-				// console.log(item.point)
 
 				player.moving = true;
 
@@ -500,30 +487,27 @@ export function MainThree() {
 	$(document).on('click', '#btn-menu', function(){
 		
 		if($(this).hasClass('open')) {
-			gsap.to(
-				camera,
-				{
-					duration: 1,
-					zoom: 0.22,
-					onUpdate: function () {
-						$('#btn-menu').removeClass('open');
-						camera.updateProjectionMatrix();
-					}
-				}
-			);
-
-		} else {
 
 			gsap.to(
 				camera,
 				{
 					duration: 1,
 					zoom: 0.5,
-					// x: 3,
-					// y: 1.5,
-					// z: 3,
 					onUpdate: function () {
-						$('#btn-menu').addClass('open');
+						camera.updateProjectionMatrix();
+					}
+				}
+			);
+			
+
+		} else {
+			
+			gsap.to(
+				camera,
+				{
+					duration: 1,
+					zoom: 0.22,
+					onUpdate: function () {
 						camera.updateProjectionMatrix();
 					}
 				}
@@ -563,7 +547,6 @@ export function MainThree() {
 	}
 
 
-	// }, []);
 
 }
 

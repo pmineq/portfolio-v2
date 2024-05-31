@@ -12,14 +12,43 @@ const Layout = ({header, children}) => {
   useEffect(() => {
     const musicsate = document.getElementById('myAudio').paused;
     if (musicsate === true) {
-      document.getElementById('myAudio').pause();
       $('.btn-music').text('노래 재생').removeClass('play').addClass('pause');
     } else {
-      setTimeout(function () {
-        document.getElementById('myAudio').play();
-      }, 150);
       $('.btn-music').text('노래 멈춤').removeClass('pause').addClass('play');
     }
+
+    function musicBtn() {
+      const musicsate = document.getElementById('myAudio').paused;
+      if (musicsate === true) {
+        setTimeout(function () {
+          document.getElementById('myAudio').play();
+        }, 150);
+        $('.btn-music').text('노래 멈춤').removeClass('pause').addClass('play');
+      } else {
+        setTimeout(function () {
+          document.getElementById('myAudio').pause();
+        }, 150);
+        $('.btn-music').text('노래 재생').removeClass('play').addClass('pause');
+      }
+    }
+
+    $('.btn-music').on('click', function(){
+      musicBtn();
+    });
+
+
+
+    $('#btn-menu').on('click', function(){
+		
+      if($(this).hasClass('open')) {
+        $('#btn-menu').removeClass('open');
+        $('.menu-wrap').removeClass('on');
+      } else {
+        $('#btn-menu').addClass('open');
+        $('.menu-wrap').addClass('on');
+      };
+    });
+    
   }, []);
   
 
