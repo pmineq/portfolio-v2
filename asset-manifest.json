@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio-v2/static/css/main.4e011ee0.css",
-    "main.js": "/portfolio-v2/static/js/main.e95df69b.js",
+    "main.css": "/portfolio-v2/static/css/main.11525a51.css",
+    "main.js": "/portfolio-v2/static/js/main.a8e822f5.js",
     "static/js/111.37e92c26.chunk.js": "/portfolio-v2/static/js/111.37e92c26.chunk.js",
     "static/media/Pretendard-Black.woff": "/portfolio-v2/static/media/Pretendard-Black.c51355ddc1caec596031.woff",
     "static/media/Pretendard-Bold.woff": "/portfolio-v2/static/media/Pretendard-Bold.1f1dbbbf311ffffcc770.woff",
@@ -15,17 +15,16 @@
     "static/media/mine.glb": "/portfolio-v2/static/media/mine.b3ccb900aed47d5d0934.glb",
     "static/media/kplus.png": "/portfolio-v2/static/media/kplus.73ec4090cb7c8decc923.png",
     "static/media/ball.png": "/portfolio-v2/static/media/ball.b926970513c700e5fc68.png",
-    "static/media/lslpl.png": "/portfolio-v2/static/media/lslpl.9781bcef40e8d4d5fe92.png",
     "static/media/hyundai.png": "/portfolio-v2/static/media/hyundai.1516288042d8bf87d520.png",
     "static/media/lsgpis.png": "/portfolio-v2/static/media/lsgpis.d629d9215202b85839c0.png",
     "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
     "index.html": "/portfolio-v2/index.html",
-    "main.4e011ee0.css.map": "/portfolio-v2/static/css/main.4e011ee0.css.map",
-    "main.e95df69b.js.map": "/portfolio-v2/static/js/main.e95df69b.js.map",
+    "main.11525a51.css.map": "/portfolio-v2/static/css/main.11525a51.css.map",
+    "main.a8e822f5.js.map": "/portfolio-v2/static/js/main.a8e822f5.js.map",
     "111.37e92c26.chunk.js.map": "/portfolio-v2/static/js/111.37e92c26.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4e011ee0.css",
-    "static/js/main.e95df69b.js"
+    "static/css/main.11525a51.css",
+    "static/js/main.a8e822f5.js"
   ]
 }
