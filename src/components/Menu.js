@@ -23,7 +23,10 @@ const Menu = () => {
     <div className="menu-wrap">
       <ul>
         <li>
-          <NavLink to="/" activeclassname="current">메인 🌍</NavLink>
+          <NavLink to="/" activeclassname="current">홈 🏠</NavLink>
+        </li>
+        <li>
+          <NavLink to="/main" activeclassname="current">메인 🌍</NavLink>
         </li>
         {/* <li>
           <NavLink to="/about" activeclassname="current">About.</NavLink>

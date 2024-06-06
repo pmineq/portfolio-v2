@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import $ from 'jquery';
+
 import Header from './Header';
+import Menu from './Menu';
+
 import '../assets/css/normalize.css';
 import '../assets/css/fonts.css';
 import '../assets/scss/layout.scss';
@@ -55,8 +58,10 @@ const Layout = ({header, children}) => {
   return (
     <div id="wrapper">
       {header && (
-        <Header
-          title={header.title}/>
+        <>
+          <Header title={header.title}/>
+          <Menu/>
+        </>
       )}
       <div id="container">
         {children}

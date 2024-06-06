@@ -1,13 +1,12 @@
-#root:not(:empty) ~ .loading-wrap {
-  /* display: none; */
+/* #root:not(:empty) ~ .loading-wrap {
   opacity: 0; visibility: hidden;
   transition: all ease 1s 1s;
-}
+} */
 
 /* =======================================================
   loading
 ========================================================*/
-.loading-wrap {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #3c98b4; z-index: 9999; opacity: 1; visibility: visible; }
+.loading-wrap {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0095ac; z-index: 9999; opacity: 1; visibility: visible; }
 .loading-area {position: absolute; top: 50%; left: 50%; width: 100px; transform: translate(-50%, -50%); }
 .loading-area p {font-size: 15px; font-weight: 500; color: #fff; text-align: center; }
 #loading_svg .st0{fill:#fff; }
@@ -28,6 +27,7 @@
     fill-opacity: 1;
   }
 }
+
 @keyframes linemove {
   0% {
     stroke-dashoffset: 1100;
@@ -40,5 +40,82 @@
     stroke-dashoffset: 0;
     stroke-opacity: 1;
     fill-opacity: 1;
+  }
+}
+
+
+
+
+
+/* =======================================================
+  loading2 - space
+========================================================*/
+.loading-wrap02 {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+
+  .loading-dim {
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%; height: 50%;
+    border-top-right-radius: 9999px;
+    border-top-left-radius: 9999px;
+    background-color: #07033e;
+    animation: spacedim 1s cubic-bezier(0.9, -0.2, 1, 1) forwards;
+  }
+
+  .spacecraft {
+
+    span {
+      position: absolute;
+      top: 100%; left: 50%;
+      margin-top: 80px;
+      font-size: 30px;
+      transform: translateX(-50%) scale(3.5) rotate(-45deg);
+      animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
+      z-index: 3;
+    }
+    
+    em {
+      position: absolute;
+      top: 50px; left: 50%;
+      margin-top: 240px;
+      font-family: "Galmuri14", Apple SD Gothic Neo, 돋움, dotum, sans-serif;
+      font-style: normal; font-size: 24px;
+      color: #fff; text-align: center;
+      writing-mode: vertical-lr;
+      animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
+      z-index: 3;
+    }
+  }
+}
+
+
+@-webkit-keyframes spacedim {
+  0% {
+    top: 100%;
+  }
+  20% {
+    top: 50%;
+  }
+  100% {
+    top: 0;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+@-webkit-keyframes craft {
+  0% {
+    top: 100%;
+  }
+  20% {
+    top: 50%;
+  }
+  100% {
+    top: -100%; 
   }
 }

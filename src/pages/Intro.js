@@ -1,18 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../assets/scss/intro.scss';
 
 import Layout from '../components/Layout';
-import MainJS from './main';
+
+import gsap from 'gsap';
 
 
 
-const Intro = (props) => {
+
+const Intro = () => {
+
+	const titleRef = useRef();
+	const emRef = useRef();
 
 	useEffect(() => {
+		let tl = gsap.timeline(); //순서대로
+		tl.from(titleRef.current, {
+			y: 100,
+			opacity: 0,
+			duration: 1,
+			ease: "ease.out",
+		});
 
-		MainJS();
+		tl.from(emRef.current, {
+			backgroundSize: 0,
+			opacity: 0,
+			duration: 1.5,
+			ease: "sine.out",
+		});
 
 	}, []);
 
@@ -21,24 +38,22 @@ const Intro = (props) => {
 
   return (
 		<Layout header>
-			<canvas id="three-canvas"></canvas>
-			<div id='guide'>
-				<div className='guide-text'>
-					<p><em>꾸~욱</em> 눌러<br/><b>Click, Drag</b>해서 <br/>이동해요!</p>
-					<div className='check-group'>
-						<input type='checkbox' id='music_chk' />
-						<label htmlFor='music_chk'>Play Music</label>
+			<div className='intro-wrap'>
+				<div ref={titleRef} className='intro-text'>
+					<h2>긍정적인 마인드를 가진<br/>4년<span className='plus'>+</span> UI 개발자 박민혜입니다.</h2>
+					<p>
+						<strong>웹 퍼블리싱</strong>과 <strong>UI/UX 기획</strong>, <strong>디자인</strong> 개선 경험을 바탕으로, <br/>
+						<em ref={emRef}>사용자-기획자-디자이너-&gt;개발자</em> 각자의 <strong>관점을 이해하며 협업</strong>합니다.
+					</p>
+					<div className='skills'>
+						<strong>Skills.</strong>
+						<p>HTML5, CSS3, SCSS, Javascript, Jquery, React, Three.js, Figma, PhotoShop, Illustrator</p>
 					</div>
-					<p className='text-info'>* 체크하고 시작하면 노래(BGM)가 재생돼요.</p>
-					<button type='button' className='btn-guide'>START</button>
+					<div className='intro-btn-group'>
+						<Link to='/main' className='btn'>메인</Link>
+						<Link to='/project' className='btn'>프로젝트 바로가기</Link>
+					</div>
 				</div>
-			</div>
-			<div className='btn-view'>
-				<Link to='/Project'>우주선 타고 이동 🚀</Link>
-			</div>
-
-			<div className='floating-wrap'>
-				<button type='button' className='btn-reset'>새로고침</button>
 			</div>
 		</Layout>
 	);

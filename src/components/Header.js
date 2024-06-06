@@ -2,9 +2,6 @@ import React from "react";
 import logo from '../assets/images/logo.svg';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import $ from 'jquery';
-
-import Menu from './Menu';
 
 
 
@@ -14,7 +11,6 @@ class Header extends Component {
     return (
       <header id="header">
         <button type='button' id='btn-menu'><span className="line"></span><em className="visuallyhidden">메뉴</em></button>
-        <Menu/>
 
         <Link to="/" className="header-logo" title="메인으로 이동">
           <img src={logo} alt="로고 이미지" />

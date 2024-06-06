@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 import '../assets/scss/portfolio.scss';
@@ -12,10 +13,13 @@ import Lenis from '@studio-freight/lenis';
 
 
 
-const Portfolio = (props) => {
+const Portfolio = () => {
 	
 
 	gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+	const starRef = useRef();
+	const motionRef = useRef();
+	const pathRef = useRef();
 	
 
 	useEffect(() => {
@@ -103,28 +107,21 @@ const Portfolio = (props) => {
 		});
 
 
-		// $(window).on('scroll', function(){
-		// 	const winS = $(window).scrollTop();
-		// 	// console.log(winS)
-		// 	if (winS > 200) {
-		// 		$('.message-wrap').fadeOut(1000);
-		// 		$('#three-canvas2').fadeOut(500);
-		// 	} else {
-		// 		$('.message-wrap').fadeIn(500);
-		// 		$('#three-canvas2').fadeIn(250);
-		// 	}
-		// });
+
+		const star = starRef.current;
+		const motion = motionRef.current;
+		const path = pathRef.current;
 
 
-		gsap.set("#motionSVG", { scale: 0.4, autoAlpha: 1 });
-		gsap.set("#star01", {transformOrigin: "50% 50%", scaleX: -1});
-		let getProp = gsap.getProperty("#motionSVG"),
+		gsap.set(motion, { scale: 0.4, autoAlpha: 1 });
+		gsap.set(star, {transformOrigin: "50% 50%", scaleX: -1});
+		let getProp = gsap.getProperty(motion),
 				flippedX = false,
 				flippedY = false;
 
-		gsap.to("#motionSVG", {
+		const starmotion = gsap.to(motion, {
 			scrollTrigger: {
-				trigger: "#motionPath",
+				trigger: path,
 				start: "top center",
 				end: 'bottom center',
 				scrub: 0.7,
@@ -134,18 +131,18 @@ const Portfolio = (props) => {
 							flipY = Math.abs(rotation) > 90,
 							flipX = self.direction === 1;
 					if (flipY !== flippedY || flipX !== flippedX) {
-						gsap.to("#star01", {scaleY: flipY ? -1 : 1, scaleX: flipX ? -1 : 1, duration: 0.25});
+						gsap.to(star, {scaleY: flipY ? -1 : 1, scaleX: flipX ? -1 : 1, duration: 0.25});
 						flippedY = flipY;
 						flippedX = flipX;
 					}
 				}
 			},
 			duration: 10,
-			ease: pathEase("#motionPath", {smooth: true}), // <-- MAGIC!
+			ease: pathEase(path, {smooth: true}), // <-- MAGIC!
 			immediateRender: true,
 			motionPath: {
-				path: "#motionPath",
-				align: "#motionPath",
+				path: path,
+				align: path,
 				alignOrigin: [0.5, 0.5],
 				autoRotate: 0
 			}
@@ -204,6 +201,14 @@ const Portfolio = (props) => {
 		}
 
 
+    return () => {
+      // Cleanup GSAP starmotion
+      starmotion.kill();
+			lenis.stop();
+			lenis.destroy();
+    };
+
+
   }, []);
 
 
@@ -235,27 +240,27 @@ const Portfolio = (props) => {
 					<div className='project-group'>
 						{/* S: project-item */}
 						<section id='section1' className='project-item'>
-							{/* <Link to='/Project/HyundaiShop'> */}
-							<a href='https://shop.hyundai.com/' target="_blank" rel="noreferrer">
+							<Link to='/project/hyundai'>
+							{/* <a href='https://shop.hyundai.com/' target="_blank" rel="noreferrer"> */}
 								<h2 className='project-date reveal'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ttb'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-btt'>현대자동차 공식 온라인몰,<br/><b>현대Shop</b></p>
-							</a>
-							{/* </Link> */}
+							{/* </a> */}
+							</Link>
 						</section>
 						{/* E: project-item */}
 
 						{/* S: project-item */}
 						<section id='section2' className='project-item'>
-							<a href='https://ygkplus.com/' target="_blank" rel="noreferrer">
+							<Link to='/project/kplus'>
 								<h2 className='project-date'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ltr'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-ltr'><b>YG KPLUS</b>홈페이지 신규 리뉴얼</p>
-							</a>
+							</Link>
 						</section>
 						{/* E: project-item */}
 
@@ -286,9 +291,9 @@ const Portfolio = (props) => {
 
 						{/* S: star-scroll  */}
 						<svg id="star-scroll" viewBox="0 0 1600.84 4700.66">
-							<path id="motionPath" className="st0" d="m1.1.26C-3.9,8.43,15.84,73.55,320.28,165.27c.87.26,1.76.51,2.65.73,156.39,38.97,325.46,24.21,485.08,25.76,222.52,2.16,594.61,22.02,687.04,274.82,59.71,163.31-67.57,351.38-174.5,464.53-57.16,60.48-139.67,89.02-216.76,114.32-73.7,24.19-143.4,52.78-165.14,135.27-14.7,55.78-16.51,117.28-58.76,161.24-64.39,67-173.81,54.45-257.94,56.66-45.5,1.19-194.44,1.75-170.83,82.58,15.88,54.36,91.82,79.15,138.02,96.63,74.11,28.03,120.54,53,188.42,96.61,35.57,22.85,66.99,54.29,82.44,93.64,68.96,175.63-95.12,354.31-229.67,427.83-36.68,20.04-75.61,36.04-115.91,47.18-42.13,11.64-85.66,7.78-127.06,21.09-140.33,45.11-178.4,258.09-181.12,382.95-1.5,68.9,17.33,141.08,59.49,196.41,72.11,94.63,199.54,113.42,299.91,162.83,138.64,68.23,272.6,142.13,402.88,225.42,65.29,41.74,137.08,85.53,169.85,159.24,30.54,68.69,17.83,150.17-18.68,214-37.26,65.15-107.57,85-179.05,81.91-108.33-4.68-217.29-13.96-323.24,14.56-94.28,25.38-189.87,45.11-228.58,112.46-109.88,191.21,328.39,255.84,227.61,436.98-37.19,66.84-120.5,96.26-175.45,146.58-80.05,73.3-60.61,204.54,44.54,238.71,40.72,13.23,85.92,15.34,128.49,16.71,63.75,2.06,79.97,6.25,143.77,6.25" stroke="#d1d1d1" strokeMiterlimit="10" strokeWidth="5" strokeDasharray="5"/>
-							<g id="motionSVG">
-								<svg id="star01" viewBox="0 0 561.81 487.48">
+							<path id="motionPath" ref={pathRef} className="st0" d="m1.1.26C-3.9,8.43,15.84,73.55,320.28,165.27c.87.26,1.76.51,2.65.73,156.39,38.97,325.46,24.21,485.08,25.76,222.52,2.16,594.61,22.02,687.04,274.82,59.71,163.31-67.57,351.38-174.5,464.53-57.16,60.48-139.67,89.02-216.76,114.32-73.7,24.19-143.4,52.78-165.14,135.27-14.7,55.78-16.51,117.28-58.76,161.24-64.39,67-173.81,54.45-257.94,56.66-45.5,1.19-194.44,1.75-170.83,82.58,15.88,54.36,91.82,79.15,138.02,96.63,74.11,28.03,120.54,53,188.42,96.61,35.57,22.85,66.99,54.29,82.44,93.64,68.96,175.63-95.12,354.31-229.67,427.83-36.68,20.04-75.61,36.04-115.91,47.18-42.13,11.64-85.66,7.78-127.06,21.09-140.33,45.11-178.4,258.09-181.12,382.95-1.5,68.9,17.33,141.08,59.49,196.41,72.11,94.63,199.54,113.42,299.91,162.83,138.64,68.23,272.6,142.13,402.88,225.42,65.29,41.74,137.08,85.53,169.85,159.24,30.54,68.69,17.83,150.17-18.68,214-37.26,65.15-107.57,85-179.05,81.91-108.33-4.68-217.29-13.96-323.24,14.56-94.28,25.38-189.87,45.11-228.58,112.46-109.88,191.21,328.39,255.84,227.61,436.98-37.19,66.84-120.5,96.26-175.45,146.58-80.05,73.3-60.61,204.54,44.54,238.71,40.72,13.23,85.92,15.34,128.49,16.71,63.75,2.06,79.97,6.25,143.77,6.25" stroke="#d1d1d1" strokeMiterlimit="10" strokeWidth="5" strokeDasharray="5"/>
+							<g id="motionSVG" ref={motionRef}>
+								<svg ref={starRef} id="star01" viewBox="0 0 561.81 487.48">
 									<g>
 										<g>
 											<path className="cls-1" d="m22.26,21.49c.2-.55.39-1.11.58-1.67,1.8-5.27,3.77-10.62,6.61-15.44.95-1.62,2.08-3.28,3.81-4.01,3.44-1.45,7.22,1.56,8.92,4.88,5.56,10.85,11.98,21.35,16.43,32.74,2.87,7.34,4.24,14.77,5.39,22.53.17,1.12.26,2.32-.26,3.32-.69,1.35-2.27,1.96-3.74,2.36-6.66,1.83-11.7-1.86-18.33-3.8-2.01-.59-3.08-2.56-5.17-2.38-1.74.15-4.32,2.15-5.93,2.82-6.21,2.59-10.99,5.35-17.66,4.45-.8-.11-1.65-.26-2.26-.79-.62-.55-.89-1.4-.98-2.22-.5-4.28,1.42-8.35,2.26-12.46,2.15-10.57,6.7-20.25,10.32-30.34Z"/>
@@ -308,9 +313,9 @@ const Portfolio = (props) => {
 
 					<div className="side-project">
 
-					{/* <strong className="title">다른 별</strong>
+						<strong className="title">더 많은 행성들... ?</strong>
 
-						<div className="project-list">
+						{/* <div className="project-list">
 							<ul>
 								<li>
 									<a href="/" target="_blank" rel="noreferrer">Project01.</a>
@@ -329,6 +334,15 @@ const Portfolio = (props) => {
 								</li>
 							</ul>
 						</div> */}
+
+						<div className='guide-text'>
+							<p>
+								내용 작성 중이에요<br/><b>조금만</b> 기다려 주세요!<br/>
+								<svg width={48} height={48} fill="#fff">
+									<path d="M24 13.6a1.2 1.2 0 0 0 1.2-1.2v-1.92a1.2 1.2 0 1 0-2.4 0v1.92a1.2 1.2 0 0 0 1.2 1.2Zm0 20.8a1.2 1.2 0 0 0-1.2 1.2v1.92a1.2 1.2 0 1 0 2.4 0V35.6a1.2 1.2 0 0 0-1.2-1.2Zm13.52-11.6H35.6a1.2 1.2 0 0 0 0 2.4h1.92a1.2 1.2 0 0 0 0-2.4ZM13.6 24a1.2 1.2 0 0 0-1.2-1.2h-1.92a1.2 1.2 0 0 0 0 2.4h1.92a1.2 1.2 0 0 0 1.2-1.2Zm18.6-7a1.18 1.18 0 0 0 .85-.35l1.36-1.36a1.2 1.2 0 1 0-1.69-1.69L31.36 15a1.19 1.19 0 0 0 0 1.69 1.16 1.16 0 0 0 .84.31ZM15 31.36l-1.36 1.36a1.21 1.21 0 0 0 0 1.69 1.21 1.21 0 0 0 1.7 0l1.35-1.36A1.2 1.2 0 0 0 15 31.36Zm18.1 0a1.2 1.2 0 0 0-1.69 1.69l1.36 1.36a1.18 1.18 0 0 0 .84.35 1.2 1.2 0 0 0 .85-2ZM15 16.64a1.18 1.18 0 0 0 .85.35 1.16 1.16 0 0 0 .84-.35 1.19 1.19 0 0 0 0-1.69l-1.36-1.36a1.2 1.2 0 1 0-1.69 1.69Zm13.71 1A4.74 4.74 0 0 0 24 19.08a4.74 4.74 0 0 0-4.66-1.45 4.82 4.82 0 0 0-3.53 5.1c.24 3.95 3.39 7.38 7.83 8.54a1.1 1.1 0 0 0 .31 0h.1a1.06 1.06 0 0 0 .31 0c4.44-1.16 7.59-4.59 7.83-8.54a4.82 4.82 0 0 0-3.53-5.1Zm1.14 4.95c-.17 2.84-2.49 5.35-5.8 6.3-3.31-.95-5.63-3.46-5.8-6.3A2.38 2.38 0 0 1 19.94 20a2.52 2.52 0 0 1 2.92 1.69 1.3 1.3 0 0 0 2.28 0A2.52 2.52 0 0 1 28.06 20a2.38 2.38 0 0 1 1.74 2.58Z" />
+								</svg>
+							</p>
+						</div>
 
 					</div>
 
