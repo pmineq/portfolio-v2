@@ -9,6 +9,7 @@ import Intro from './pages/Intro';
 
 import Hyundai from './pages/project/hyundai';
 import Kplus from './pages/project/kplus';
+import Lsgpis from './pages/project/lsgpis';
 
 import Contact from './pages/Contact';
 
@@ -31,6 +32,7 @@ class App extends Component {
         <Route path="/contact" element={<Contact />} />
         <Route path="/project/hyundai" element={<Hyundai />} />
         <Route path="/project/kplus" element={<Kplus />} />
+        <Route path="/project/lsgpis" element={<Lsgpis />} />
 
         {/* 기본 로딩 */}
         <Route

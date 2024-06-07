@@ -208,7 +208,7 @@ const Portfolio = () => {
 			lenis.destroy();
     };
 
-
+		
   }, []);
 
 
@@ -241,13 +241,11 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						<section id='section1' className='project-item'>
 							<Link to='/project/hyundai'>
-							{/* <a href='https://shop.hyundai.com/' target="_blank" rel="noreferrer"> */}
 								<h2 className='project-date reveal'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ttb'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-btt'>현대자동차 공식 온라인몰,<br/><b>현대Shop</b></p>
-							{/* </a> */}
 							</Link>
 						</section>
 						{/* E: project-item */}
@@ -266,13 +264,13 @@ const Portfolio = () => {
 
 						{/* S: project-item */}
 						<section id='section3' className='project-item'>
-							<a href='https://pmineq.github.io/admin/LSGPIS/main.html' target="_blank" rel="noreferrer">
+							<Link to='/project/lsgpis'>
 								<h2 className='project-date reveal '>PC</h2>
 								<div className='project-imgwrap reveal reveal-btt'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-btt'>관리자 화면 신규 구축<br/><b>LS GPIS</b></p>
-							</a>
+							</Link>
 						</section>
 						{/* E: project-item */}
 

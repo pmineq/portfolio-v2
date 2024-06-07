@@ -773,7 +773,7 @@ $shadows-big: multiple-box-shadow(100);
   h2 {
     position: absolute;
     top: 50%; left: 50%;
-    font-size: 50px; font-weight: 500;
+    font-size: 50px; font-weight: 700;
     color: #fff;
     z-index: 3;
     transform: translate(-50%, -50%);
@@ -810,9 +810,29 @@ $shadows-big: multiple-box-shadow(100);
   .sub-title {
     display: block;
     margin-bottom: 5vw;
-    font-size: 24px;
+    font-size: 24px; font-weight: 700;
     line-height: 1.43;
+
+    &.center {
+      text-align: center;
+    }
+
+    &.line {
+      font-weight: 900;
+      -webkit-text-stroke: 0.5px #fff;
+    }
+
+    &.white {
+      color: #fff;
+    }
   }
+
+
+  &.hyundai {background-color: #c8d4e2; }
+  &.kplus {background-color: #bbb; }
+  &.lsgpis {background-color: #e8cdcd;}
+
+  
 }
 
 
@@ -833,6 +853,10 @@ $shadows-big: multiple-box-shadow(100);
 
     & + .dl-info {
       margin-top: 20px;
+    }
+
+    &.white {
+      color: #fff;
     }
 
   }
@@ -892,6 +916,11 @@ $shadows-big: multiple-box-shadow(100);
       border-top: 1px dashed #c7c8c9;
       box-sizing: border-box;
     }
+
+    &.white {
+      dt {color: #aaa; }
+      dd {color: #eee; }
+    }
   }
 }
 
@@ -915,7 +944,7 @@ $shadows-big: multiple-box-shadow(100);
 
   strong {
     display: block;
-    margin-bottom: 5px;
+    margin: 5px 0;
     font-size: 16px;
     color: #666;
   }
@@ -927,6 +956,12 @@ $shadows-big: multiple-box-shadow(100);
   & + & {
     margin-top: 40px;
   }
+
+  &.white {
+    strong {color: #aaa; }
+    p {color: #fff; }
+  }
+
 }
 
 
@@ -963,11 +998,15 @@ $shadows-big: multiple-box-shadow(100);
 }
 
 .kp-bghalf {
-  background: linear-gradient(#ffffff 40%, #111 10%);
+  background: linear-gradient(transparent 40%, #111 10%);
 
   & + .img-wrap {
     padding-top: 10vw;
   }
+}
+
+.ls-bghalf {
+  background: linear-gradient(#ffffff 60%, #28394b 10%);
 }
 
 

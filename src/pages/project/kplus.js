@@ -89,7 +89,7 @@ const Kplus = () => {
 			<div id="project" ref={projectRef} className='project-wrap kplus'>
 
 				<section ref={topRef} className='project-top'>
-					<h2>KPLUS</h2>
+					<h2>YG KPLUS</h2>
 					<div className='project-topimg'>
 						<img src={Topimg} alt="상단 이미지"/>
 					</div>
@@ -139,7 +139,7 @@ const Kplus = () => {
 					<img src={Kplus01} alt="KPLUS 이미지"/>
 				</section>
 
-				<section className="area-one">
+				<section className="area-one clr" data-bgcolor="#ffffff">
 					<strong className="sub-title">디자인부터 ㅡ<br/>레이아웃, 공통, 유지보수까지<br/>Web Publishing 진행.</strong>
 					<div className="area-half">
 						<div className="left description">
@@ -206,6 +206,9 @@ const Kplus = () => {
 				<section className="area-one img-wrap clr" data-bgcolor="#111">
 					<div className="area-half">
 						<div className="left">
+							<strong className="sub-title line">YG KPLUS<br/>초기 디자인 시안<br/>(PC)</strong>
+						</div>
+						<div className="left">
 							<img src={Kplus1} alt="KPLUS 디자인 시안"/>
 						</div>
 						<div className="right">
@@ -216,18 +219,15 @@ const Kplus = () => {
 					</div>
 				</section>
 					
-				<section className="area-one img-wrap clr" data-bgcolor="#fff">
-
-						<img src={Kplus5} alt="KPLUS 디자인 시안"/>
-						<div className="right">
-							<img src={Kplus6} alt="KPLUS 디자인 시안"/>
-						</div>
-
+				<section className="area-one img-wrap">
 					<div className="area-half">
 						<div className="left">
-							<img src={Kplus7} alt="KPLUS 디자인 시안"/>
+							<img src={Kplus5} alt="KPLUS 디자인 시안"/>
+							<img src={Kplus6} alt="KPLUS 디자인 시안"/>
 						</div>
+							
 						<div className="right">
+							<img src={Kplus7} alt="KPLUS 디자인 시안"/>
 							<img src={Kplus8} alt="KPLUS 디자인 시안"/>
 						</div>
 					</div>

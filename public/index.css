@@ -8,7 +8,7 @@
 ========================================================*/
 .loading-wrap {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0095ac; z-index: 9999; opacity: 1; visibility: visible; }
 .loading-area {position: absolute; top: 50%; left: 50%; width: 100px; transform: translate(-50%, -50%); }
-.loading-area p {font-size: 15px; font-weight: 500; color: #fff; text-align: center; }
+.loading-area p {font-size: 15px; font-weight: 400; color: #fff; text-align: center; }
 #loading_svg .st0{fill:#fff; }
 #loading_svg .st1{fill:#fff; stroke:#fff; stroke-miterlimit:10; }
 #loading_svg .st2{fill:none; stroke:#fff; stroke-width:20; stroke-miterlimit:10; stroke-dasharray: 20; -webkit-animation: linemove 2s ease-in-out alternate infinite; animation: linemove 2s ease-in-out alternate infinite; }
@@ -54,7 +54,7 @@
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background-color: #fff;
+  background-color: #e5edef;
   overflow: hidden;
 }
 
@@ -64,7 +64,8 @@
   width: 100%; height: 50%;
   border-top-right-radius: 9999px;
   border-top-left-radius: 9999px;
-  background-color: #07033e;
+  /* background-color: #07033e; */
+  background: linear-gradient(#150e7c, #536ad0 60%, #c0daf0 100%);
   -webkit-animation: spacedim 1s cubic-bezier(0.9, -0.2, 1, 1) forwards;
   animation: spacedim 1s cubic-bezier(0.9, -0.2, 1, 1) forwards;
 }
