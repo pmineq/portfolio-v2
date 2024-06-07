@@ -64,6 +64,7 @@
     border-top-right-radius: 9999px;
     border-top-left-radius: 9999px;
     background-color: #07033e;
+    -webkit-animation: spacedim 1s cubic-bezier(0.9, -0.2, 1, 1) forwards;
     animation: spacedim 1s cubic-bezier(0.9, -0.2, 1, 1) forwards;
   }
 
@@ -75,6 +76,7 @@
       margin-top: 80px;
       font-size: 30px;
       transform: translateX(-50%) scale(3.5) rotate(-45deg);
+      -webkit-animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
       animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
       z-index: 3;
     }
@@ -87,6 +89,7 @@
       font-style: normal; font-size: 24px;
       color: #fff; text-align: center;
       writing-mode: vertical-lr;
+      -webkit-animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
       animation: craft 1.5s cubic-bezier(0.9, -0.2, 1, 1) forwards;
       z-index: 3;
     }
