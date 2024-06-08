@@ -247,15 +247,20 @@ label:hover {cursor : url('../images/mouse_link.png') 20 20, auto; }
 
     }
 
-    &.on {top: 0; transition: top .5s; }
-
+    &.on {
+      top: 0; transition: top .5s; 
+      a {animation: none; }
+    }
 
   }
   
-  
-
 }
 
+@media (max-width: 500px) {
+  .menu-wrap {
+    ul li a {font-size: 18px; }
+  }
+}
 
 
 

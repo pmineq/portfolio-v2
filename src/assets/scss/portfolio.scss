@@ -446,7 +446,7 @@ $shadows-big: multiple-box-shadow(100);
     display: inline-block;
     padding: 5px 10px; box-sizing: border-box;
     border: 1px solid #eee; border-radius: 999px;
-    font-weight: 400;
+    font-size: 14px; font-weight: 400;
   }
 
 }
@@ -652,7 +652,7 @@ $shadows-big: multiple-box-shadow(100);
 @media (max-width: 500px) {
 
   .project-item {
-    width: 60vw;
+    width: 50vw;
     margin-bottom: 60vw;
     margin-right: 5vw;
 
@@ -676,6 +676,10 @@ $shadows-big: multiple-box-shadow(100);
 
   .project-group {
     padding: 80vw 40px 20vw;
+  }
+
+  .project-type {
+    font-size: 13px;
   }
 
   #star-scroll {
