@@ -9,13 +9,27 @@ import PortJS from './portThree';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
 import Lenis from '@studio-freight/lenis';
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
+const subproject = [
+  { id: 'sub01', url: 'https://pmineq.github.io/portfolio-v2/', name: 'Portfolio ver.02', type: '반응형', duty: '디자인/퍼블리싱/프론트개발' },
+  { id: 'sub02', url: 'https://pmineq.github.io/Dubuck/', name: '두벅 영워드', type: '반응형', duty: '퍼블리싱(React)' },
+  { id: 'sub03', url: 'https://pmineq.github.io/admin/GTEC/Web/components.html', name: 'Admin 디자인 시스템', type: '반응형', duty: '기획/디자인/퍼블리싱' },
+  { id: 'sub04', url: 'https://www.figma.com/design/MvilioYP11ubQJbGWyWrKh/EdiTodo?node-id=0-1&t=mfed31Ugei2A6pZI-1', name: 'Editodo', type: 'Mobile', duty: '기획/디자인' },
+	{ id: 'sub05', url: 'https://scene.zeplin.io/project/6178e0a538b99bbfd2b6ac68', name: '직장 내 괴롭힘 상담센터', type: '적응형', duty: '디자인/퍼블리싱' },
+  { id: 'sub06', url: 'https://lms.kcplaa.or.kr/', name: '한국공인노무사회 이러닝센터', type: '적응형', duty: '퍼블리싱' },
+  { id: 'sub07', url: 'https://pmineq.github.io/admin/LSLPL/page.html', name: 'LS LPL Admin', type: 'PC', duty: '퍼블리싱' },
+];
 
 
 const Portfolio = () => {
 	
-
 	gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 	const starRef = useRef();
 	const motionRef = useRef();
@@ -98,8 +112,8 @@ const Portfolio = () => {
 				messageHtml = '<div class="message on"><span>포트폴리오를 보러 와주셔서 감사합니다!</span></div>';
 				$('.message-wrap').append(messageHtml);
 			} else if(count === 3) {
-				// messageHtml = '<div class="message"><span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span></div>';
-				messageHtml = '<div class="message"><span>현재 개발 중이므로, 조금만 기다려 주세요!</span></div>';
+				messageHtml = '<div class="message"><span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span></div>';
+				// messageHtml = '<div class="message"><span>현재 개발 중이므로, 조금만 기다려 주세요!</span></div>';
 				$('.message-wrap').append(messageHtml);
 				$('.message-wrap').prepend('<span class="star"></span>');
 				$('.scroll-text').addClass('on');
@@ -138,7 +152,7 @@ const Portfolio = () => {
 				}
 			},
 			duration: 10,
-			ease: pathEase(path, {smooth: true}), // <-- MAGIC!
+			ease: pathEase(path, {smooth: true}), 
 			immediateRender: true,
 			motionPath: {
 				path: path,
@@ -148,7 +162,7 @@ const Portfolio = () => {
 			}
 		});
 
-		
+		//부드럽게 따라오는 ease 함수
 		function pathEase(path, config={}) {
 			let axis = config.axis || "y",
 					precision = config.precision || 1,
@@ -208,8 +222,59 @@ const Portfolio = () => {
 			lenis.destroy();
     };
 
-		
   }, []);
+
+
+	//slick
+  const settings = {
+		centerMode: true,
+		centerPadding: '150px',
+    dots: false,
+    arrows: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    touchThreshold : 50,
+		responsive: [
+			{
+				breakpoint: 1000,
+				settings: {
+					// arrows: false,
+					// centerMode: true,
+					centerPadding: '0',
+					slidesToShow: 3
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					// arrows: false,
+					// centerMode: true,
+					centerPadding: '150px',
+					slidesToShow: 1
+				}
+			},
+			{
+				breakpoint: 500,
+				settings: {
+					// arrows: false,
+					// centerMode: true,
+					centerPadding: '100px',
+					slidesToShow: 1
+				}
+			},
+			{
+				breakpoint: 400,
+				settings: {
+					// arrows: false,
+					// centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 1
+				}
+			}
+		]
+  };
 
 
 
@@ -241,7 +306,7 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						<section id='section1' className='project-item'>
 							<Link to='/project/hyundai'>
-								<h2 className='project-date reveal'>반응형</h2>
+								<h2 className='project-type reveal'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ttb'>
 									<div className='project-img'></div>
 								</div>
@@ -253,7 +318,7 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						<section id='section2' className='project-item'>
 							<Link to='/project/kplus'>
-								<h2 className='project-date'>반응형</h2>
+								<h2 className='project-type reveal'>반응형</h2>
 								<div className='project-imgwrap reveal reveal-ltr'>
 									<div className='project-img'></div>
 								</div>
@@ -265,7 +330,7 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						<section id='section3' className='project-item'>
 							<Link to='/project/lsgpis'>
-								<h2 className='project-date reveal '>PC</h2>
+								<h2 className='project-type reveal '>PC</h2>
 								<div className='project-imgwrap reveal reveal-btt'>
 									<div className='project-img'></div>
 								</div>
@@ -277,7 +342,7 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						{/* <section id='section4' className='project-item'>
 							<a href='https://pmineq.github.io/admin/LSLPL/page.html' target="_blank" rel="noreferrer">
-								<h2 className='project-date'>PC</h2>
+								<h2 className='project-type'>PC</h2>
 								<div className='project-imgwrap reveal reveal-ttb'>
 									<div className='project-img'></div>
 								</div>
@@ -311,31 +376,52 @@ const Portfolio = () => {
 
 					<div className="side-project">
 
-						<strong className="title">더 많은 행성들... ?</strong>
+						<strong className="title">사이 행성 
+							<div className="tip-wrap">
+								<i className="icon-tip">?</i>
+								<div className="tooltip">
+									<div className="text">
+										<span><strong>사이</strong>드 프로젝트 + <strong>행성</strong>,<br/>
+										스터디나 자기계발용 프로젝트를 모았어요.</span>
+									</div>
+								</div>
+							</div>
+						</strong>
 
-						{/* <div className="project-list">
-							<ul>
-								<li>
-									<a href="/" target="_blank" rel="noreferrer">Project01.</a>
-								</li>
-								<li>
-									<a href="/" target="_blank" rel="noreferrer">Project02.</a>
-								</li>
-								<li>
-									<a href="/" target="_blank" rel="noreferrer">Project03.</a>
-								</li>
-								<li>
-									<a href="/" target="_blank" rel="noreferrer">Project04.</a>
-								</li>
-								<li>
-									<a href="/" target="_blank" rel="noreferrer">Project05.</a>
-								</li>
-							</ul>
-						</div> */}
+						<div className="side-project-list">
+							<Slider {...settings}>
 
-						<div className='guide-text'>
+								{subproject.map((item) => (
+									<div key={item.id} id={item.id} className="side-project-item">
+										{/* <Link to={item.url}> */}
+										<a href={item.url} target="_blank" rel="noreferrer">
+											<div className="side-project-planet">
+												<div className='side-project-imgwrap'>
+													<div className='side-project-img'></div>
+												</div>
+											</div>
+											<div className="side-project-info">
+												<strong className="name">{item.name}</strong>
+												<dl className="type">
+													<dt>Type.</dt>
+													<dd>{item.type}</dd>
+												</dl>
+												<dl className="duty">
+													<dt>Duty.</dt>
+													<dd>{item.duty}</dd>
+												</dl>
+											</div>
+										</a>
+										{/* </Link> */}
+									</div>
+								))}
+
+							</Slider>
+						</div>
+
+						<div className='guide-text small'>
 							<p>
-								내용 작성 중이에요<br/><b>조금만</b> 기다려 주세요!<br/>
+								상세 내용 작성 중이에요<br/><b>조금만</b> 기다려 주세요!<br/>현재는 아래 정보를 누르면<br/> 관련 사이트가 <b>새 창</b>으로 뜹니다.<br/>
 								<svg width={48} height={48} fill="#fff">
 									<path d="M24 13.6a1.2 1.2 0 0 0 1.2-1.2v-1.92a1.2 1.2 0 1 0-2.4 0v1.92a1.2 1.2 0 0 0 1.2 1.2Zm0 20.8a1.2 1.2 0 0 0-1.2 1.2v1.92a1.2 1.2 0 1 0 2.4 0V35.6a1.2 1.2 0 0 0-1.2-1.2Zm13.52-11.6H35.6a1.2 1.2 0 0 0 0 2.4h1.92a1.2 1.2 0 0 0 0-2.4ZM13.6 24a1.2 1.2 0 0 0-1.2-1.2h-1.92a1.2 1.2 0 0 0 0 2.4h1.92a1.2 1.2 0 0 0 1.2-1.2Zm18.6-7a1.18 1.18 0 0 0 .85-.35l1.36-1.36a1.2 1.2 0 1 0-1.69-1.69L31.36 15a1.19 1.19 0 0 0 0 1.69 1.16 1.16 0 0 0 .84.31ZM15 31.36l-1.36 1.36a1.21 1.21 0 0 0 0 1.69 1.21 1.21 0 0 0 1.7 0l1.35-1.36A1.2 1.2 0 0 0 15 31.36Zm18.1 0a1.2 1.2 0 0 0-1.69 1.69l1.36 1.36a1.18 1.18 0 0 0 .84.35 1.2 1.2 0 0 0 .85-2ZM15 16.64a1.18 1.18 0 0 0 .85.35 1.16 1.16 0 0 0 .84-.35 1.19 1.19 0 0 0 0-1.69l-1.36-1.36a1.2 1.2 0 1 0-1.69 1.69Zm13.71 1A4.74 4.74 0 0 0 24 19.08a4.74 4.74 0 0 0-4.66-1.45 4.82 4.82 0 0 0-3.53 5.1c.24 3.95 3.39 7.38 7.83 8.54a1.1 1.1 0 0 0 .31 0h.1a1.06 1.06 0 0 0 .31 0c4.44-1.16 7.59-4.59 7.83-8.54a4.82 4.82 0 0 0-3.53-5.1Zm1.14 4.95c-.17 2.84-2.49 5.35-5.8 6.3-3.31-.95-5.63-3.46-5.8-6.3A2.38 2.38 0 0 1 19.94 20a2.52 2.52 0 0 1 2.92 1.69 1.3 1.3 0 0 0 2.28 0A2.52 2.52 0 0 1 28.06 20a2.38 2.38 0 0 1 1.74 2.58Z" />
 								</svg>

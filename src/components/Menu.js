@@ -8,7 +8,7 @@ import $ from "jquery";
 
 const Menu = () => {
 
-    $('#btn-menu').on('click', function(){
+    $(document).on('click', '#btn-menu', function(){
       
       if($(this).hasClass('open')) {
         $('#btn-menu').removeClass('open');

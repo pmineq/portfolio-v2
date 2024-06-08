@@ -29,6 +29,10 @@ const Lsgpis = () => {
 		gsap.to(topRef.current,{
 			height: '70vh',
 			duration: 3,
+			onComplete: () => {
+        // 애니메이션 완료 후 ScrollTrigger 새로고침
+        ScrollTrigger.refresh();
+      }
 		});
 
 

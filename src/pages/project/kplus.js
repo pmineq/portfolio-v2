@@ -10,20 +10,20 @@ import Kplus01 from '../../assets/images/project/kplus_sub01.jpg';
 import Kplus02 from '../../assets/images/project/kplus_sub02.jpg';
 import Kplus03 from '../../assets/images/project/kplus_sub03.png';
 
-import Kplus1 from '../../assets/images/project/kplus1.png';
-import Kplus2 from '../../assets/images/project/kplus2.png';
-import Kplus3 from '../../assets/images/project/kplus3.png';
-import Kplus4 from '../../assets/images/project/kplus4.png';
-import Kplus5 from '../../assets/images/project/kplus5.png';
-import Kplus6 from '../../assets/images/project/kplus6.png';
-import Kplus7 from '../../assets/images/project/kplus7.png';
-import Kplus8 from '../../assets/images/project/kplus8.png';
-import Kplus9 from '../../assets/images/project/kplus9.png';
-import Kplus10 from '../../assets/images/project/kplus10.png';
-import Kplus11 from '../../assets/images/project/kplus11.png';
-import Kplus12 from '../../assets/images/project/kplus12.png';
-import Kplus13 from '../../assets/images/project/kplus13.png';
-import Kplus14 from '../../assets/images/project/kplus14.png';
+import Kplus1 from '../../assets/images/project/kplus1.jpg';
+import Kplus2 from '../../assets/images/project/kplus2.jpg';
+import Kplus3 from '../../assets/images/project/kplus3.jpg';
+import Kplus4 from '../../assets/images/project/kplus4.jpg';
+import Kplus5 from '../../assets/images/project/kplus5.jpg';
+import Kplus6 from '../../assets/images/project/kplus6.jpg';
+import Kplus7 from '../../assets/images/project/kplus7.jpg';
+import Kplus8 from '../../assets/images/project/kplus8.jpg';
+import Kplus9 from '../../assets/images/project/kplus9.jpg';
+import Kplus10 from '../../assets/images/project/kplus10.jpg';
+import Kplus11 from '../../assets/images/project/kplus11.jpg';
+import Kplus12 from '../../assets/images/project/kplus12.jpg';
+import Kplus13 from '../../assets/images/project/kplus13.jpg';
+import Kplus14 from '../../assets/images/project/kplus14.jpg';
 
 
 const Kplus = () => {
@@ -41,6 +41,10 @@ const Kplus = () => {
 		gsap.to(topRef.current,{
 			height: '70vh',
 			duration: 3,
+			onComplete: () => {
+        // 애니메이션 완료 후 ScrollTrigger 새로고침
+        ScrollTrigger.refresh();
+      }
 		});
 
 
@@ -139,7 +143,7 @@ const Kplus = () => {
 					<img src={Kplus01} alt="KPLUS 이미지"/>
 				</section>
 
-				<section className="area-one clr" data-bgcolor="#ffffff">
+				<section className="area-one">
 					<strong className="sub-title">디자인부터 ㅡ<br/>레이아웃, 공통, 유지보수까지<br/>Web Publishing 진행.</strong>
 					<div className="area-half">
 						<div className="left description">

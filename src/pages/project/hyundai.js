@@ -9,7 +9,7 @@ import Topimg from '../../assets/images/project/hyundai.png';
 import Hyundai01 from '../../assets/images/project/hyundai_sub01.jpg';
 import Hyundai02 from '../../assets/images/project/hyundai_sub02.jpg';
 import Hyundai03 from '../../assets/images/project/hyundai_sub03.png';
-
+import Hyundai04 from '../../assets/images/project/hyundai_sub04.jpg';
 
 
 const Hyundai = () => {
@@ -27,6 +27,10 @@ const Hyundai = () => {
 		gsap.to(topRef.current,{
 			height: '70vh',
 			duration: 3,
+			onComplete: () => {
+        // 애니메이션 완료 후 ScrollTrigger 새로고침
+        ScrollTrigger.refresh();
+      }
 		});
 
 
@@ -130,6 +134,7 @@ const Hyundai = () => {
 					<div className="area-half">
 						<div className="left description">
 							<img src={Hyundai02} alt="현대Shop 이미지"/>
+							<img src={Hyundai04} alt="현대Shop 이미지"/>
 						</div>
 						<div ref={textRef} className="right">
 							<div className="dl-info">
@@ -182,11 +187,6 @@ const Hyundai = () => {
 						</div>
 					</div>
 				</section>
-				
-
-				{/* <section className="area-full">
-					<img src={Topimg} alt="현대Shop 이미지"/>
-				</section> */}
 
 
 				<section className="area-one hd-bghalf">
