@@ -3,14 +3,15 @@ import $ from 'jquery';
 
 import Header from './Header';
 import Menu from './Menu';
+import Footer from './Footer';
 
 import '../assets/css/normalize.css';
 import '../assets/css/fonts.css';
 import '../assets/scss/layout.scss';
 
 
-// 넘겨주는 컴포넌트에 header 값이 있으면 header를 렌더
-const Layout = ({header, children}) => {
+// 넘겨주는 컴포넌트에 header 값이 있으면 header를 렌더 footer 동일
+const Layout = ({header, children, footer}) => {
 
   useEffect(() => {
     const musicsate = document.getElementById('myAudio').paused;
@@ -66,6 +67,11 @@ const Layout = ({header, children}) => {
       <div id="container">
         {children}
       </div>
+      {footer && (
+        <>
+          <Footer/>
+        </>
+      )}
     </div>
   );
 }

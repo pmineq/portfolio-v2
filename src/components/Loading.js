@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-
+// 기본 로딩
 const Loading1 = () => {
   return (
     <div className='loading-wrap'>
@@ -24,6 +24,7 @@ const Loading1 = () => {
   );
 }
 
+// 우주선 로딩 - Project
 const Loading2 = () => {
   return (
     <div className='loading-wrap02'>

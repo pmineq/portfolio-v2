@@ -10,9 +10,15 @@ import Intro from './pages/Intro';
 import Hyundai from './pages/project/hyundai';
 import Kplus from './pages/project/kplus';
 import Lsgpis from './pages/project/lsgpis';
+import Portfoliov2 from './pages/project/portfoliov2';
+import Dubuck from './pages/project/dubuck';
+import Editodo from './pages/project/editodo';
+import Admin from './pages/project/admin';
+import Callct from './pages/project/callct';
+import Lms from './pages/project/lms';
+import Lslpl from './pages/project/lslpl';
 
 import Contact from './pages/Contact';
-
 
 
 const Main = lazy(() => import('./pages/Main'));
@@ -33,8 +39,15 @@ class App extends Component {
         <Route path="/project/hyundai" element={<Hyundai />} />
         <Route path="/project/kplus" element={<Kplus />} />
         <Route path="/project/lsgpis" element={<Lsgpis />} />
+        <Route path="/project/portfoliov2" element={<Portfoliov2 />} />
+        <Route path="/project/dubuck" element={<Dubuck />} />
+        <Route path="/project/editodo" element={<Editodo />} />
+        <Route path="/project/admin" element={<Admin />} />
+        <Route path="/project/callct" element={<Callct />} />
+        <Route path="/project/lms" element={<Lms />} />
+        <Route path="/project/lslpl" element={<Lslpl />} />
 
-        {/* 기본 로딩 */}
+        {/* 메인 기본 로딩 */}
         <Route
           path="/main"
           element={

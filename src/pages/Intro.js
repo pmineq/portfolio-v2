@@ -47,7 +47,7 @@ const Intro = () => {
 					</p>
 					<div className='skills'>
 						<strong>Skills.</strong>
-						<p>HTML5, CSS3, SCSS, Javascript, Jquery, React, Three.js, Figma, PhotoShop, Illustrator</p>
+						<p>HTML5, CSS3, SCSS, Javascript, jQuery, React, Three.js, Figma, PhotoShop, Illustrator, Github</p>
 					</div>
 					<div className='intro-btn-group'>
 						<Link to='/main' className='btn'>메인</Link>

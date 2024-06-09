@@ -75,7 +75,7 @@ const Hyundai = () => {
 	}, []);
 
   return (
-		<Layout header>
+		<Layout header footer>
 			<div id="project" ref={projectRef} className='project-wrap hyundai'>
 
 				<section ref={topRef} className='project-top'>
@@ -116,7 +116,7 @@ const Hyundai = () => {
 							</div>
 							<div className="description">
 								<strong>Skills.</strong>
-								<p>HTML, CSS, Javascript, Jquery, ASP, PPT</p>
+								<p>HTML, CSS, Javascript, jQuery, ASP, PPT</p>
 							</div>
 						</div>
 					</div>
@@ -192,15 +192,6 @@ const Hyundai = () => {
 				<section className="area-one hd-bghalf">
 					<img src={Hyundai03} alt="현대Shop 이미지"/>
 				</section>
-			</div>
-
-			<div id="footer" className="footer">
-				<div className="bottom-wrap">
-					<div className="footer-inner">
-						<p>본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.<br/>
-							© 2024 Park, Min-Hye. All Rights Reserved.</p>
-					</div>
-				</div>
 			</div>
 
 		</Layout>

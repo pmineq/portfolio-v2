@@ -53,56 +53,42 @@ export function PortThree() {
 	let mineMesh;
 	let actions = [];
 
-	gltfLoader.load(
-		PlayerObj,
-		gltf => {
-			// console.log(gltf.scene.children[0]);
-			mineMesh = gltf.scene.children[0];
-			mineMesh.position.x = 0;
-			mineMesh.position.y = -5;
-			mineMesh.position.z = 0;
-			mineMesh.rotation.x = 0;
-
-
-			scene.add(mineMesh);
-
-			mixer = new THREE.AnimationMixer(mineMesh);
-			actions[0] = mixer.clipAction(gltf.animations[0]);
-			actions[1] = mixer.clipAction(gltf.animations[2]);
-			actions[2] = mixer.clipAction(gltf.animations[4]);
-			
-			
-			actions[1].repetitions = 3;
-			actions[1].clampWhenFinished = true;
-			actions[1].play();
-			
-			
-			mixer.addEventListener('finished', function() {
-				actions[2].repetitions = 1;
-				actions[2].clampWhenFinished = true;
-				actions[2].play();
-
-				$('.message-wrap').fadeIn();
-			});
+  gltfLoader.load(PlayerObj, (gltf) => {
+    mineMesh = gltf.scene.children[0];
+    mineMesh.position.x = 0;
+    mineMesh.position.y = -5;
+    mineMesh.position.z = 0;
+    mineMesh.rotation.x = 0;
 		
-			actions[0].play();
+    scene.add(mineMesh);
 
-			// actions[1].play();
+    mixer = new THREE.AnimationMixer(mineMesh);
+    actions = [
+      mixer.clipAction(gltf.animations[0]),
+      mixer.clipAction(gltf.animations[2]),
+      mixer.clipAction(gltf.animations[4]),
+    ];
 
+    actions[1].repetitions = 3;
+    actions[1].clampWhenFinished = true;
+    actions[1].play();
 
+    mixer.addEventListener('finished', () => {
+      actions[2].repetitions = 1;
+      actions[2].clampWhenFinished = true;
+      actions[2].play();
 
-			gsap.to(
-				mineMesh.position,
-				{
-					duration: 2,
-					y: -0.3,
-					ease: 'circ.out'
-				}
-			);
+      $('.message-wrap').fadeIn();
+    });
 
-		},
+    actions[0].play();
 
-	);
+    gsap.to(mineMesh.position, {
+      duration: 2,
+      y: -0.3,
+      ease: 'circ.out',
+    });
+  });
 
 
 
@@ -116,7 +102,9 @@ export function PortThree() {
 
 	function draw2() {
 		const delta = clock.getDelta();
-		if (mixer) mixer.update(delta);
+		if (mixer) {
+			mixer.update(delta);
+		}
 		renderer.render(scene, camera);
 	}
 
@@ -167,4 +155,3 @@ export function PortThree() {
 }
 
 export default PortThree;
-

@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
 
 import '../assets/scss/portfolio.scss';
 import Layout from '../components/Layout';
@@ -18,13 +17,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const subproject = [
-  { id: 'sub01', url: 'https://pmineq.github.io/portfolio-v2/', name: 'Portfolio ver.02', type: '반응형', duty: '디자인/퍼블리싱/프론트개발' },
-  { id: 'sub02', url: 'https://pmineq.github.io/Dubuck/', name: '두벅 영워드', type: '반응형', duty: '퍼블리싱(React)' },
-  { id: 'sub03', url: 'https://pmineq.github.io/admin/GTEC/Web/components.html', name: 'Admin 디자인 시스템', type: '반응형', duty: '기획/디자인/퍼블리싱' },
-  { id: 'sub04', url: 'https://www.figma.com/design/MvilioYP11ubQJbGWyWrKh/EdiTodo?node-id=0-1&t=mfed31Ugei2A6pZI-1', name: 'Editodo', type: 'Mobile', duty: '기획/디자인' },
-	{ id: 'sub05', url: 'https://scene.zeplin.io/project/6178e0a538b99bbfd2b6ac68', name: '직장 내 괴롭힘 상담센터', type: '적응형', duty: '디자인/퍼블리싱' },
-  { id: 'sub06', url: 'https://lms.kcplaa.or.kr/', name: '한국공인노무사회 이러닝센터', type: '적응형', duty: '퍼블리싱' },
-  { id: 'sub07', url: 'https://pmineq.github.io/admin/LSLPL/page.html', name: 'LS LPL Admin', type: 'PC', duty: '퍼블리싱' },
+  { id: 'sub01', url: '/project/portfoliov2', name: 'Portfolio ver.02', type: '반응형', duty: '디자인/퍼블리싱/프론트개발' },
+  { id: 'sub02', url: '/project/dubuck', name: '두벅 영워드', type: '반응형', duty: '퍼블리싱(React)' },
+  { id: 'sub03', url: '/project/admin', name: 'Admin 디자인 시스템', type: '반응형', duty: '기획/디자인/퍼블리싱' },
+	{ id: 'sub04', url: '/project/callct', name: '직장 내 괴롭힘 상담센터', type: '적응형', duty: '디자인/퍼블리싱' },
+  { id: 'sub05', url: '/project/lms', name: '한국공인노무사회 이러닝센터', type: '적응형', duty: '퍼블리싱' },
+  { id: 'sub06', url: '/project/lslpl', name: 'LS LPL Admin', type: 'PC', duty: '퍼블리싱' },
+	{ id: 'sub07', url: '/project/editodo', name: 'Editodo', type: 'Mobile', duty: '기획/디자인' },
 ];
 
 
@@ -40,10 +39,10 @@ const Portfolio = () => {
 
 		PortJS();
 
+		//스크롤 부드럽게 하는 lenis
 		const lenis = new Lenis({
 			lerp: 0.07,
 		});
-	
 		lenis.on('scroll', ScrollTrigger.update);
 	
 		gsap.ticker.add(time => {
@@ -52,7 +51,7 @@ const Portfolio = () => {
 	
 		gsap.ticker.lagSmoothing(0);
 
-			
+		
 		const hide = (item) => {
 				gsap.set(item, {autoAlpha: 0});
 		}
@@ -95,33 +94,7 @@ const Portfolio = () => {
 				});
 		});
 
-
-		//메세지
-		let count = 0;
-
-		$(document).off().on('click', '.message:last-child()', function(){
-			
-			let messageHtml;
-	
-			$(this).removeClass('on');
-			count++;
-			if(count === 1) {
-				messageHtml = '<div class="message on"><span>웹 UI개발자 박민혜 입니다.</span></div>';
-				$('.message-wrap').append(messageHtml);
-			} else if(count === 2){
-				messageHtml = '<div class="message on"><span>포트폴리오를 보러 와주셔서 감사합니다!</span></div>';
-				$('.message-wrap').append(messageHtml);
-			} else if(count === 3) {
-				messageHtml = '<div class="message"><span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span></div>';
-				// messageHtml = '<div class="message"><span>현재 개발 중이므로, 조금만 기다려 주세요!</span></div>';
-				$('.message-wrap').append(messageHtml);
-				$('.message-wrap').prepend('<span class="star"></span>');
-				$('.scroll-text').addClass('on');
-			}
-		});
-
-
-
+		// star -> path 따라 움직이는 모션 설정
 		const star = starRef.current;
 		const motion = motionRef.current;
 		const path = pathRef.current;
@@ -276,10 +249,13 @@ const Portfolio = () => {
 		]
   };
 
-
+	const [count, setCount] = useState(0);
+	const handleClick = () => {
+    setCount(prevCount => prevCount + 1);
+  };
 
   return (
-		<Layout header>
+		<Layout header footer>
 			<div className='portfolio'>
 				
 				<div className="stars-wrap">
@@ -290,12 +266,25 @@ const Portfolio = () => {
 
 				<div className='intro'>
 					<canvas id="three-canvas2"></canvas>
-					<div className='message-wrap'>
-						<div className='message on'>
-							<span>안녕하세요!</span>
-						</div>
+					<div className="message-wrap" onClick={handleClick}>
+						{count >= 2 && <span className="star"></span>}
+						{count >= 0 && (
+							<div className={`message ${count === 0 ? 'on' : ''}`}>
+								<span>웹 UI개발자 박민혜 입니다.</span>
+							</div>
+						)}
+						{count >= 1 && (
+							<div className={`message ${count === 1 ? 'on' : ''}`}>
+								<span>포트폴리오를 보러 와주셔서 감사합니다!</span>
+							</div>
+						)}
+						{count >= 2 && (
+							<div className="message">
+								<span>스크롤 하시면 프로젝트를 확인할 수 있습니다!</span>
+							</div>
+						)}
 					</div>
-					<div className='scroll-text'>
+					<div className={`scroll-text ${count >= 2 ? 'on' : ''}`}>
 						<p>Scroll Down</p>
 					</div>
 				</div>
@@ -330,25 +319,13 @@ const Portfolio = () => {
 						{/* S: project-item */}
 						<section id='section3' className='project-item'>
 							<Link to='/project/lsgpis'>
-								<h2 className='project-type reveal '>PC</h2>
+								<h2 className='project-type reveal'>PC</h2>
 								<div className='project-imgwrap reveal reveal-btt'>
 									<div className='project-img'></div>
 								</div>
 								<p className='project-title reveal reveal-btt'>관리자 화면 신규 구축<br/><b>LS GPIS</b></p>
 							</Link>
 						</section>
-						{/* E: project-item */}
-
-						{/* S: project-item */}
-						{/* <section id='section4' className='project-item'>
-							<a href='https://pmineq.github.io/admin/LSLPL/page.html' target="_blank" rel="noreferrer">
-								<h2 className='project-type'>PC</h2>
-								<div className='project-imgwrap reveal reveal-ttb'>
-									<div className='project-img'></div>
-								</div>
-								<p className='project-title reveal reveal-ltr'>LS Nikko Admin 디자인 시스템</p>
-							</a>
-						</section> */}
 						{/* E: project-item */}
 
 
@@ -382,7 +359,7 @@ const Portfolio = () => {
 								<div className="tooltip">
 									<div className="text">
 										<span><strong>사이</strong>드 프로젝트 + <strong>행성</strong>,<br/>
-										스터디나 자기계발용 프로젝트를 모았어요.</span>
+										그 외 업무와 스터디 프로젝트나 자기계발용 프로젝트를 모았어요.</span>
 									</div>
 								</div>
 							</div>
@@ -393,8 +370,7 @@ const Portfolio = () => {
 
 								{subproject.map((item) => (
 									<div key={item.id} id={item.id} className="side-project-item">
-										{/* <Link to={item.url}> */}
-										<a href={item.url} target="_blank" rel="noreferrer">
+										<Link to={item.url}>
 											<div className="side-project-planet">
 												<div className='side-project-imgwrap'>
 													<div className='side-project-img'></div>
@@ -411,25 +387,14 @@ const Portfolio = () => {
 													<dd>{item.duty}</dd>
 												</dl>
 											</div>
-										</a>
-										{/* </Link> */}
+										</Link>
 									</div>
 								))}
-
 							</Slider>
 						</div>
 
 					</div>
 
-				</div>
-			</div>
-
-			<div id="footer" className="footer">
-				<div className="bottom-wrap">
-					<div className="footer-inner">
-						<p>본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.<br/>
-							© 2024 Park, Min-Hye. All Rights Reserved.</p>
-					</div>
 				</div>
 			</div>
 

@@ -917,10 +917,10 @@ $shadows-big: multiple-box-shadow(100);
 #sub01 .side-project-img {background-image: url('../images/project/portfolio.png'); }
 #sub02 .side-project-img {background-image: url('../images/project/dubuck.png'); }
 #sub03 .side-project-img {background-image: url('../images/project/admin.png'); }
-#sub04 .side-project-img {background-image: url('../images/project/editodo.png'); }
-#sub05 .side-project-img {background-image: url('../images/project/callct.png'); }
-#sub06 .side-project-img {background-image: url('../images/project/lms.png'); }
-#sub07 .side-project-img {background-image: url('../images/project/lslpl.png'); }
+#sub04 .side-project-img {background-image: url('../images/project/callct.png'); }
+#sub05 .side-project-img {background-image: url('../images/project/lms.png'); }
+#sub06 .side-project-img {background-image: url('../images/project/lslpl.png'); }
+#sub07 .side-project-img {background-image: url('../images/project/editodo.png'); }
 
 
 
@@ -1252,6 +1252,14 @@ $shadows-big: multiple-box-shadow(100);
   &.hyundai {background-color: #c8d4e2; }
   &.kplus {background-color: #bbb; }
   &.lsgpis {background-color: #e8cdcd;}
+  
+  &.portfoliov2 {background-color: #88c6cf; }
+  &.dubuck {background-color: #ffc3a1; }
+  &.editodo {background-color: #cae1e3; }
+  &.admin {background-color: #acbfd7; }
+  &.callct {background-color: #f1e4cf; }
+  &.lms {background-color: #dfdfda; }
+  &.lslpl {background-color: #d0d4e0; }
 
   
 }
@@ -1282,13 +1290,20 @@ $shadows-big: multiple-box-shadow(100);
 
   }
 
-  img {
+  img,
+  video {
     display: block; width: 100%;
 
     & + img {
       margin-top: 10px;
     }
+
+    & + .dl-info {
+      margin-top: 10px;
+    }
   }
+
+  hr {margin: 20px 0; }
 
 }
 
@@ -1341,6 +1356,11 @@ $shadows-big: multiple-box-shadow(100);
     &.white {
       dt {color: #aaa; }
       dd {color: #eee; }
+    }
+
+    .area-half {
+      gap: 10px;
+      img {margin: 10px 0; }
     }
   }
 }
@@ -1430,9 +1450,15 @@ $shadows-big: multiple-box-shadow(100);
   background: linear-gradient(#ffffff 60%, #28394b 10%);
 }
 
+.pf-bghalf {
+  background: linear-gradient(#ffffff 44%, #e5edef 10%);
+}
+
 
 
 @media (max-width: 500px) {
+
+  .project-top h2 {font-size: 35px; }
 
   .area-one {
     padding: 16vw 6vw;

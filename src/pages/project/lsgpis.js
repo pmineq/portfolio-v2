@@ -77,7 +77,7 @@ const Lsgpis = () => {
 	}, []);
 
   return (
-		<Layout header>
+		<Layout header footer>
 			<div id="project" ref={projectRef} className='project-wrap lsgpis'>
 
 				<section ref={topRef} className='project-top'>
@@ -117,7 +117,7 @@ const Lsgpis = () => {
 							</div>
 							<div className="description">
 								<strong>Skills.</strong>
-								<p>HTML, CSS, Javascript, Jquery, ASP, PhotoShop, Illustrator</p>
+								<p>HTML, CSS, Javascript, jQuery, ASP, PhotoShop, Illustrator</p>
 							</div>
 						</div>
 					</div>
@@ -190,15 +190,6 @@ const Lsgpis = () => {
 				<section className="area-one ls-bghalf clr" data-bgcolor="#ffffff">
 					<img src={Lsgpis03} alt="LSGPIS 이미지"/>
 				</section>
-			</div>
-
-			<div id="footer" className="footer">
-				<div className="bottom-wrap">
-					<div className="footer-inner">
-						<p>본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.<br/>
-							© 2024 Park, Min-Hye. All Rights Reserved.</p>
-					</div>
-				</div>
 			</div>
 			
 		</Layout>
