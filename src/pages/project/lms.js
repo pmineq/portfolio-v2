@@ -124,9 +124,8 @@ const Lms = () => {
 					<img src={Lms01} alt="Lms 이미지"/>
 				</section>
 
-				<section className="area-one clr" data-bgcolor="#ffffff">
+				<section ref={textRef} className="area-one clr" data-bgcolor="#ffffff">
 					<strong className="sub-title">디자인,<br/>Web Publishing 진행.</strong>
-					<p>디자인 화면은 상단 Zeplin 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
 				</section>
 
 			</div>

@@ -202,7 +202,7 @@ const Portfolio = () => {
   const settings = {
 		centerMode: true,
 		centerPadding: '150px',
-    dots: false,
+    dots: true,
     arrows: true,
     infinite: true,
     slidesToShow: 3,

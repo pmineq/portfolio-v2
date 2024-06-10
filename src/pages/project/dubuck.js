@@ -131,7 +131,7 @@ const Dubuck = () => {
 				</section>
 
 				<section className="area-one clr" data-bgcolor="#ffffff">
-					<strong className="sub-title">Web Publishing 진행.</strong>
+					<strong ref={textRef} className="sub-title">Web Publishing 진행.</strong>
 					<p>소스코드 설명은 상단 노션 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
 				</section>
 

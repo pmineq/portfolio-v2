@@ -126,7 +126,7 @@ const Lslpl = () => {
 				</section>
 
 				<section className="area-one clr" data-bgcolor="#ffffff">
-					<strong className="sub-title">Web Publishing 진행.</strong>
+					<strong ref={textRef} className="sub-title">Web Publishing 진행.</strong>
 				</section>
 
 				<section className="area-one">

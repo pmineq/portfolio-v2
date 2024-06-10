@@ -143,7 +143,7 @@ const PortfolioV2 = () => {
 				</section>
 
 				<section className="area-one clr" data-bgcolor="#e5edef">
-					<strong className="sub-title">기획, 블렌더, 디자인,<br/>UI Front 개발 진행.</strong>
+					<strong ref={textRef} className="sub-title">기획, 블렌더, 디자인,<br/>UI Front 개발 진행.</strong>
 					<div className="area-half">
 						<div className="left description">
 							<div className="dl-info">
@@ -264,7 +264,7 @@ const PortfolioV2 = () => {
 				</section>
 				
 				<section className="area-one clr" data-bgcolor="#fff">
-					<strong className="sub-title">재밌으니까 좋아하고, 좋아하니까 잘하는 사람.<br/>끝까지 열정적으로 도전하는 사람.</strong>
+					<strong ref={textRef} className="sub-title">재밌으니까 좋아하고, 좋아하니까 잘하는 사람.<br/>끝까지 열정적으로 도전하는 사람.</strong>
 					<div className="area-half">
 						<div className="left">
 							<video autoPlay playsInline loop muted src={PortfolioV207} />

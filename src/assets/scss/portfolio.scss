@@ -863,6 +863,9 @@ $shadows-big: multiple-box-shadow(100);
     }
   }
 
+  .slick-dots li button:before {color: #fff; }
+  .slick-dots li.slick-active button:before {color: #fff; }
+
 }
 
 
@@ -1192,13 +1195,17 @@ $shadows-big: multiple-box-shadow(100);
   overflow: hidden;
 
   h2 {
+    display: block;
     position: absolute;
     top: 50%; left: 50%;
+    width: 100%;
+    padding: 40px 20px; box-sizing: border-box;
     font-size: 50px; font-weight: 700;
     color: #fff;
     z-index: 3;
     transform: translate(-50%, -50%);
-    white-space: nowrap;
+    word-break: keep-all;
+    text-align: center;
   }
 
   .project-topimg {

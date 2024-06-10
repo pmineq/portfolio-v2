@@ -128,7 +128,7 @@ const Admin = () => {
 				</section>
 
 				<section className="area-one clr" data-bgcolor="#0061b2">
-					<strong className="sub-title">기획, 디자인,<br/>Web Publishing 진행.</strong>
+					<strong ref={textRef} className="sub-title">기획, 디자인,<br/>Web Publishing 진행.</strong>
 				</section>
 
 				<section className="area-one">
