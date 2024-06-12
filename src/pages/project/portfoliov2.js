@@ -129,7 +129,7 @@ const PortfolioV2 = () => {
 							</div>
 							<div className="description">
 								<strong>Skills.</strong>
-								<p>React, HTML, CSS, Javascript, Three.js, jQuery, Figma, Blender, PhotoShop, Illustrator, Github</p>
+								<p>React, HTML, CSS, SCSS, Javascript, Three.js, jQuery, Figma, Blender, PhotoShop, Illustrator, Github</p>
 							</div>
 						</div>
 					</div>

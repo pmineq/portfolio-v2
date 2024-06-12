@@ -124,8 +124,9 @@ const Lms = () => {
 					<img src={Lms01} alt="Lms 이미지"/>
 				</section>
 
-				<section ref={textRef} className="area-one clr" data-bgcolor="#ffffff">
+				<section ref={textRef} className="area-one">
 					<strong className="sub-title">디자인,<br/>Web Publishing 진행.</strong>
+					<p>해당 화면의 페이지는 상단 사이트 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
 				</section>
 
 			</div>

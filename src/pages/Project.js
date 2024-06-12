@@ -208,13 +208,11 @@ const Portfolio = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
-    touchThreshold : 50,
+		draggable: false, 
 		responsive: [
 			{
 				breakpoint: 1000,
 				settings: {
-					// arrows: false,
-					// centerMode: true,
 					centerPadding: '0',
 					slidesToShow: 3
 				}
@@ -222,8 +220,6 @@ const Portfolio = () => {
 			{
 				breakpoint: 768,
 				settings: {
-					// arrows: false,
-					// centerMode: true,
 					centerPadding: '150px',
 					slidesToShow: 1
 				}
@@ -231,8 +227,6 @@ const Portfolio = () => {
 			{
 				breakpoint: 500,
 				settings: {
-					// arrows: false,
-					// centerMode: true,
 					centerPadding: '100px',
 					slidesToShow: 1
 				}
@@ -240,8 +234,6 @@ const Portfolio = () => {
 			{
 				breakpoint: 400,
 				settings: {
-					// arrows: false,
-					// centerMode: true,
 					centerPadding: '40px',
 					slidesToShow: 1
 				}
@@ -359,7 +351,7 @@ const Portfolio = () => {
 								<div className="tooltip">
 									<div className="text">
 										<span><strong>사이</strong>드 프로젝트 + <strong>행성</strong>,<br/>
-										그 외 업무와 스터디 프로젝트나 자기계발용 프로젝트를 모았어요.</span>
+										주요 프로젝트 외 업무와 스터디 프로젝트나 자기계발용 프로젝트를 모았어요.</span>
 									</div>
 								</div>
 							</div>

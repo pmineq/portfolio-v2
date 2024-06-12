@@ -1454,11 +1454,11 @@ $shadows-big: multiple-box-shadow(100);
 }
 
 .ls-bghalf {
-  background: linear-gradient(#ffffff 60%, #28394b 10%);
+  background: linear-gradient(transparent 60%, #28394b 10%);
 }
 
 .pf-bghalf {
-  background: linear-gradient(#ffffff 44%, #e5edef 10%);
+  background: linear-gradient(transparent 44%, #e5edef 10%);
 }
 
 

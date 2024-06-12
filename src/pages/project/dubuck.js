@@ -111,7 +111,7 @@ const Dubuck = () => {
 							</div>
 							<div className="description">
 								<strong>Skills.</strong>
-								<p>React, HTML, CSS, Javascript, jQuery</p>
+								<p>React, HTML, CSS, SCSS, Javascript, jQuery</p>
 							</div>
 						</div>
 					</div>

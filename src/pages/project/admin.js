@@ -133,7 +133,7 @@ const Admin = () => {
 
 				<section className="area-one">
 					<img src={Admin02} alt="Admin 이미지"/>
-					<div className="description">
+					<div className="description white">
 						<strong>컴포넌트 퍼블리싱 캡쳐 이미지</strong>
 					</div>
 				</section>
