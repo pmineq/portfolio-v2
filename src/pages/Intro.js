@@ -30,6 +30,12 @@ const Intro = () => {
 			duration: 1.5,
 			ease: "sine.out",
 		});
+		
+		console.log(`
+		／＞　 フ
+		| 　_　_|  
+	  ／\` ミ＿xノ   뽑아주세용
+`);
 
 	}, []);
 
@@ -40,7 +46,7 @@ const Intro = () => {
 		<Layout header>
 			<div className='intro-wrap'>
 				<div ref={titleRef} className='intro-text'>
-					<h2>긍정적인 마인드를 가진<br/>4년<span className='plus'>+</span> UI 개발자 박민혜입니다.</h2>
+					<h2>긍정적인 마인드를 가진<br/>5년<span className='plus'>+</span> UI 개발자 박민혜입니다.</h2>
 					<p>
 						<strong>웹 퍼블리싱</strong>과 <strong>UI/UX 기획</strong>, <strong>디자인</strong> 개선 경험을 바탕으로, <br/>
 						<em ref={emRef}>사용자-기획자-디자이너-&gt;개발자</em> 각자의 <strong>관점을 이해하며 협업</strong>합니다.
