@@ -303,31 +303,6 @@ $shadows-big: multiple-box-shadow(100);
 /* =======================================================
   project
 ========================================================*/
-#star-scroll {
-  position: absolute;
-  top: 0; left: 0;
-  height: 100%;
-  z-index: -1;
-
-  .st0 {
-    fill: none;
-    opacity: 0.6;
-  }
-
-}
-
-#motionSVG {
-
-  .cls-1 {
-    fill: #f3ce46;
-  }
-
-  .cls-2 {
-    fill: #6c5625;
-  }
-
-}
-
 #star01 {
   filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
 
@@ -641,10 +616,6 @@ $shadows-big: multiple-box-shadow(100);
     }
   }
 
-  #star-scroll {
-    left: -20vw;
-  }
-
 }
 
 
@@ -682,14 +653,9 @@ $shadows-big: multiple-box-shadow(100);
     font-size: 13px;
   }
 
-  #star-scroll {
-    left: -50vw;
-  }
-
 
 
 }
-
 
 
 

@@ -1,0 +1,76 @@
+#goal-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  .goal-text {
+    font-size: 80px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow:
+      0 0 20px rgba(255, 215, 0, 0.8),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      3px 3px 0 #000,
+      -3px -3px 0 #000,
+      3px -3px 0 #000,
+      -3px 3px 0 #000;
+    animation: goalPulse 0.5s ease-out;
+    text-align: center;
+  }
+
+  .goal-particles {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+
+    span {
+      position: absolute;
+      font-size: 40px;
+      animation: particleFloat 1.5s ease-out forwards;
+
+      &:nth-child(1) { left: 10%; animation-delay: 0s; }
+      &:nth-child(2) { left: 25%; animation-delay: 0.1s; }
+      &:nth-child(3) { left: 40%; animation-delay: 0.2s; }
+      &:nth-child(4) { left: 55%; animation-delay: 0.3s; }
+      &:nth-child(5) { left: 70%; animation-delay: 0.1s; }
+      &:nth-child(6) { left: 85%; animation-delay: 0.2s; }
+      &:nth-child(7) { left: 15%; animation-delay: 0.3s; }
+      &:nth-child(8) { left: 90%; animation-delay: 0s; }
+    }
+  }
+
+  @keyframes goalPulse {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-200px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+}

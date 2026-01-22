@@ -1,0 +1,1 @@
+export { GoalEffect } from './GoalEffect';
