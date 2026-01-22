@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import type { MenuItem } from './types';
 
@@ -17,27 +17,6 @@ const Menu = () => {
     btnMenu?.classList.remove('open');
     menuWrap?.classList.remove('on');
   }, []);
-
-  const toggleMenu = useCallback(() => {
-    const btnMenu = document.getElementById('btn-menu');
-    const menuWrap = document.querySelector('.menu-wrap');
-
-    if (btnMenu?.classList.contains('open')) {
-      closeMenu();
-    } else {
-      btnMenu?.classList.add('open');
-      menuWrap?.classList.add('on');
-    }
-  }, [closeMenu]);
-
-  useEffect(() => {
-    const btnMenu = document.getElementById('btn-menu');
-    btnMenu?.addEventListener('click', toggleMenu);
-
-    return () => {
-      btnMenu?.removeEventListener('click', toggleMenu);
-    };
-  }, [toggleMenu]);
 
   return (
     <div className="menu-wrap">

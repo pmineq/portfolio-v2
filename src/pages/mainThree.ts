@@ -598,18 +598,28 @@ export function MainThree(): void {
   const btnMenu = document.getElementById('btn-menu');
   if (btnMenu) {
     btnMenu.addEventListener('click', () => {
+      const menuWrap = document.querySelector('.menu-wrap');
+
       if (btnMenu.classList.contains('open')) {
+        // 메뉴 닫기
+        btnMenu.classList.remove('open');
+        menuWrap?.classList.remove('on');
+
         gsap.to(camera, {
           duration: 1,
-          zoom: 0.44,
+          zoom: 0.22,
           onUpdate: () => {
             camera.updateProjectionMatrix();
           },
         });
       } else {
+        // 메뉴 열기
+        btnMenu.classList.add('open');
+        menuWrap?.classList.add('on');
+
         gsap.to(camera, {
           duration: 1,
-          zoom: 0.22,
+          zoom: 0.44,
           onUpdate: () => {
             camera.updateProjectionMatrix();
           },
