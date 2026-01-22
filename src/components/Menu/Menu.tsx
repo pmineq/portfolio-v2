@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import type { MenuItem } from './types';
 
 const menuItems: MenuItem[] = [
-  { path: '/', label: '홈', icon: '🏠' },
-  { path: '/main', label: '메인', icon: '🌍' },
-  { path: '/project', label: '프로젝트', icon: '🚀' },
-  { path: '/contact', label: '연락하기', icon: '📞' },
+  { path: '/', label: '홈' },
+  { path: '/main', label: '메인' },
+  { path: '/project', label: '프로젝트' },
+  { path: '/contact', label: '연락하기' },
 ];
 
 const Menu = () => {
@@ -28,8 +28,9 @@ const Menu = () => {
                 to={item.path}
                 className={({ isActive }) => isActive ? 'current' : ''}
                 onClick={closeMenu}
+                aria-label={`${item.label} 페이지로 이동`}
               >
-                {item.label} {item.icon}
+                {item.label}
               </NavLink>
             </li>
           ))}

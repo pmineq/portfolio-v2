@@ -28,9 +28,9 @@ export const Loading1 = () => {
 
 export const Loading2 = () => {
   return (
-    <div className='loading-wrap02'>
+    <div className='loading-wrap02' role='status' aria-live='polite' aria-label='페이지 로딩 중'>
       <div className='spacecraft'>
-        <span>🚀</span>
+        <span aria-hidden='true'>🚀</span>
         <em>Loading...</em>
       </div>
       <div className='loading-dim'></div>

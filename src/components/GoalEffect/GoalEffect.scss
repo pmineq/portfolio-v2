@@ -12,7 +12,8 @@
   }
 
   .goal-text {
-    font-size: 80px;
+    width: 100%;
+    font-size: 7vw;
     font-weight: bold;
     color: #FFD700;
     text-shadow:
@@ -24,6 +25,7 @@
       -3px 3px 0 #000;
     animation: goalPulse 0.5s ease-out;
     text-align: center;
+    white-space: nowrap;
   }
 
   .goal-particles {

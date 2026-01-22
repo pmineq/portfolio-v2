@@ -56,11 +56,17 @@ const Main = () => {
       </div>
 
       <div className='btn-view'>
-        <Link to='/project'>우주선 타고 이동 🚀</Link>
+        <Link to='/project' aria-label='프로젝트 페이지로 이동'>우주선 타고 이동</Link>
       </div>
 
       <div className='floating-wrap'>
-        <button type='button' className='btn-reset'>새로고침</button>
+        <button
+          type='button'
+          className='btn-reset'
+          aria-label='장면 초기화 및 시작 위치로 돌아가기'
+        >
+          새로고침
+        </button>
       </div>
     </Layout>
   );

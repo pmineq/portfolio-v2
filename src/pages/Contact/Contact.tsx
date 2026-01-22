@@ -51,6 +51,14 @@ const Contact = () => {
       return false;
     }
 
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contact_email.value)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      contact_email.focus();
+      return false;
+    }
+
     if (!contact_message.value.trim()) {
       alert(VALIDATION_MESSAGES.message);
       contact_message.focus();
