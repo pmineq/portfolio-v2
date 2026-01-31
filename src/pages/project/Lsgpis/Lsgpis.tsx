@@ -27,6 +27,7 @@ const Lsgpis = () => {
         className="lsgpis"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="lsgpis"
       >
         <section className="area-one">
           <img src={Lsgpis01} alt="LSGPIS 프로젝트 이미지" />

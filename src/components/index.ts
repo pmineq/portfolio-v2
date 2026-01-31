@@ -4,6 +4,9 @@ export { Loading1, Loading2 } from './Loading';
 // Effect components
 export { GoalEffect } from './GoalEffect';
 
+// Game components
+export { ClawMachine } from './ClawMachine/ClawMachine';
+
 // Layout components
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';

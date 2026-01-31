@@ -23,6 +23,7 @@ const Lslpl = () => {
         className="lslpl"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="lslpl"
       >
         <section className="area-one">
           <img src={Lslpl01} alt="Lslpl 프로젝트 이미지" />

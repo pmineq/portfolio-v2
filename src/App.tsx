@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Loading1, Loading2 } from './components';
 import { Intro, Contact } from './pages';
 
+import Bithumb from './pages/project/Bithumb';
+import Ked from './pages/project/Ked';
 import Hyundai from './pages/project/Hyundai';
 import Kplus from './pages/project/Kplus';
 import Lsgpis from './pages/project/Lsgpis';
@@ -32,6 +34,8 @@ const App = () => {
       <Route path="/contact" element={<Contact />} />
 
       {/* Project detail pages */}
+      <Route path="/project/bithumb" element={<Bithumb />} />
+      <Route path="/project/ked" element={<Ked />} />
       <Route path="/project/hyundai" element={<Hyundai />} />
       <Route path="/project/kplus" element={<Kplus />} />
       <Route path="/project/lsgpis" element={<Lsgpis />} />

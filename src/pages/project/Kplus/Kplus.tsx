@@ -38,6 +38,7 @@ const Kplus = () => {
         className="kplus"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="kplus"
       >
         <section className="area-one">
           <img src={Kplus01} alt="KPLUS 프로젝트 이미지" />

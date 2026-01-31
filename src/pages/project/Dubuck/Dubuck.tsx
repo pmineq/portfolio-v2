@@ -28,6 +28,7 @@ const Dubuck = () => {
         className="dubuck"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="dubuck"
       >
         <a href="https://goldenrod-mouse-78f.notion.site/8432b16995a546ae9cff152fd7f4c93c#16dc1a4157174bb08010652f14a0aa6f" className="btn-goto" target="_blank" rel="noreferrer">
           <NotionIcon />

@@ -3,18 +3,19 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 import PlayerObj from '../models/mine.glb';
 
-export function PortThree(): void {
+export function PortThree(): (() => void) | void {
   // Renderer
   const canvas = document.querySelector('#three-canvas2') as HTMLCanvasElement;
   if (!canvas) return;
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: true,
+    antialias: window.devicePixelRatio <= 1, // 고해상도에서는 antialias 비활성화
     alpha: true,
+    powerPreference: 'high-performance', // GPU 성능 우선
   });
   renderer.setSize(200, 300);
-  renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 최대 2배까지만
 
   // Scene
   const scene = new THREE.Scene();
@@ -40,6 +41,7 @@ export function PortThree(): void {
   let mixer: THREE.AnimationMixer | undefined;
   let mineMesh: THREE.Object3D | undefined;
   const actions: THREE.AnimationAction[] = [];
+  let isAnimating = true;
 
   gltfLoader.load(PlayerObj, (gltf) => {
     mineMesh = gltf.scene.children[0];
@@ -47,6 +49,9 @@ export function PortThree(): void {
     mineMesh.position.y = -5;
     mineMesh.position.z = 0;
     mineMesh.rotation.x = 0;
+
+    // Frustum culling 최적화
+    mineMesh.frustumCulled = true;
 
     scene.add(mineMesh);
 
@@ -59,16 +64,25 @@ export function PortThree(): void {
     actions[1].clampWhenFinished = true;
     actions[1].play();
 
+    let finishedCount = 0;
     mixer.addEventListener('finished', () => {
-      actions[2].repetitions = 1;
-      actions[2].clampWhenFinished = true;
-      actions[2].play();
+      finishedCount++;
 
-      const messageWrap = document.querySelector('.message-wrap') as HTMLElement;
-      if (messageWrap) {
-        messageWrap.style.display = 'block';
-        messageWrap.style.opacity = '0';
-        gsap.to(messageWrap, { duration: 0.3, opacity: 1 });
+      if (finishedCount === 1) {
+        actions[2].repetitions = 1;
+        actions[2].clampWhenFinished = true;
+        actions[2].play();
+
+        const messageWrap = document.querySelector('.message-wrap') as HTMLElement;
+        if (messageWrap) {
+          messageWrap.style.display = 'block';
+          messageWrap.style.opacity = '0';
+          gsap.to(messageWrap, { duration: 0.3, opacity: 1 });
+        }
+      } else if (finishedCount === 2) {
+        // 모든 애니메이션 완료 후 렌더링 중지
+        isAnimating = false;
+        renderer.setAnimationLoop(null);
       }
     });
 
@@ -87,6 +101,8 @@ export function PortThree(): void {
   const clock = new THREE.Clock();
 
   function draw2(): void {
+    if (!isAnimating) return;
+
     const delta = clock.getDelta();
     if (mixer) {
       mixer.update(delta);
@@ -116,11 +132,13 @@ export function PortThree(): void {
     mouse.y = -((e.clientY / canvas.clientHeight) * 2 - 1);
   }
 
-  //클릭
-  canvas.addEventListener('click', (e) => {
+  const handleClick = (e: MouseEvent) => {
     calculateMousePosition(e);
     clickObj();
-  });
+  };
+
+  //클릭
+  canvas.addEventListener('click', handleClick);
 
   const header = document.getElementById('header');
   if (header) {
@@ -128,6 +146,29 @@ export function PortThree(): void {
   }
 
   draw2();
+
+  // Cleanup 함수 반환
+  return () => {
+    // 애니메이션 루프 중지
+    renderer.setAnimationLoop(null);
+
+    // 이벤트 리스너 제거
+    window.removeEventListener('resize', setSize);
+    canvas.removeEventListener('click', handleClick);
+
+    // Three.js 리소스 정리
+    if (mixer) {
+      mixer.stopAllAction();
+    }
+
+    scene.clear();
+    renderer.dispose();
+
+    // 헤더 클래스 제거
+    if (header) {
+      header.classList.remove('white');
+    }
+  };
 }
 
 export default PortThree;

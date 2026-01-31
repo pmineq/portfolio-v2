@@ -1,17 +1,29 @@
-export const SKILLS = [
-  'HTML5',
-  'CSS3',
-  'SCSS',
-  'Javascript',
-  'Typescript',
-  'jQuery',
-  'React',
-  'Three.js',
-  'Figma',
-  'PhotoShop',
-  'Illustrator',
-  'Github',
-] as const;
+export const SKILLS = {
+  frontend: {
+    title: 'Frontend / UX Engineering',
+    items: [
+      'React',
+      'TypeScript',
+      'HTML5',
+      'CSS3',
+      'SCSS',
+      'Motion: Framer Motion · GSAP',
+      'Storybook',
+      'Three.js',
+    ],
+  },
+  tools: {
+    title: 'Tools',
+    items: [
+      'Figma',
+      'Github',
+      'Jira',
+      'Confluence',
+      'PhotoShop',
+      'Illustrator',
+    ],
+  },
+} as const;
 
 export const NAV_BUTTONS = [
   { path: '/main', label: '메인' },
@@ -19,7 +31,7 @@ export const NAV_BUTTONS = [
 ] as const;
 
 export const PROFILE = {
-  experience: '5년',
-  role: 'UI 개발자',
+  experience: 5,
+  role: 'UX Frontend Engineer',
   name: '박민혜',
 } as const;

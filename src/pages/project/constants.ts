@@ -1,4 +1,30 @@
-import type { SubProject, SlickSettings } from './types';
+import type { SubProject, SlickSettings, CareerSection } from './types';
+
+export const CAREER_SECTIONS: Record<string, CareerSection> = {
+  bithumb: {
+    id: 'bithumb',
+    period: '2024.07 ~',
+    title: '기업 행성',
+    company: '빗썸',
+    description: '암호화폐 거래소 프론트엔드 개발',
+  },
+  ked: {
+    id: 'ked',
+    period: '2023.02 ~ 2024.02',
+    title: '평가 행성',
+    company: '한국평가데이터',
+    description: '기업 데이터 플랫폼 프론트엔드 개발',
+    isProtected: true,
+    hint: '생년월일',
+  },
+  project: {
+    id: 'project',
+    period: '~ 2019.09',
+    title: '프로젝트 행성',
+    company: 'RD + 프리랜서',
+    description: '다양한 웹 프로젝트 퍼블리싱 및 프론트엔드 개발',
+  },
+};
 
 export const SUB_PROJECTS: SubProject[] = [
   {

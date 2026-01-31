@@ -78,6 +78,7 @@ export const useScrollAnimation = () => {
         trigger: element,
         start: 'top bottom',
         end: 'bottom top',
+        once: true,
         onEnter: () => {
           animate(element);
         },

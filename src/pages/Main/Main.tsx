@@ -1,14 +1,15 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import Layout from '../../components/Layout';
-import { GoalEffect } from '../../components';
+import { GoalEffect, ClawMachine } from '../../components';
 import MainJS from '../mainThree';
 
 import '../../assets/scss/intro.scss';
 
 const Main = () => {
   const guideRef = useRef<HTMLDivElement>(null);
+  const [isClawMachineOpen, setIsClawMachineOpen] = useState(false);
 
   const shake = useCallback((element: HTMLElement | null) => {
     if (!element) return;
@@ -58,6 +59,21 @@ const Main = () => {
       <div className='btn-view'>
         <Link to='/project' aria-label='프로젝트 페이지로 이동'>우주선 타고 이동</Link>
       </div>
+
+      <div className='btn-machine'>
+        <button
+          type='button'
+          aria-label='인형뽑기 미니게임 열기'
+          onClick={() => setIsClawMachineOpen(true)}
+        >
+          인형뽑기 미니게임
+        </button>
+      </div>
+
+      <ClawMachine
+        isOpen={isClawMachineOpen}
+        onClose={() => setIsClawMachineOpen(false)}
+      />
 
       <div className='floating-wrap'>
         <button

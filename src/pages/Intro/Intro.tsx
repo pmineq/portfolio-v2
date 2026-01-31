@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import Layout from '../../components/Layout';
@@ -9,6 +9,7 @@ import '../../assets/scss/intro.scss';
 const Intro = () => {
   const titleRef = useRef<HTMLDivElement>(null);
   const emRef = useRef<HTMLElement>(null);
+  const [experienceCount, setExperienceCount] = useState(1);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -31,6 +32,18 @@ const Intro = () => {
       });
     }
 
+    // Experience 카운트 애니메이션
+    const counter = { value: 1 };
+    gsap.to(counter, {
+      value: PROFILE.experience,
+      duration: 2,
+      delay: 0.5,
+      ease: 'power2.out',
+      onUpdate: () => {
+        setExperienceCount(Math.floor(counter.value));
+      },
+    });
+
     console.log(`
     ／＞　 フ
     | 　_　_|
@@ -43,16 +56,23 @@ const Intro = () => {
       <div className='intro-wrap'>
         <div ref={titleRef} className='intro-text'>
           <h2>
-            긍정적인 마인드를 가진<br/>
-            {PROFILE.experience}<span className='plus'>+</span> {PROFILE.role} {PROFILE.name}입니다.
+            사용자 중심의 인터페이스를 구현하는<br/>
+            {experienceCount}년<span className='plus'>+</span> {PROFILE.role} {PROFILE.name}입니다.
           </h2>
+          <em ref={emRef}>기획 → 디자인 → 개발</em><br/>
           <p>
-            <strong>웹 퍼블리싱</strong>과 <strong>UI/UX 기획</strong>, <strong>디자인</strong> 개선 경험을 바탕으로, <br/>
-            <em ref={emRef}>사용자-기획자-디자이너-&gt;개발자</em> 각자의 <strong>관점을 이해하며 협업</strong>합니다.
+            기술적 실현 가능성을 <strong>조율</strong>하고,<br/>
+            <strong>최적의 UX</strong>를 만들어냅니다.
           </p>
           <div className='skills'>
-            <strong>Skills.</strong>
-            <p>{SKILLS.join(', ')}</p>
+            <div className='skill-category'>
+              <strong>{SKILLS.frontend.title}</strong>
+              <p>{SKILLS.frontend.items.join(', ')}</p>
+            </div>
+            <div className='skill-category'>
+              <strong>{SKILLS.tools.title}</strong>
+              <p>{SKILLS.tools.items.join(', ')}</p>
+            </div>
           </div>
           <div className='intro-btn-group'>
             {NAV_BUTTONS.map((button) => (

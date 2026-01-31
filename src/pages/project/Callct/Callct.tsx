@@ -22,6 +22,7 @@ const Callct = () => {
         className="callct"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="callct"
       >
         <section className="area-one">
           <img src={Callct01} alt="Callct 프로젝트 이미지" />

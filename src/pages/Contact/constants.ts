@@ -1,7 +1,7 @@
 export const EMAIL_CONFIG = {
-  serviceId: 'service_7edqrss',
-  templateId: 'template_v2umrrj',
-  publicKey: 'upGj3_ip3VdmDn5j9',
+  serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID || '',
+  templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID || '',
+  publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '',
 } as const;
 
 export const CONTACT_INFO = {

@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Player } from './Player';
 import { Roket } from './Roket';
 import { GoalSpot } from './GoalSpot';
+import { Machine } from './Machine';
 import gsap from 'gsap';
 import gridImg from '../assets/images/gradient.jpg';
 import ballImg from '../assets/images/ball.png';
@@ -117,13 +118,14 @@ export function MainThree(): void {
   const BallShape = new CANNON.Sphere(0.3);
   const BallBody = new CANNON.Body({
     mass: 3,
-    position: new CANNON.Vec3(2, 10, 2),
+    position: new CANNON.Vec3(2, 5, 2), // 높이 낮춤 (10 -> 5)
     shape: BallShape,
     material: rubberMaterial,
     linearDamping: 0.4, // 선형 감속 (공이 굴러갈 때 점점 느려짐)
     angularDamping: 0.4, // 회전 감속 (공이 회전할 때 점점 느려짐)
   });
   BallBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 0), Math.PI / 2);
+  BallBody.velocity.set(0, -5, 0); // 초기 하강 속도 추가
   cannonWorld.addBody(BallBody);
 
   // Mesh
@@ -204,8 +206,52 @@ export function MainThree(): void {
     x: 6,
     y: 0,
     z: -4,
-    scale: 0.3,
+    scale: 1.5,
   });
+
+  // 인형뽑기 머신
+  const machine = new Machine({
+    gltfLoader,
+    scene,
+    x: -3,
+    y: 0,
+    z: -8,
+    scale: 0.5,
+  });
+
+  // 머신 충돌 바디 (플레이어가 통과할 수 없게)
+  const machineCollisionBox = {
+    x: -3,
+    z: -8,
+    width: 1.5,  // 머신 너비
+    depth: 2,  // 머신 깊이
+  };
+
+  // 머신 영역 충돌 체크 함수
+  function isInsideMachine(x: number, z: number, margin = 0.5): boolean {
+    const halfW = machineCollisionBox.width / 2 + margin;
+    const halfD = machineCollisionBox.depth / 2 + margin;
+    return (
+      x > machineCollisionBox.x - halfW &&
+      x < machineCollisionBox.x + halfW &&
+      z > machineCollisionBox.z - halfD &&
+      z < machineCollisionBox.z + halfD
+    );
+  }
+
+  // 머신 근접 판정용 스팟
+  const machineSpotMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(5, 5),
+    new THREE.MeshStandardMaterial({
+      color: 'pink',
+      transparent: true,
+      opacity: 0,
+    })
+  );
+  machineSpotMesh.position.set(-3, 0.005, -8);
+  machineSpotMesh.rotation.x = -Math.PI / 2;
+  machineSpotMesh.receiveShadow = true;
+  scene.add(machineSpotMesh);
 
   const BallGeometry = new THREE.SphereGeometry(0.3);
   const BallMaterial = new THREE.MeshStandardMaterial({
@@ -327,13 +373,12 @@ export function MainThree(): void {
         lastGoalTime = now;
         showGoalEffect();
 
-        // 공을 멈추고 약간 튕겨냄
-        gsap.to(BallBody.velocity, {
-          x: (ballPos.x - goalPos.x) * 2,
-          y: 3,
-          z: (ballPos.z - goalPos.z) * 2,
-          duration: 0.1,
-        });
+        // 공을 가던 방향 반대로 반사 (자연스러운 바운스)
+        const bounceX = -BallBody.velocity.x * 0.6;
+        const bounceZ = -BallBody.velocity.z * 0.6;
+        const bounceY = Math.abs(BallBody.velocity.y) * 0.3 + 1; // 살짝 위로
+
+        BallBody.velocity.set(bounceX, bounceY, bounceZ);
       }
     }
   }
@@ -399,8 +444,19 @@ export function MainThree(): void {
           destinationPoint.z - player.cannonBody.position.z,
           destinationPoint.x - player.cannonBody.position.x
         );
-        player.cannonBody.position.x += Math.cos(angle) * 0.05;
-        player.cannonBody.position.z += Math.sin(angle) * 0.05;
+
+        // 다음 위치 계산
+        const nextX = player.cannonBody.position.x + Math.cos(angle) * 0.05;
+        const nextZ = player.cannonBody.position.z + Math.sin(angle) * 0.05;
+
+        // 머신 충돌 체크 - 충돌하면 이동하지 않음
+        if (!isInsideMachine(nextX, nextZ)) {
+          player.cannonBody.position.x = nextX;
+          player.cannonBody.position.z = nextZ;
+        } else {
+          // 충돌 시 이동 중지
+          player.moving = false;
+        }
 
         camera.position.x = cameraPosition.x + player.cannonBody.position.x;
         camera.position.z = cameraPosition.z + player.cannonBody.position.z;
@@ -460,6 +516,36 @@ export function MainThree(): void {
             });
           }
         }
+
+        // 인형뽑기 머신 근접 판정
+        if (
+          Math.abs(machineSpotMesh.position.x - player.cannonBody.position.x) < 2 &&
+          Math.abs(machineSpotMesh.position.z - player.cannonBody.position.z) < 2
+        ) {
+          if (!machine.visible) {
+            machine.visible = true;
+
+            const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
+            if (btnMachine) {
+              btnMachine.style.display = 'block';
+              btnMachine.style.opacity = '0';
+              gsap.to(btnMachine, { duration: 0.3, opacity: 1 });
+            }
+          }
+        } else if (machine.visible) {
+          machine.visible = false;
+
+          const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
+          if (btnMachine) {
+            gsap.to(btnMachine, {
+              duration: 0.3,
+              opacity: 0,
+              onComplete: () => {
+                btnMachine.style.display = 'none';
+              },
+            });
+          }
+        }
       } else {
         // 서 있는 상태
         player.actions[0].play();
@@ -499,6 +585,11 @@ export function MainThree(): void {
     const intersects = raycaster.intersectObjects(meshes);
     for (const item of intersects) {
       if (item.object.name === 'floor' && player.modelMesh) {
+        // 목적지가 머신 영역 안이면 무시
+        if (isInsideMachine(item.point.x, item.point.z)) {
+          break;
+        }
+
         destinationPoint.x = item.point.x;
         destinationPoint.y = 0.3;
         destinationPoint.z = item.point.z;
@@ -598,28 +689,23 @@ export function MainThree(): void {
   const btnMenu = document.getElementById('btn-menu');
   if (btnMenu) {
     btnMenu.addEventListener('click', () => {
-      const menuWrap = document.querySelector('.menu-wrap');
+      // 메뉴 토글은 Layout.tsx에서 처리, 여기서는 카메라 줌만 처리
+      const isOpening = !btnMenu.classList.contains('open');
 
-      if (btnMenu.classList.contains('open')) {
-        // 메뉴 닫기
-        btnMenu.classList.remove('open');
-        menuWrap?.classList.remove('on');
-
+      if (isOpening) {
+        // 메뉴 열릴 때 카메라 줌 인
         gsap.to(camera, {
           duration: 1,
-          zoom: 0.22,
+          zoom: 0.44,
           onUpdate: () => {
             camera.updateProjectionMatrix();
           },
         });
       } else {
-        // 메뉴 열기
-        btnMenu.classList.add('open');
-        menuWrap?.classList.add('on');
-
+        // 메뉴 닫힐 때 카메라 줌 아웃
         gsap.to(camera, {
           duration: 1,
-          zoom: 0.44,
+          zoom: 0.22,
           onUpdate: () => {
             camera.updateProjectionMatrix();
           },

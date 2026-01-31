@@ -32,6 +32,7 @@ const Editodo = () => {
         className="editodo"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="editodo"
       >
         <a href="https://www.figma.com/design/MvilioYP11ubQJbGWyWrKh/EdiTodo?node-id=0-1&t=mfed31Ugei2A6pZI-1" className="btn-goto" target="_blank" rel="noreferrer">
           <FigmaIcon />

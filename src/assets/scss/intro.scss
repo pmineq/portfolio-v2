@@ -34,8 +34,9 @@
     font-weight: 700;
   }
 
-  & > p {
+  p {
     position: relative;
+    margin-top: 10px;
     color: #111;
     overflow: hidden;
     word-break: keep-all;
@@ -46,7 +47,7 @@
     border-bottom: 1px solid #111;
     font-style: normal;
     color: rgb(17, 17, 17, 0.4);
-    background: linear-gradient(to right, #111, #111) no-repeat;
+    background: linear-gradient(to right, #aaa, #aaa) no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
     background-size: 100%;
@@ -58,12 +59,12 @@
     color: #888; 
 
     strong {
-      font-size: 24px;
+      font-size: 20px;
     }
 
     p {
       width: 50%;
-      font-size: 18px;
+      font-size: 15px;
       word-break: break-word;
     }
   }
@@ -386,6 +387,66 @@
 	}
 }
 
+/* 인형뽑기 미니게임 버튼 (핑크) */
+.btn-machine {
+  display: none;
+  position: absolute;
+  left: 50%; bottom: 22%;
+  width: auto; max-width: 280px;
+  transform: translateX(-50%);
+  z-index: 100;
+  touch-action: none;
+
+  &:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: -4px;
+    z-index: -1;
+    background-color: #8B3A62;
+    border-radius: 5px;
+  }
+
+  button {
+    display: block;
+    position: relative;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+
+    background-color: #FF69B4;
+    font-family: 'Galmuri11', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000;
+    filter: dropshadow(color=#000, offx=0px, offy=1px);
+
+    box-shadow: inset 0 1px 0 #FFB6C1, 0 10px 0 #C71585;
+    border-radius: 5px;
+
+    &:active {
+      top: 10px;
+      background-color: #FF1493;
+      box-shadow: inset 0 1px 0 #FFB6C1, inset 0 -3px 0 #C71585;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .btn-machine button {
+    font-size: 16px;
+  }
+}
 
 /* floating-wrap */
 

@@ -25,6 +25,7 @@ const Hyundai = () => {
         className="hyundai"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="hyundai"
       >
         <section className="area-one">
           <img src={Hyundai01} alt={`${PROJECT_INFO.title} 프로젝트 이미지 1`} />

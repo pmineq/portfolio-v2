@@ -23,6 +23,7 @@ const Admin = () => {
         className="admin"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="admin"
       >
         <section className="area-one">
           <img src={Admin01} alt="Admin 프로젝트 이미지" />

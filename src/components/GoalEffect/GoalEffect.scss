@@ -12,20 +12,13 @@
   }
 
   .goal-text {
-    width: 100%;
-    font-size: 7vw;
-    font-weight: bold;
-    color: #FFD700;
-    text-shadow:
-      0 0 20px rgba(255, 215, 0, 0.8),
-      0 0 40px rgba(255, 215, 0, 0.6),
-      3px 3px 0 #000,
-      -3px -3px 0 #000,
-      3px -3px 0 #000,
-      -3px 3px 0 #000;
+    width: 300px;
+    height: 150px;
+    background-image: url('../../assets/images/goal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     animation: goalPulse 0.5s ease-out;
-    text-align: center;
-    white-space: nowrap;
   }
 
   .goal-particles {

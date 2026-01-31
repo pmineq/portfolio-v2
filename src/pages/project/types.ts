@@ -24,3 +24,23 @@ export interface SlickSettings {
     };
   }>;
 }
+
+export interface CareerSection {
+  id: string;
+  period: string;
+  title: string;
+  company: string;
+  description: string;
+  isProtected?: boolean;
+  hint?: string;
+}
+
+export interface BithumbProject {
+  id: string;
+  name: string;
+  period: string;
+  role: string;
+  description: string;
+  techStack: string[];
+  achievements?: string[];
+}

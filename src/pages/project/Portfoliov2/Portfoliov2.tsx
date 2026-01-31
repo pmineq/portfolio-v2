@@ -35,6 +35,7 @@ const Portfoliov2 = () => {
         className="portfoliov2"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="portfoliov2"
       >
         <hr />
 

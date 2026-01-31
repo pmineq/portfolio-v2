@@ -1,5 +1,7 @@
 import { ReactNode, RefObject } from 'react';
 import type { ProjectInfo } from '../types';
+import { BackButton } from './BackButton';
+import { ProjectNavigation } from './ProjectNavigation';
 
 interface ProjectLayoutProps {
   projectRef: RefObject<HTMLDivElement | null>;
@@ -7,6 +9,7 @@ interface ProjectLayoutProps {
   className: string;
   topImage: string;
   projectInfo: ProjectInfo;
+  projectId: string;
   children: ReactNode;
 }
 
@@ -16,10 +19,13 @@ export const ProjectLayout = ({
   className,
   topImage,
   projectInfo,
+  projectId,
   children,
 }: ProjectLayoutProps) => {
   return (
     <div id="project" ref={projectRef} className={`project-wrap ${className}`}>
+      <BackButton />
+
       <section ref={topRef} className='project-top'>
         <h2>{projectInfo.title}</h2>
         <div className='project-topimg'>
@@ -67,6 +73,8 @@ export const ProjectLayout = ({
       <hr />
 
       {children}
+
+      <ProjectNavigation currentProjectId={projectId} />
     </div>
   );
 };

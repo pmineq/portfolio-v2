@@ -22,6 +22,7 @@ const Lms = () => {
         className="lms"
         topImage={Topimg}
         projectInfo={PROJECT_INFO}
+        projectId="lms"
       >
         <section className="area-one">
           <img src={Lms01} alt="Lms 프로젝트 이미지" />
