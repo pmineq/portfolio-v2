@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/portfolio-v2/static/css/main.ceaf7dfa.css",
-    "main.js": "/portfolio-v2/static/js/main.53a42e7c.js",
+    "main.css": "/portfolio-v2/static/css/main.805a9a5d.css",
+    "main.js": "/portfolio-v2/static/js/main.db84057f.js",
+    "static/media/machine.glb": "/portfolio-v2/static/media/machine.1330f7ed067558c8de01.glb",
     "static/media/portfoliov2_sub01.webm": "/portfolio-v2/static/media/portfoliov2_sub01.fe9b06bcf08c5e90a120.webm",
     "static/media/portfoliov2_sub08.png": "/portfolio-v2/static/media/portfoliov2_sub08.0574abd836a6b78d988a.png",
     "static/media/admin_sub02.jpg": "/portfolio-v2/static/media/admin_sub02.73ab04cd95cc52c050dc.jpg",
     "static/media/portfoliov2_sub07.webm": "/portfolio-v2/static/media/portfoliov2_sub07.c51191b1f320e3a5c591.webm",
-    "static/media/soccer_goal.glb": "/portfolio-v2/static/media/soccer_goal.7515a4eb9911b1fb3252.glb",
+    "static/media/soccer_goal.glb": "/portfolio-v2/static/media/soccer_goal.4d6173c826bb0b0fd280.glb",
     "static/media/Pretendard-Black.woff": "/portfolio-v2/static/media/Pretendard-Black.c51355ddc1caec596031.woff",
     "static/media/Pretendard-Bold.woff": "/portfolio-v2/static/media/Pretendard-Bold.1f1dbbbf311ffffcc770.woff",
     "static/media/Pretendard-Light.woff": "/portfolio-v2/static/media/Pretendard-Light.7d1a33b829142e833fb9.woff",
@@ -61,6 +62,7 @@
     "static/media/admin.png": "/portfolio-v2/static/media/admin.525ee1f205e414c16784.png",
     "static/media/portfoliov2_sub10.png": "/portfolio-v2/static/media/portfoliov2_sub10.be9e45eced39f1830e36.png",
     "static/media/kplus12.jpg": "/portfolio-v2/static/media/kplus12.2f75e57c37ed98507e55.jpg",
+    "static/media/goal.png": "/portfolio-v2/static/media/goal.64e2fddd98852d7e7605.png",
     "static/media/portfoliov2_sub09.png": "/portfolio-v2/static/media/portfoliov2_sub09.f4472848e573b7879806.png",
     "static/media/kplus10.jpg": "/portfolio-v2/static/media/kplus10.a2fcfa1401328ccc39e8.jpg",
     "static/media/hyundai_sub01.jpg": "/portfolio-v2/static/media/hyundai_sub01.83c7fb7df1a1b537b473.jpg",
@@ -78,11 +80,11 @@
     "static/media/slick.woff": "/portfolio-v2/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/portfolio-v2/index.html",
     "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
-    "main.ceaf7dfa.css.map": "/portfolio-v2/static/css/main.ceaf7dfa.css.map",
-    "main.53a42e7c.js.map": "/portfolio-v2/static/js/main.53a42e7c.js.map"
+    "main.805a9a5d.css.map": "/portfolio-v2/static/css/main.805a9a5d.css.map",
+    "main.db84057f.js.map": "/portfolio-v2/static/js/main.db84057f.js.map"
   },
   "entrypoints": [
-    "static/css/main.ceaf7dfa.css",
-    "static/js/main.53a42e7c.js"
+    "static/css/main.805a9a5d.css",
+    "static/js/main.db84057f.js"
   ]
 }
