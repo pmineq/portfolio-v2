@@ -808,16 +808,20 @@ export function MainThree(): void {
       keys[e.key as keyof typeof keys] = true;
     }
 
-    // Enter 키로 버튼 클릭
-    if (e.key === 'Enter') {
+    // Enter 키로 버튼 클릭 (가이드 완전히 닫힌 후에만)
+    if (e.key === 'Enter' && isGuideClosed) {
+      // 가이드가 아직 DOM에 보이면 무시
+      const guide = document.getElementById('guide');
+      if (guide && guide.style.display !== 'none') return;
+
       const btnView = document.querySelector('.btn-view') as HTMLElement;
       const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
 
-      // 보이는 버튼 클릭
-      if (btnView && btnView.style.display !== 'none' && btnView.style.opacity !== '0') {
+      // 보이는 버튼 클릭 (인라인 style.display가 'block'일 때만)
+      if (btnView && btnView.style.display === 'block') {
         const link = btnView.querySelector('a') as HTMLAnchorElement;
         if (link) link.click();
-      } else if (btnMachine && btnMachine.style.display !== 'none' && btnMachine.style.opacity !== '0') {
+      } else if (btnMachine && btnMachine.style.display === 'block') {
         const button = btnMachine.querySelector('button') as HTMLButtonElement;
         if (button) button.click();
       }
