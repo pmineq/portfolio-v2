@@ -829,7 +829,7 @@ $shadows-big: multiple-box-shadow(100);
 
   .project-item {
     width: 60vw;
-    margin-bottom: 60vw;
+    margin-bottom: 40vw;
     margin-right: 5vw;
 
     &:nth-child(even) {
@@ -846,8 +846,11 @@ $shadows-big: multiple-box-shadow(100);
   }
 
   .project-title {
+    width: 100%;
     margin-top: 5vw;
     font-size: 6vw;
+    margin-left: 0 !important;
+    text-align: center !important;
   }
 
   .project-group {
@@ -2113,10 +2116,6 @@ $shadows-big: multiple-box-shadow(100);
   }
 
   .career-section--bithumb {
-    .project-imgwrap--bithumb {
-      max-width: 300px;
-    }
-
     .project-company {
       font-size: 40px;
     }
@@ -2146,8 +2145,10 @@ $shadows-big: multiple-box-shadow(100);
   }
 
   .career-section--bithumb {
-    .project-imgwrap--bithumb {
-      max-width: 220px;
+    scale: 0.8;
+
+    .project-info {
+      scale: 1.2;
     }
 
     .project-company {
@@ -2156,6 +2157,11 @@ $shadows-big: multiple-box-shadow(100);
   }
 
   .career-section--ked {
+    scale: 0.8;
+    
+    .project-info {
+      scale: 1.2;
+    }
     .project-company {
       font-size: 22px;
     }

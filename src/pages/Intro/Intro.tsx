@@ -56,10 +56,10 @@ const Intro = () => {
       <div className='intro-wrap'>
         <div ref={titleRef} className='intro-text'>
           <h2>
-            사용자 중심의 인터페이스를 구현하는<br/>
+            사용자 중심의 UI를 구현하는<br/>
             {experienceCount}년<span className='plus'>+</span> {PROFILE.role} {PROFILE.name}입니다.
           </h2>
-          <em ref={emRef}>기획 → 디자인 → 개발</em><br/>
+          <em ref={emRef}>기획 → 디자인 → 개발</em>
           <p>
             기술적 실현 가능성을 <strong>조율</strong>하고,<br/>
             <strong>최적의 UX</strong>를 만들어냅니다.

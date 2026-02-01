@@ -121,7 +121,7 @@ export const SLIDER_SETTINGS: SlickSettings = {
 };
 
 export const MESSAGES = [
-  '웹 UI개발자 박민혜 입니다.',
+  'UX Frontend Engineer 박민혜 입니다.',
   '포트폴리오를 보러 와주셔서 감사합니다!',
   '스크롤 하시면 프로젝트를 확인할 수 있습니다!',
 ] as const;

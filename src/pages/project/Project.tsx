@@ -135,11 +135,11 @@ const Project = () => {
         <div className='project'>
           {/* 섹션 1: 빗썸 (2024.07 ~ 현재) */}
           <div className="career-section career-section--bithumb">
+            <strong className="title">{CAREER_SECTIONS.bithumb.title}</strong>
             <div className="career-section__header">
               <span className="career-section__period">{CAREER_SECTIONS.bithumb.period}</span>
               <span className="career-section__status">현재</span>
             </div>
-            <strong className="title">{CAREER_SECTIONS.bithumb.title}</strong>
             <div className="career-section__content">
               <section className="project-item project-item--featured">
                 <Link to='/project/bithumb' onClick={handleProjectLinkClick}>
