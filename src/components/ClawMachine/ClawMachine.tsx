@@ -53,7 +53,7 @@ export const ClawMachine = ({ isOpen, onClose }: ClawMachineProps) => {
     }
   }, [result, addCapsule]);
 
-  // 드래그 시작 (PC only)
+  // 드래그 시작
   const handleDragStart = useCallback((e: React.MouseEvent) => {
     if (window.innerWidth <= 768) return;
 

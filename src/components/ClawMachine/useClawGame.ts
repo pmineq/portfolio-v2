@@ -26,13 +26,14 @@ const FAIL_MESSAGES = [
 const generateCapsules = (): Capsule[] => {
   const capsules: Capsule[] = [];
   const positions = [15, 30, 45, 60, 75]; // 가능한 위치들
+  const timestamp = Date.now(); // 고유 ID를 위한 타임스탬프
 
   // 핑크 캡슐 위치 랜덤 선택
   const pinkIndex = Math.floor(Math.random() * positions.length);
 
   positions.forEach((x, index) => {
     capsules.push({
-      id: index,
+      id: timestamp + index, // 매번 새로운 고유 ID
       x: x + (Math.random() * 6 - 3), // ±3% 랜덤 오프셋
       isPink: index === pinkIndex,
     });

@@ -5,7 +5,7 @@ import { Roket } from './Roket';
 import { GoalSpot } from './GoalSpot';
 import { Machine } from './Machine';
 import gsap from 'gsap';
-import gridImg from '../assets/images/gradient.jpg';
+import gridImg from '../assets/images/grid_map.png';
 import ballImg from '../assets/images/ball.png';
 import * as CANNON from 'cannon-es';
 
@@ -308,6 +308,27 @@ export function MainThree(): void {
   let angle = 0;
   let isPressed = false; // 마우스를 누르고 있는 상태
 
+  // 가이드 닫힘 상태 (가이드가 닫혀야 키보드 이동 가능)
+  let isGuideClosed = false;
+
+  // 가이드 닫힘 이벤트 리스너
+  window.addEventListener('guideClose', () => {
+    isGuideClosed = true;
+  });
+
+  // 키보드 이동
+  const keys = {
+    ArrowUp: false,
+    ArrowDown: false,
+    ArrowLeft: false,
+    ArrowRight: false,
+    w: false,
+    s: false,
+    a: false,
+    d: false,
+  };
+  const KEYBOARD_SPEED = 0.08;
+
   // 골 감지 변수
   let lastGoalTime = 0;
   const GOAL_COOLDOWN = 3000; // 3초 쿨다운
@@ -438,6 +459,129 @@ export function MainThree(): void {
         raycasting();
       }
 
+      // 키보드 이동 처리 (PC) - 가이드가 닫힌 후에만 가능
+      const isKeyMoving =
+        isGuideClosed && (
+          keys.ArrowUp || keys.ArrowDown || keys.ArrowLeft || keys.ArrowRight ||
+          keys.w || keys.s || keys.a || keys.d
+        );
+
+      if (isKeyMoving) {
+        let moveX = 0;
+        let moveZ = 0;
+
+        // 방향키 / WASD 입력 처리 (isometric 뷰 기준)
+        if (keys.ArrowUp || keys.w) {
+          moveX -= 1;
+          moveZ -= 1;
+        }
+        if (keys.ArrowDown || keys.s) {
+          moveX += 1;
+          moveZ += 1;
+        }
+        if (keys.ArrowLeft || keys.a) {
+          moveX -= 1;
+          moveZ += 1;
+        }
+        if (keys.ArrowRight || keys.d) {
+          moveX += 1;
+          moveZ -= 1;
+        }
+
+        // 대각선 이동 시 속도 정규화
+        const length = Math.sqrt(moveX * moveX + moveZ * moveZ);
+        if (length > 0) {
+          moveX = (moveX / length) * KEYBOARD_SPEED;
+          moveZ = (moveZ / length) * KEYBOARD_SPEED;
+        }
+
+        const nextX = player.cannonBody.position.x + moveX;
+        const nextZ = player.cannonBody.position.z + moveZ;
+
+        // 바닥 경계 & 머신 충돌 체크
+        const margin = 0.5;
+        const clampedX = Math.max(-halfX + margin, Math.min(halfX - margin, nextX));
+        const clampedZ = Math.max(-halfZ + margin, Math.min(halfZ - margin, nextZ));
+
+        if (!isInsideMachine(clampedX, clampedZ)) {
+          player.cannonBody.position.x = clampedX;
+          player.cannonBody.position.z = clampedZ;
+
+          // 캐릭터가 이동 방향을 바라보게
+          const lookAtPoint = new THREE.Vector3(
+            player.cannonBody.position.x + moveX * 10,
+            player.modelMesh.position.y,
+            player.cannonBody.position.z + moveZ * 10
+          );
+          player.modelMesh.lookAt(lookAtPoint);
+        }
+
+        // 카메라 따라가기
+        camera.position.x = cameraPosition.x + player.cannonBody.position.x;
+        camera.position.z = cameraPosition.z + player.cannonBody.position.z;
+
+        // 걷기 애니메이션
+        player.actions[1].play();
+        player.actions[0].stop();
+
+        // 마우스 이동 중지
+        player.moving = false;
+
+        // 로켓 근접 판정
+        if (
+          Math.abs(spotMesh.position.x - player.cannonBody.position.x) < 2 &&
+          Math.abs(spotMesh.position.z - player.cannonBody.position.z) < 2
+        ) {
+          if (!roket.visible && roket.modelMesh) {
+            roket.visible = true;
+            gsap.to(roket.modelMesh.position, { duration: 1.5, y: 5, ease: 'expo.in' });
+            gsap.to(camera.position, { duration: 1, y: 3 });
+
+            const btnView = document.querySelector('.btn-view') as HTMLElement;
+            if (btnView) {
+              btnView.style.display = 'block';
+              btnView.style.opacity = '0';
+              gsap.to(btnView, { duration: 0.3, opacity: 1 });
+            }
+          }
+        } else if (roket.visible && roket.modelMesh) {
+          roket.visible = false;
+          gsap.to(roket.modelMesh.position, { duration: 1.5, y: -0.15 });
+          gsap.to(camera.position, { duration: 1, y: 3 });
+
+          const btnView = document.querySelector('.btn-view') as HTMLElement;
+          if (btnView) {
+            gsap.to(btnView, { duration: 0.3, opacity: 0, onComplete: () => { btnView.style.display = 'none'; } });
+          }
+        }
+
+        // 인형뽑기 머신 근접 판정
+        if (
+          Math.abs(machineSpotMesh.position.x - player.cannonBody.position.x) < 2 &&
+          Math.abs(machineSpotMesh.position.z - player.cannonBody.position.z) < 2
+        ) {
+          if (!machine.visible) {
+            machine.visible = true;
+            const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
+            if (btnMachine) {
+              btnMachine.style.display = 'block';
+              btnMachine.style.opacity = '0';
+              gsap.to(btnMachine, { duration: 0.3, opacity: 1 });
+            }
+          }
+        } else if (machine.visible) {
+          machine.visible = false;
+          const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
+          if (btnMachine) {
+            gsap.to(btnMachine, { duration: 0.3, opacity: 0, onComplete: () => { btnMachine.style.display = 'none'; } });
+          }
+        }
+      } else if (!isKeyMoving && !player.moving) {
+        // 키보드도 안 누르고 마우스 이동도 아닐 때 -> 서있기 애니메이션
+        player.actions[0].play();
+        player.actions[1].stop();
+      }
+
       if (player.moving) {
         // 걸어가는 상태
         angle = Math.atan2(
@@ -546,8 +690,8 @@ export function MainThree(): void {
             });
           }
         }
-      } else {
-        // 서 있는 상태
+      } else if (!isKeyMoving) {
+        // 서 있는 상태 (키보드 이동 중이 아닐 때만)
         player.actions[0].play();
         player.actions[1].stop();
       }
@@ -658,6 +802,33 @@ export function MainThree(): void {
     }
   });
 
+  // 키보드 이벤트
+  window.addEventListener('keydown', (e) => {
+    if (e.key in keys) {
+      keys[e.key as keyof typeof keys] = true;
+    }
+
+    // Enter 키로 버튼 클릭
+    if (e.key === 'Enter') {
+      const btnView = document.querySelector('.btn-view') as HTMLElement;
+      const btnMachine = document.querySelector('.btn-machine') as HTMLElement;
+
+      // 보이는 버튼 클릭
+      if (btnView && btnView.style.display !== 'none' && btnView.style.opacity !== '0') {
+        const link = btnView.querySelector('a') as HTMLAnchorElement;
+        if (link) link.click();
+      } else if (btnMachine && btnMachine.style.display !== 'none' && btnMachine.style.opacity !== '0') {
+        const button = btnMachine.querySelector('button') as HTMLButtonElement;
+        if (button) button.click();
+      }
+    }
+  });
+  window.addEventListener('keyup', (e) => {
+    if (e.key in keys) {
+      keys[e.key as keyof typeof keys] = false;
+    }
+  });
+
   //초기화
   const btnReset = document.querySelector('.btn-reset');
   if (btnReset) {
@@ -715,33 +886,6 @@ export function MainThree(): void {
   }
 
   draw();
-
-  // 가이드
-  const btnGuide = document.querySelector('.btn-guide');
-  if (btnGuide) {
-    btnGuide.addEventListener('click', () => {
-      const guide = document.getElementById('guide');
-      if (guide) guide.style.display = 'none';
-
-      //bgm
-      const musicChk = document.getElementById('music_chk') as HTMLInputElement;
-      const myAudio = document.getElementById('myAudio') as HTMLAudioElement;
-      const btnMusic = document.querySelector('.btn-music');
-
-      if (musicChk?.checked && myAudio) {
-        myAudio.play();
-        if (btnMusic) {
-          btnMusic.textContent = '노래 멈춤';
-          btnMusic.classList.remove('pause');
-          btnMusic.classList.add('play');
-        }
-      } else if (btnMusic) {
-        btnMusic.textContent = '노래 재생';
-        btnMusic.classList.remove('play');
-        btnMusic.classList.add('pause');
-      }
-    });
-  }
 }
 
 export default MainThree;

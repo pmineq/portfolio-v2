@@ -9,13 +9,14 @@
   align-items: center; justify-content: center;
   width: 100vw; height: 100vh;
   background-color: #fff;
+  overflow: hidden;
 }
 
 
 .intro-text {
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
   max-width: 100%;
-  margin-top: 50px; padding: 4vw 2vw; box-sizing: border-box;
+  margin-top: 50px; box-sizing: border-box;
   font-size: 34px; font-weight: 400; line-height: 1.43;
   color: #0095ac;
 
@@ -102,7 +103,7 @@
 
 @media (max-width: 1000px) {
   .intro-text {
-    padding: 12vw 10vw;
+    padding: 0 10vw;
     font-size: 3.5vw;
 
     h2 {
@@ -114,7 +115,7 @@
 
 @media (max-width: 500px) {
   .intro-text {
-    padding: 60px 40px;
+    padding: 0 40px;
     font-size: 16px;
 
     & > p {
@@ -146,178 +147,6 @@
   }
 }
 
-
-
-
-
-
-/* =================================
-*   guide
-================================== */
-.guide-text {
-  display: block;
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 90%; max-width: 350px;
-  padding: 40px 30px; box-sizing: border-box;
-  box-shadow: 2px 2px 17px #00000045;
-  background-color: #0095ac;
-  text-align: center; color: #fff; line-height: 1.43;
-  transform: translate(-54%, -45%);
-  rotate: 5deg;
-  z-index: 2;
-  
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -20px; left: 50%;
-    width: 150px; height: 40px;
-    border: 3px dotted rgba(64, 76, 80, 0.5);
-    border-top: 0; border-bottom: 0;
-    box-shadow: 0px -2px 7px 0px rgba(0, 0, 0, 0.25);
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateX(-50%);
-    mix-blend-mode: hard-light;
-  }
-
-  &.small {
-    max-width: 240px;
-    padding: 40px 10px 20px;
-    font-size: 14px;
-
-    &::before {
-      width: 90px;
-    }
-  }
-
-}
-
-
-#guide {
-  display: block;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 10;
-
-  .dim {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(40, 61, 71, 0.8);
-    z-index: 1;
-  }
-
-  p {
-    font-size: 24px;
-    
-    b {
-      font-family: 'Galmuri14', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
-      font-weight: bolder;
-    }
-  
-    em {
-      font-family: 'Galmuri14', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
-      font-style: normal;
-    }
-  }
-
-  button {
-    display: block;
-    width: 80%; 
-    margin: 30px auto 0;
-    padding: 12px 24px; box-sizing: border-box;
-    border-radius: 999px;
-    background-color: #fff;
-    font-size: 30px; font-weight: 700;
-    color: #0095ac;
-  }
-
-
-}
-
-
-#guide .check-group {
-  display: inline-block;
-  position: relative;
-  margin-top: 20px;
-
-  input {
-    position: absolute !important;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip-path: polygon(0 0, 0 0, 0 0);
-    padding:0 !important;
-    border:0 !important;
-    height: 1px !important; 
-    width: 1px !important; 
-    overflow: hidden;
-  }
-
-  label {
-    padding-left: 24px;
-    font-size: 15px;
-    font-family: 'Galmuri14', Apple SD Gothic Neo, 돋움, dotum, sans-serif;
-    vertical-align: middle;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 0;
-      width: 12px; height: 12px;
-      border: 1px solid #fff;
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-50%);
-    }
-
-    &:hover {
-      font-weight: bolder;
-
-      &:before {
-        border-width: 2px;
-        border-color: #fff;
-      }
-    }
-  }
-
-  & + p {
-    margin-top: 5px;
-    font-size: 14px; color: #fff;
-  }
-
-  input:checked {
-    & + label {
-
-      &:before {
-        border-width: 2px;
-        border-color: #fff;
-        background-color: #fff;
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 5px; left: 5px;
-        width: 4px; height: 8px;
-        border-right: 3px solid #0095ac;
-        border-bottom: 3px solid #0095ac;
-        transform: rotate(45deg);
-      }
-    }
-
-  }
-}
-
-
-
-
-@media (max-width: 500px) {
-  #guide {
-    p {
-      font-size: 20px;
-    }
-  }
-}
 
 
 
