@@ -105,7 +105,6 @@ export const TECH_HIGHLIGHTS = [
   { name: 'amCharts5', usage: '지도 시각화 (3D Globe, 2D Map, 등치도)' },
   { name: 'plotly.js', usage: '데이터 차트 및 Zoom 기능' },
   { name: 'Figma', usage: '기획서 및 화면 설계' },
-  { name: 'jQuery', usage: '인터랙션 및 DOM 조작' },
 ];
 
 export const PASSWORD = '981201';
