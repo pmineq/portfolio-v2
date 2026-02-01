@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/portfolio-v2/static/css/main.009cda2d.css",
-    "main.js": "/portfolio-v2/static/js/main.cee7f734.js",
+    "main.css": "/portfolio-v2/static/css/main.773a2f33.css",
+    "main.js": "/portfolio-v2/static/js/main.a0346189.js",
     "static/media/machine.glb": "/portfolio-v2/static/media/machine.1330f7ed067558c8de01.glb",
     "static/media/portfoliov2_sub01.webm": "/portfolio-v2/static/media/portfoliov2_sub01.fe9b06bcf08c5e90a120.webm",
     "static/media/portfoliov2_sub08.png": "/portfolio-v2/static/media/portfoliov2_sub08.0574abd836a6b78d988a.png",
+    "static/media/grid_map.png": "/portfolio-v2/static/media/grid_map.3914d3c1af0a02601c57.png",
     "static/media/admin_sub02.jpg": "/portfolio-v2/static/media/admin_sub02.73ab04cd95cc52c050dc.jpg",
     "static/media/portfoliov2_sub07.webm": "/portfolio-v2/static/media/portfoliov2_sub07.c51191b1f320e3a5c591.webm",
     "static/media/soccer_goal.glb": "/portfolio-v2/static/media/soccer_goal.4d6173c826bb0b0fd280.glb",
@@ -48,7 +49,6 @@
     "static/media/portfoliov2_cp02.png": "/portfolio-v2/static/media/portfoliov2_cp02.92cb05cee7040cf3ad7c.png",
     "static/media/portfoliov2_cp01.png": "/portfolio-v2/static/media/portfoliov2_cp01.521fcd80ab6d1ab664ff.png",
     "static/media/kplus_sub02.jpg": "/portfolio-v2/static/media/kplus_sub02.d66cbd3679fb95437cc6.jpg",
-    "static/media/gradient.jpg": "/portfolio-v2/static/media/gradient.95b0ff00310729560d84.jpg",
     "static/media/hyundai_sub02.jpg": "/portfolio-v2/static/media/hyundai_sub02.633d401f97fdafc3cb2e.jpg",
     "static/media/lsgpis_sub04.png": "/portfolio-v2/static/media/lsgpis_sub04.082f5c76de5b2f413d41.png",
     "static/media/kplus14.jpg": "/portfolio-v2/static/media/kplus14.9e7eb6ef768ef61067bb.jpg",
@@ -80,11 +80,11 @@
     "static/media/slick.woff": "/portfolio-v2/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/portfolio-v2/index.html",
     "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
-    "main.009cda2d.css.map": "/portfolio-v2/static/css/main.009cda2d.css.map",
-    "main.cee7f734.js.map": "/portfolio-v2/static/js/main.cee7f734.js.map"
+    "main.773a2f33.css.map": "/portfolio-v2/static/css/main.773a2f33.css.map",
+    "main.a0346189.js.map": "/portfolio-v2/static/js/main.a0346189.js.map"
   },
   "entrypoints": [
-    "static/css/main.009cda2d.css",
-    "static/js/main.cee7f734.js"
+    "static/css/main.773a2f33.css",
+    "static/js/main.a0346189.js"
   ]
 }
