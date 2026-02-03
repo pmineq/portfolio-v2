@@ -456,7 +456,7 @@ $pastel-sky-light: #E0F4FA;
 // HUD - 캡슐 카운트
 .capsule-hud {
   position: absolute;
-  bottom: 50px;
+  bottom: 125px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -483,6 +483,10 @@ $pastel-sky-light: #E0F4FA;
     0% { transform: translateX(-50%) scale(1); }
     50% { transform: translateX(-50%) scale(1.3); }
     100% { transform: translateX(-50%) scale(1); }
+  }
+
+  @media (max-width: 768px) {
+    bottom: 50px;
   }
 }
 
