@@ -39,7 +39,6 @@ export interface BithumbProject {
   id: string;
   name: string;
   period: string;
-  role: string;
   description: string;
   techStack: string[];
   achievements?: string[];

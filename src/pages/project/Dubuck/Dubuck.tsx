@@ -30,18 +30,19 @@ const Dubuck = () => {
         projectInfo={PROJECT_INFO}
         projectId="dubuck"
       >
-        <a href="https://goldenrod-mouse-78f.notion.site/8432b16995a546ae9cff152fd7f4c93c#16dc1a4157174bb08010652f14a0aa6f" className="btn-goto" target="_blank" rel="noreferrer">
-          <NotionIcon />
-          노션 바로가기
-        </a>
-
         <section className="area-one">
           <img src={Dubuck01} alt="Dubuck 프로젝트 이미지" />
         </section>
 
         <section className="area-one clr" data-bgcolor="#ffffff">
           <strong ref={textRef} className="sub-title">Web Publishing 진행.</strong>
-          <p>소스코드 설명은 상단 노션 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
+
+          <p>소스코드 설명은 하단 노션 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
+
+          <a href="https://goldenrod-mouse-78f.notion.site/8432b16995a546ae9cff152fd7f4c93c#16dc1a4157174bb08010652f14a0aa6f" className="btn-goto" target="_blank" rel="noreferrer">
+            <NotionIcon />
+            노션 바로가기
+          </a>
         </section>
       </ProjectLayout>
     </Layout>

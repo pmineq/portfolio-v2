@@ -70,11 +70,6 @@ const Bithumb = () => {
 
                 <div className="project-card__body">
                   <div className="project-card__field">
-                    <dt>담당 역할</dt>
-                    <dd>{project.role}</dd>
-                  </div>
-
-                  <div className="project-card__field">
                     <dt>업무 내용</dt>
                     <dd>{project.description}</dd>
                   </div>
@@ -106,6 +101,7 @@ const Bithumb = () => {
               </article>
             ))}
           </div>
+          <p className="sub-text">이 외에도 다수 프로젝트 진행.</p>
         </section>
 
         <hr />

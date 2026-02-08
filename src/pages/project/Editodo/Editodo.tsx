@@ -34,18 +34,17 @@ const Editodo = () => {
         projectInfo={PROJECT_INFO}
         projectId="editodo"
       >
-        <a href="https://www.figma.com/design/MvilioYP11ubQJbGWyWrKh/EdiTodo?node-id=0-1&t=mfed31Ugei2A6pZI-1" className="btn-goto" target="_blank" rel="noreferrer">
-          <FigmaIcon />
-          Figma 바로가기
-        </a>
-
         <section className="area-one">
           <img src={Editodo01} alt="Editodo 프로젝트 이미지" />
         </section>
 
         <section className="area-one clr" data-bgcolor="#ffffff">
           <strong ref={textRef} className="sub-title">기획,<br/>디자인 진행.</strong>
-          <p>디자인 화면은 상단 Figma 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
+          <p>디자인 화면은 하단 Figma 바로가기 버튼을 통해 확인하실 수 있습니다.</p>
+          <a href="https://www.figma.com/design/MvilioYP11ubQJbGWyWrKh/EdiTodo?node-id=0-1&t=mfed31Ugei2A6pZI-1" className="btn-goto" target="_blank" rel="noreferrer">
+            <FigmaIcon />
+            Figma 바로가기
+          </a>
         </section>
       </ProjectLayout>
     </Layout>
