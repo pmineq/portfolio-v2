@@ -16,9 +16,9 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'ranking-system',
     name: '고객 랭킹 시스템 구축 (메이커 주문 거래 랭킹)',
-    period: '2024',
+    period: '2024.09 ~ 2025.02',
     description:
-      '랭킹전 시스템을 구축했습니다.',
+      '랭킹전 시스템 모바일을 구축했습니다.',
     techStack: ['React', 'TypeScript'],
     achievements: [
       '랭킹 UI 신규 제작',
@@ -29,12 +29,11 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'welcome-mission',
     name: '웰컴 미션 개편 프로젝트',
-    period: '2024',
+    period: '2025',
     description:
-      '신규 가입자 대상 웰컴 미션 UX를 전면 개편했습니다.',
+      '신규 가입자 대상 웰컴 미션 UX를 개편하는 개발을 했습니다.',
     techStack: ['React', 'TypeScript', '인터랙션'],
     achievements: [
-      '미션 참여 흐름 개선',
       '인터랙션 추가로 사용자 경험 향상',
       '신규 사용자 진입 장벽 완화',
     ],
@@ -42,7 +41,7 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'system-migration',
     name: '시스템 개편 프로젝트 (PHP → JAVA 전환)',
-    period: '2024',
+    period: '2024 ~ 2025',
     description:
       '레거시 시스템을 신규 JAVA 기반 환경으로 이전하는 작업에 참여했습니다.',
     techStack: ['React', 'TypeScript', '시스템 마이그레이션'],
@@ -67,7 +66,7 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'game-landing',
     name: '게임 랜딩 활성화 프로젝트 (모의 / 실전 거래 연계)',
-    period: '2024',
+    period: '2024.10 ~ 2025.02',
     description:
       '모의 거래와 실전 거래를 연결한 게임형 이벤트 랜딩 페이지를 구축해 사용자의 참여를 유도하는 프로모션 UI 플랫폼 개발.',
     techStack: ['React', 'TypeScript', '이벤트 UX', '게임형 프로모션'],
@@ -96,7 +95,7 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'push-notification',
     name: 'PUSH 알림 시스템 개선',
-    period: '2024',
+    period: '2025',
     description:
       '주요 알림 신규 추가 및 알림 내역 UI 개편 적용을 했습니다.',
     techStack: ['React', 'TypeScript'],
@@ -109,7 +108,7 @@ export const BITHUMB_PROJECTS: BithumbProject[] = [
   {
     id: 'bank-migration',
     name: '은행 변경 프로젝트 (농협 → 국민은행)',
-    period: '2024',
+    period: '2024 ~ 2025',
     description:
       '기존 농협은행에서 국민은행으로 전환하는 과정에서 사용자 인증 및 금융 플로우 UI를 개편한 프로젝트.',
     techStack: ['React', 'TypeScript'],

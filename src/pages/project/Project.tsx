@@ -26,20 +26,28 @@ const Project = () => {
     // 저장된 스크롤 위치 복원
     const savedScrollY = sessionStorage.getItem('projectScrollY');
     const isReturning = sessionStorage.getItem('isReturningToProject');
+    const hasVisited = sessionStorage.getItem('projectVisited');
 
-    if (isReturning === 'true' && savedScrollY) {
-      // 뒤로가기로 돌아온 경우
+    if ((isReturning === 'true' && savedScrollY) || hasVisited) {
+      // 뒤로가기로 돌아온 경우 또는 이미 방문한 경우
       sessionStorage.removeItem('isReturningToProject');
-      const scrollPosition = parseInt(savedScrollY, 10);
 
-      // 스크롤 애니메이션 건너뛰기
       setIsScrollUnlocked(true);
-      setCount(3); // 모든 메시지 표시 완료 상태로
+      setCount(3);
 
-      // DOM이 준비된 후 스크롤 복원
-      requestAnimationFrame(() => {
-        window.scrollTo(0, scrollPosition);
-      });
+      if (savedScrollY) {
+        const scrollPosition = parseInt(savedScrollY, 10);
+        sessionStorage.removeItem('projectScrollY');
+        // Lenis 초기화 이후 스크롤 복원
+        const timer = setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 100);
+
+        return () => {
+          clearTimeout(timer);
+          if (cleanup) cleanup();
+        };
+      }
 
       return () => {
         if (cleanup) cleanup();
@@ -72,6 +80,7 @@ const Project = () => {
 
   const unlockScroll = (scrollY?: number) => {
     setIsScrollUnlocked(true);
+    sessionStorage.setItem('projectVisited', 'true');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.position = '';

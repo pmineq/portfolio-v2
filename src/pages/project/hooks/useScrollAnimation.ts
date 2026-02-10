@@ -5,16 +5,6 @@ import Lenis from '@studio-freight/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface AnimationOptions {
-  autoAlpha: number;
-  x: number;
-  y: number;
-  delay?: number;
-  duration: number;
-  overwrite: boolean | 'auto';
-  ease: string;
-}
-
 export const useScrollAnimation = () => {
   useEffect(() => {
     const lenis = new Lenis({
@@ -23,10 +13,11 @@ export const useScrollAnimation = () => {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
     const hide = (item: Element) => {
@@ -53,20 +44,18 @@ export const useScrollAnimation = () => {
         y = 0;
       }
 
-      const animationOptions: AnimationOptions = {
-        autoAlpha: 1,
-        x: 0,
-        y: 0,
-        delay,
-        duration: 1.25,
-        overwrite: 'auto',
-        ease: 'expo',
-      };
-
       gsap.fromTo(
         item,
         { autoAlpha: 0, x, y },
-        animationOptions
+        {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          delay,
+          duration: 1.25,
+          overwrite: 'auto',
+          ease: 'expo',
+        }
       );
     };
 
@@ -86,6 +75,7 @@ export const useScrollAnimation = () => {
     });
 
     return () => {
+      gsap.ticker.remove(tickerCallback);
       lenis.stop();
       lenis.destroy();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
