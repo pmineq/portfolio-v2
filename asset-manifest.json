@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio-v2/static/css/main.4f250ac0.css",
-    "main.js": "/portfolio-v2/static/js/main.1e793cff.js",
+    "main.css": "/portfolio-v2/static/css/main.777de2f3.css",
+    "main.js": "/portfolio-v2/static/js/main.ddba6fb6.js",
     "static/media/machine.glb": "/portfolio-v2/static/media/machine.1330f7ed067558c8de01.glb",
     "static/media/portfoliov2_sub01.webm": "/portfolio-v2/static/media/portfoliov2_sub01.fe9b06bcf08c5e90a120.webm",
     "static/media/portfoliov2_sub08.png": "/portfolio-v2/static/media/portfoliov2_sub08.0574abd836a6b78d988a.png",
@@ -25,6 +25,7 @@
     "static/media/kplus6.jpg": "/portfolio-v2/static/media/kplus6.7c373b093318c27377a7.jpg",
     "static/media/lslpl_sub02.png": "/portfolio-v2/static/media/lslpl_sub02.bfc655491b556fad53df.png",
     "static/media/admin_sub01.jpg": "/portfolio-v2/static/media/admin_sub01.45ab9c6da362aa8d5c6e.jpg",
+    "static/media/portfolio_v3.png": "/portfolio-v2/static/media/portfolio_v3.5cfd3bc5f7ea1459da10.png",
     "static/media/hyundai_sub03.png": "/portfolio-v2/static/media/hyundai_sub03.63ad9ab34aa4db1a8461.png",
     "static/media/kplus8.jpg": "/portfolio-v2/static/media/kplus8.0a429a52d2e460bf29c8.jpg",
     "static/media/kplus2.jpg": "/portfolio-v2/static/media/kplus2.33b975da33798e26e77a.jpg",
@@ -80,11 +81,11 @@
     "static/media/slick.woff": "/portfolio-v2/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/portfolio-v2/index.html",
     "static/media/logo.svg": "/portfolio-v2/static/media/logo.9977652b542a28678aaec222858fe4cc.svg",
-    "main.4f250ac0.css.map": "/portfolio-v2/static/css/main.4f250ac0.css.map",
-    "main.1e793cff.js.map": "/portfolio-v2/static/js/main.1e793cff.js.map"
+    "main.777de2f3.css.map": "/portfolio-v2/static/css/main.777de2f3.css.map",
+    "main.ddba6fb6.js.map": "/portfolio-v2/static/js/main.ddba6fb6.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f250ac0.css",
-    "static/js/main.1e793cff.js"
+    "static/css/main.777de2f3.css",
+    "static/js/main.ddba6fb6.js"
   ]
 }
