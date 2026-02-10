@@ -19,8 +19,7 @@ export const SKILLS = {
       'Github',
       'Jira',
       'Confluence',
-      'PhotoShop',
-      'Illustrator',
+      'PhotoShop'
     ],
   },
 } as const;
