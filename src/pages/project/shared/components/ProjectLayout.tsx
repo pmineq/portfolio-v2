@@ -4,8 +4,8 @@ import { BackButton } from './BackButton';
 import { ProjectNavigation } from './ProjectNavigation';
 
 interface ProjectLayoutProps {
-  projectRef: RefObject<HTMLDivElement | null>;
-  topRef: RefObject<HTMLElement | null>;
+  projectRef: RefObject<HTMLDivElement>;
+  topRef: RefObject<HTMLElement>;
   className: string;
   topImage: string;
   projectInfo: ProjectInfo;

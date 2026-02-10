@@ -459,9 +459,10 @@ export function MainThree(): void {
         raycasting();
       }
 
-      // 키보드 이동 처리 (PC) - 가이드가 닫힌 후에만 가능
+      // 키보드 이동 처리 (PC) - 가이드가 닫힌 후에만, 인형뽑기 모달이 없을 때만 가능
+      const isClawMachineOpen = !!document.querySelector('.claw-machine-overlay');
       const isKeyMoving =
-        isGuideClosed && (
+        isGuideClosed && !isClawMachineOpen && (
           keys.ArrowUp || keys.ArrowDown || keys.ArrowLeft || keys.ArrowRight ||
           keys.w || keys.s || keys.a || keys.d
         );
