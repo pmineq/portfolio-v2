@@ -35,6 +35,15 @@ export const SUB_PROJECTS: SubProject[] = [
     duty: '디자인/퍼블리싱/프론트개발',
   },
   {
+    id: 'sub08',
+    url: 'https://pmineq.github.io/portfolio-v3/',
+    name: 'Portfolio ver.03',
+    type: '반응형',
+    duty: '디자인/퍼블리싱/프론트개발',
+    isExternal: true,
+    badge: '작업중',
+  },
+  {
     id: 'sub02',
     url: '/project/dubuck',
     name: '두벅 영워드',

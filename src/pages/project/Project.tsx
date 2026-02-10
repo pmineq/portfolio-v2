@@ -253,16 +253,19 @@ const Project = () => {
 
             <div className="side-project-list">
               <Slider {...SLIDER_SETTINGS}>
-                {SUB_PROJECTS.map((item) => (
-                  <div key={item.id} id={item.id} className="side-project-item">
-                    <Link to={item.url} onClick={handleProjectLinkClick}>
+                {SUB_PROJECTS.map((item) => {
+                  const content = (
+                    <>
                       <div className="side-project-planet">
                         <div className='side-project-imgwrap'>
                           <div className='side-project-img'></div>
                         </div>
                       </div>
                       <div className="side-project-info">
-                        <strong className="name">{item.name}</strong>
+                        <strong className="name">
+                          {item.name}
+                          {item.badge && <span className="badge">{item.badge}</span>}
+                        </strong>
                         <dl className="type">
                           <dt>Type.</dt>
                           <dd>{item.type}</dd>
@@ -272,9 +275,23 @@ const Project = () => {
                           <dd>{item.duty}</dd>
                         </dl>
                       </div>
-                    </Link>
-                  </div>
-                ))}
+                    </>
+                  );
+
+                  return (
+                    <div key={item.id} id={item.id} className="side-project-item">
+                      {item.isExternal ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer">
+                          {content}
+                        </a>
+                      ) : (
+                        <Link to={item.url} onClick={handleProjectLinkClick}>
+                          {content}
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
               </Slider>
             </div>
           </div>

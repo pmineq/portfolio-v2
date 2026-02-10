@@ -4,6 +4,8 @@ export interface SubProject {
   name: string;
   type: string;
   duty: string;
+  isExternal?: boolean;
+  badge?: string;
 }
 
 export interface SlickSettings {
