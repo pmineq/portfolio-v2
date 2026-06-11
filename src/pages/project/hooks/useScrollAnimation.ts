@@ -5,8 +5,10 @@ import Lenis from '@studio-freight/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useScrollAnimation = () => {
+export const useScrollAnimation = (enabled = true) => {
   useEffect(() => {
+    if (!enabled) return;
+
     const lenis = new Lenis({
       lerp: 0.07,
     });
@@ -80,5 +82,5 @@ export const useScrollAnimation = () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [enabled]);
 };

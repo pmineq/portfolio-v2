@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Layout from '../../components/Layout';
 import PortJS from '../portThree';
 import { SUB_PROJECTS, SLIDER_SETTINGS, MESSAGES, CAREER_SECTIONS } from './constants';
@@ -12,13 +13,13 @@ import '../../assets/scss/portfolio.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
 const Project = () => {
   const [count, setCount] = useState(0);
   const [isScrollUnlocked, setIsScrollUnlocked] = useState(false);
 
-  useScrollAnimation();
+  useScrollAnimation(isScrollUnlocked);
 
   useEffect(() => {
     const cleanup = PortJS();
@@ -89,6 +90,9 @@ const Project = () => {
     if (scrollY !== undefined) {
       window.scrollTo(0, scrollY);
     }
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
   };
 
   const handleClick = () => {
