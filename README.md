@@ -33,9 +33,11 @@ src/
 
 ## Getting Started
 
+Node.js 22를 기준으로 설치·빌드합니다.
+
 ```bash
 # 의존성 설치
-npm install
+npm ci
 
 # 개발 서버 실행
 npm start
@@ -43,6 +45,20 @@ npm start
 # 빌드
 npm run build
 ```
+
+## Verification
+
+```bash
+npm run lint
+npm test -- --watchAll=false
+npx playwright install
+npm run test:e2e
+```
+
+GitHub Actions에서 macOS와 Windows의 설치, 단위 테스트, 빌드, Chromium 회귀 테스트를 검사합니다.
+로컬 브라우저 회귀 테스트는 Chromium, Firefox, WebKit을 대상으로 실행합니다.
+React와 Three.js 타입은 런타임의 주요 버전에 맞추며, CRA의 오래된 TypeScript peer 범위는
+`overrides`로 프로젝트의 TypeScript 버전에 맞춥니다.
 
 ## License
 

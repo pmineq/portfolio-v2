@@ -17,7 +17,7 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    MainJS();
+    return MainJS();
   }, []);
 
   return (

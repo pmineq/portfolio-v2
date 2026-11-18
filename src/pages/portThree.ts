@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { SceneModelLoader, disposeObject } from './sceneResources';
 import gsap from 'gsap';
 import PlayerObj from '../models/mine.glb';
 
@@ -37,11 +37,12 @@ export function PortThree(): (() => void) | void {
   scene.add(directionalLight);
 
   // gltf loader
-  const gltfLoader = new GLTFLoader();
+  const gltfLoader = new SceneModelLoader();
   let mixer: THREE.AnimationMixer | undefined;
   let mineMesh: THREE.Object3D | undefined;
   const actions: THREE.AnimationAction[] = [];
   let isAnimating = true;
+  let messageWrap: HTMLElement | null = null;
 
   gltfLoader.load(PlayerObj, (gltf) => {
     mineMesh = gltf.scene.children[0];
@@ -73,7 +74,7 @@ export function PortThree(): (() => void) | void {
         actions[2].clampWhenFinished = true;
         actions[2].play();
 
-        const messageWrap = document.querySelector('.message-wrap') as HTMLElement;
+        messageWrap = document.querySelector('.message-wrap') as HTMLElement;
         if (messageWrap) {
           messageWrap.style.display = 'block';
           messageWrap.style.opacity = '0';
@@ -149,6 +150,8 @@ export function PortThree(): (() => void) | void {
 
   // Cleanup 함수 반환
   return () => {
+    isAnimating = false;
+    gltfLoader.dispose();
     // 애니메이션 루프 중지
     renderer.setAnimationLoop(null);
 
@@ -159,8 +162,12 @@ export function PortThree(): (() => void) | void {
     // Three.js 리소스 정리
     if (mixer) {
       mixer.stopAllAction();
+      if (mineMesh) mixer.uncacheRoot(mineMesh);
     }
 
+    if (mineMesh) gsap.killTweensOf(mineMesh.position);
+    if (messageWrap) gsap.killTweensOf(messageWrap);
+    disposeObject(scene);
     scene.clear();
     renderer.dispose();
 

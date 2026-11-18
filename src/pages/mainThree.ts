@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { SceneModelLoader, disposeObject } from './sceneResources';
+import { getMovementStep } from './movement';
 import { Player } from './Player';
 import { Roket } from './Roket';
 import { GoalSpot } from './GoalSpot';
@@ -9,7 +10,10 @@ import gridImg from '../assets/images/grid_map.png';
 import ballImg from '../assets/images/ball.png';
 import * as CANNON from 'cannon-es';
 
-export function MainThree(): void {
+export function MainThree(): (() => void) | void {
+  let disposed = false;
+  const events = new AbortController();
+  let goalTimer: ReturnType<typeof setTimeout> | undefined;
   // Texture
   const textureLoader = new THREE.TextureLoader();
   const floorTexture = textureLoader.load(gridImg);
@@ -178,7 +182,7 @@ export function MainThree(): void {
   spotMesh.receiveShadow = true;
   scene.add(spotMesh);
 
-  const gltfLoader = new GLTFLoader();
+  const gltfLoader = new SceneModelLoader();
 
   const roket = new Roket({
     gltfLoader,
@@ -314,7 +318,7 @@ export function MainThree(): void {
   // 가이드 닫힘 이벤트 리스너
   window.addEventListener('guideClose', () => {
     isGuideClosed = true;
-  });
+  }, { signal: events.signal });
 
   // 키보드 이동
   const keys = {
@@ -327,7 +331,8 @@ export function MainThree(): void {
     a: false,
     d: false,
   };
-  const KEYBOARD_SPEED = 0.08;
+  const KEYBOARD_SPEED = 4.8; // world units per second (the original 60 Hz speed)
+  const POINTER_SPEED = 3;
 
   // 골 감지 변수
   let lastGoalTime = 0;
@@ -351,7 +356,8 @@ export function MainThree(): void {
       );
 
       // 2초 후 사라지게
-      setTimeout(() => {
+      if (goalTimer) clearTimeout(goalTimer);
+      goalTimer = setTimeout(() => {
         gsap.to(effectElement, {
           scale: 0,
           opacity: 0,
@@ -408,7 +414,8 @@ export function MainThree(): void {
   const clock = new THREE.Clock();
 
   function draw(): void {
-    const delta = clock.getDelta();
+    if (disposed) return;
+    const delta = Math.min(clock.getDelta(), 0.05);
 
     //화면 주사율에 따라 최적화 화면 제공
     let cannonStepTime = 1 / 60;
@@ -492,8 +499,9 @@ export function MainThree(): void {
         // 대각선 이동 시 속도 정규화
         const length = Math.sqrt(moveX * moveX + moveZ * moveZ);
         if (length > 0) {
-          moveX = (moveX / length) * KEYBOARD_SPEED;
-          moveZ = (moveZ / length) * KEYBOARD_SPEED;
+          const step = getMovementStep(KEYBOARD_SPEED, delta);
+          moveX = (moveX / length) * step;
+          moveZ = (moveZ / length) * step;
         }
 
         const nextX = player.cannonBody.position.x + moveX;
@@ -591,8 +599,13 @@ export function MainThree(): void {
         );
 
         // 다음 위치 계산
-        const nextX = player.cannonBody.position.x + Math.cos(angle) * 0.05;
-        const nextZ = player.cannonBody.position.z + Math.sin(angle) * 0.05;
+        const distance = Math.hypot(
+          destinationPoint.x - player.cannonBody.position.x,
+          destinationPoint.z - player.cannonBody.position.z
+        );
+        const step = getMovementStep(POINTER_SPEED, delta, distance);
+        const nextX = player.cannonBody.position.x + Math.cos(angle) * step;
+        const nextZ = player.cannonBody.position.z + Math.sin(angle) * step;
 
         // 머신 충돌 체크 - 충돌하면 이동하지 않음
         if (!isInsideMachine(nextX, nextZ)) {
@@ -761,7 +774,7 @@ export function MainThree(): void {
   }
 
   // 이벤트
-  window.addEventListener('resize', setSize);
+  window.addEventListener('resize', setSize, { signal: events.signal });
 
   // 마우스 좌표를 three.js에 맞게 변환
   function calculateMousePosition(e: MouseEvent | Touch): void {
@@ -779,29 +792,29 @@ export function MainThree(): void {
   canvas.addEventListener('mousedown', (e) => {
     isPressed = true;
     calculateMousePosition(e);
-  });
+  }, { signal: events.signal });
   canvas.addEventListener('mouseup', () => {
     isPressed = false;
-  });
+  }, { signal: events.signal });
   canvas.addEventListener('mousemove', (e) => {
     if (isPressed) {
       calculateMousePosition(e);
     }
-  });
+  }, { signal: events.signal });
 
   // 터치 이벤트
   canvas.addEventListener('touchstart', (e) => {
     isPressed = true;
     calculateMousePosition(e.touches[0]);
-  });
+  }, { signal: events.signal });
   canvas.addEventListener('touchend', () => {
     isPressed = false;
-  });
+  }, { signal: events.signal });
   canvas.addEventListener('touchmove', (e) => {
     if (isPressed) {
       calculateMousePosition(e.touches[0]);
     }
-  });
+  }, { signal: events.signal });
 
   // 키보드 이벤트
   window.addEventListener('keydown', (e) => {
@@ -827,12 +840,25 @@ export function MainThree(): void {
         if (button) button.click();
       }
     }
-  });
+  }, { signal: events.signal });
   window.addEventListener('keyup', (e) => {
     if (e.key in keys) {
       keys[e.key as keyof typeof keys] = false;
     }
-  });
+  }, { signal: events.signal });
+
+  const resetInput = () => {
+    for (const key of Object.keys(keys) as Array<keyof typeof keys>) keys[key] = false;
+    isPressed = false;
+    player.moving = false;
+    clock.getDelta();
+  };
+  window.addEventListener('blur', resetInput, { signal: events.signal });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) resetInput();
+  }, { signal: events.signal });
+  window.addEventListener('mouseup', () => { isPressed = false; }, { signal: events.signal });
+  canvas.addEventListener('touchcancel', resetInput, { signal: events.signal });
 
   //초기화
   const btnReset = document.querySelector('.btn-reset');
@@ -859,7 +885,7 @@ export function MainThree(): void {
         const btnView = document.querySelector('.btn-view') as HTMLElement;
         if (btnView) btnView.style.display = 'none';
       }
-    });
+    }, { signal: events.signal });
   }
 
   const btnMenu = document.getElementById('btn-menu');
@@ -887,10 +913,35 @@ export function MainThree(): void {
           },
         });
       }
-    });
+    }, { signal: events.signal });
   }
 
   draw();
+
+  // Capture route-owned DOM nodes while they still belong to this scene.
+  const effectElement = document.getElementById('goal-effect');
+  const btnView = document.querySelector('.btn-view');
+  const btnMachine = document.querySelector('.btn-machine');
+
+  return () => {
+    disposed = true;
+    events.abort();
+    if (goalTimer) clearTimeout(goalTimer);
+    renderer.setAnimationLoop(null);
+    gltfLoader.dispose();
+    player.mixer?.stopAllAction();
+    if (player.mixer && player.modelMesh) player.mixer.uncacheRoot(player.modelMesh);
+    gsap.killTweensOf([camera, camera.position, BallBody.velocity, BallBody.angularVelocity]);
+    for (const element of [effectElement, btnView, btnMachine]) {
+      if (element) gsap.killTweensOf(element);
+    }
+    scene.traverse((object) => gsap.killTweensOf(object.position));
+    directionalLight.shadow.dispose();
+    disposeObject(scene);
+    scene.clear();
+    cannonWorld.bodies.slice().forEach((body) => cannonWorld.removeBody(body));
+    renderer.dispose();
+  };
 }
 
 export default MainThree;
