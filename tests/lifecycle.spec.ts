@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 test('leaving the 3D main stops drawing, including after repeated visits', async ({ page }) => {
+  // CI renders two full 3D visits in software on virtual macOS hardware.
+  test.setTimeout(90_000);
   await page.addInitScript(() => {
     const state = window as typeof window & { auditDraws: number };
     state.auditDraws = 0;
